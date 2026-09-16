@@ -35,7 +35,7 @@ from rapidfuzz import fuzz, process
 
 GLEIF_LATEST = 'https://goldencopy.gleif.org/api/v2/golden-copies/publishes/lei2/latest'
 
-IYP_URI = os.environ.get('IYP_BOLT_URI', 'neo4j+s://iyp-bolt.ihr.live:443')
+IYP_URI = os.environ.get('IYP_BOLT_URI', 'neo4j://iyp-bolt.ihr.live:7687')
 IYP_USER = os.environ.get('IYP_USER', 'neo4j')
 IYP_PASSWORD = os.environ.get('IYP_PASSWORD', 'password')
 
