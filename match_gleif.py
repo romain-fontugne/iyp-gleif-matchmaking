@@ -10,7 +10,10 @@ Pipeline:
      blocked by country.
   4. Match in tiers of decreasing confidence; anything with several equally good
      candidates goes to ambiguous.csv instead of the mapping.
-  5. Apply manual overrides, write mapping.csv / ambiguous.csv / report.md.
+  5. Look up organizations that did not match well in the registries via RDAP
+     (see whois_enrich.py), using the CAIDA whois handles / ASNs stored in IYP,
+     and match again with the registered name, country, city and postal code.
+  6. Apply manual overrides, write mapping.csv / ambiguous.csv / report.md.
 
 The output is meant to be consumed by an IYP crawler as a curated dataset, so
 precision matters more than recall.
@@ -32,6 +35,8 @@ from datetime import datetime, timezone
 import pandas as pd
 import requests
 from rapidfuzz import fuzz, process
+
+import whois_enrich
 
 GLEIF_LATEST = 'https://goldencopy.gleif.org/api/v2/golden-copies/publishes/lei2/latest'
 
@@ -123,6 +128,10 @@ def core_name(norm: str) -> str:
     return ' '.join(tokens)
 
 
+def normalize_postcode(value: str) -> str:
+    return re.sub(r'[\s-]', '', str(value or '')).upper()
+
+
 def first_token(norm: str) -> str:
     return norm.split(' ', 1)[0] if norm else ''
 
@@ -150,7 +159,7 @@ RETURN o.name AS name,
        [(o)-[:EXTERNAL_ID]->(x:CaidaOrgID) | x.id] AS caida_ids,
        [(o)-[:COUNTRY]->(c:Country) | c.country_code] AS countries,
        [(o)-[:WEBSITE]->(u:URL) | u.url] AS websites,
-       size([(a:AS)-[:MANAGED_BY]->(o) | a]) AS n_as
+       [(a:AS)-[:MANAGED_BY]->(o) | a.asn] AS asns
 """
 
 
@@ -174,7 +183,8 @@ def fetch_iyp_orgs() -> pd.DataFrame:
                     'caida_ids': sorted({str(x) for x in rec['caida_ids'] if x is not None}),
                     'countries': sorted({str(x).upper() for x in rec['countries'] if x}),
                     'websites': sorted({str(x) for x in rec['websites'] if x}),
-                    'n_as': int(rec['n_as'] or 0),
+                    'asns': sorted({int(a) for a in rec['asns'] if a is not None}),
+                    'n_as': len({a for a in rec['asns'] if a is not None}),
                 })
     df = pd.DataFrame(rows)
     logging.info(f'Got {len(df)} organizations, {df.n_as.gt(0).sum()} with ASes, '
@@ -184,10 +194,10 @@ def fetch_iyp_orgs() -> pd.DataFrame:
 
 def load_iyp_orgs_csv(path: str) -> pd.DataFrame:
     """Offline alternative to fetch_iyp_orgs() for testing. Columns:
-    name, pdb_ids, caida_ids, countries, websites, n_as, and optionally cities and
-    alt_names (all lists as ';'-separated)."""
+    name, pdb_ids, caida_ids, countries, websites, n_as, and optionally cities,
+    alt_names and asns (all lists as ';'-separated)."""
     df = pd.read_csv(path, dtype=str, keep_default_na=False)
-    for col in ('pdb_ids', 'caida_ids', 'countries', 'websites', 'cities', 'alt_names'):
+    for col in ('pdb_ids', 'caida_ids', 'countries', 'websites', 'cities', 'alt_names', 'asns'):
         if col not in df:
             df[col] = ''
         df[col] = df[col].map(lambda v: [x for x in v.split(';') if x])
@@ -235,7 +245,7 @@ class GleifIndex:
     core_legal[(cc, core)]  -> set(LEI)
     core_other[(cc, core)]  -> set(LEI)
     fuzzy_block[(cc, first_token)] -> list[(core, LEI)]   (legal + other names)
-    records[LEI] -> (legal_name, countries, city, entity_status, reg_status)
+    records[LEI] -> (legal_name, countries, city, entity_status, reg_status, postcode)
     """
 
     def __init__(self):
@@ -247,8 +257,8 @@ class GleifIndex:
         self.global_exact = defaultdict(set)
         self.records = {}
 
-    def add(self, lei, legal_name, other_names, countries, city, entity_status, reg_status):
-        self.records[lei] = (legal_name, tuple(sorted(countries)), city, entity_status, reg_status)
+    def add(self, lei, legal_name, other_names, countries, city, entity_status, reg_status, postcode=''):
+        self.records[lei] = (legal_name, tuple(sorted(countries)), city, entity_status, reg_status, postcode)
         ln = normalize(legal_name)
         lc = core_name(ln)
         self.global_exact[ln].add(lei)
@@ -287,6 +297,7 @@ def _discover_columns(header: list[str]) -> dict:
         + pick('Entity.TransliteratedOtherEntityNames.TransliteratedOtherEntityName.'),
         'legal_country': 'Entity.LegalAddress.Country',
         'legal_city': 'Entity.LegalAddress.City',
+        'legal_postcode': 'Entity.LegalAddress.PostalCode',
         'hq_country': 'Entity.HeadquartersAddress.Country',
         'jurisdiction': 'Entity.LegalJurisdiction',
         'entity_status': 'Entity.EntityStatus',
@@ -306,7 +317,7 @@ def load_gleif(zip_path: str) -> GleifIndex:
             header = next(csv.reader(io.TextIOWrapper(fh, encoding='utf-8')))
         cols = _discover_columns(header)
         usecols = [cols['lei'], cols['legal_name'], cols['legal_country'], cols['legal_city'],
-                   cols['hq_country'], cols['jurisdiction'], cols['entity_status'],
+                   cols['legal_postcode'], cols['hq_country'], cols['jurisdiction'], cols['entity_status'],
                    cols['reg_status']] + cols['other_names']
         logging.info(f'Reading {csv_name} ({len(cols["other_names"])} other-name columns)')
         n = 0
@@ -334,6 +345,7 @@ def load_gleif(zip_path: str) -> GleifIndex:
                         city=normalize(r[cols['legal_city']]),
                         entity_status=r[cols['entity_status']],
                         reg_status=reg,
+                        postcode=normalize_postcode(r[cols['legal_postcode']]),
                     )
                     n += 1
                 logging.info(f'  ...{n} records indexed')
@@ -345,7 +357,7 @@ def load_gleif(zip_path: str) -> GleifIndex:
 # Matching
 # --------------------------------------------------------------------------- #
 
-def _prefer(cands: set, index: GleifIndex, cities: list) -> tuple[set, str]:
+def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = ()) -> tuple[set, str]:
     """Try to reduce a candidate set to one LEI. Returns (candidates, hint)."""
     if len(cands) <= 1:
         return cands, ''
@@ -354,6 +366,10 @@ def _prefer(cands: set, index: GleifIndex, cities: list) -> tuple[set, str]:
         return active, 'active_only'
     if active:
         cands = active
+    if postcodes:
+        by_pc = {l for l in cands if index.records[l][5] and index.records[l][5] in postcodes}
+        if len(by_pc) == 1:
+            return by_pc, 'postcode'
     if cities:
         by_city = {l for l in cands if index.records[l][2] in cities}
         if len(by_city) == 1:
@@ -361,20 +377,38 @@ def _prefer(cands: set, index: GleifIndex, cities: list) -> tuple[set, str]:
     return cands, ''
 
 
-def match_org(org, index: GleifIndex):
-    """Return (lei, method, matched_name, hint) or (None, 'ambiguous'|'unmatched', cands, '')."""
+def match_org(org, index: GleifIndex, whois: dict = None):
+    """Return (lei, method, matched_name, hint) or (None, 'ambiguous'|'unmatched', cands, '').
+
+    ``whois`` is the registry record from whois_enrich (name, country, city,
+    postcode), if any. Its name is tried after the IYP and PeeringDB names, its
+    country is used as an additional block when IYP has none matching, and city /
+    postal code serve as tie-breakers.
+    """
+    whois = whois or {}
     norm = normalize(org.name)
     core = core_name(norm)
     if not norm:
         return None, 'unmatched', None, ''
-    countries = org.countries or []
-    cities = getattr(org, 'cities', []) or []
-    # Query names: the IYP name first, then PeeringDB name_long / aka.
+    iyp_countries = list(org.countries or [])
+    whois_countries = [whois['country']] if whois.get('country') and whois['country'] not in iyp_countries else []
+    country_sets = [(iyp_countries, '')]
+    if whois_countries:
+        country_sets.append((whois_countries, 'whois_country'))
+    cities = list(getattr(org, 'cities', []) or [])
+    if whois.get('city'):
+        cities.append(normalize(whois['city']))
+    postcodes = [normalize_postcode(whois['postcode'])] if whois.get('postcode') else []
+    # Query names: the IYP name first, then PeeringDB name_long / aka, then whois.
     query_names = [(norm, core, '')]
     for alt in getattr(org, 'alt_names', []) or []:
         an = normalize(alt)
         if an and an != norm:
             query_names.append((an, core_name(an), 'alt_name'))
+    if whois.get('name'):
+        wn = normalize(whois['name'])
+        if wn and wn not in {q[0] for q in query_names}:
+            query_names.append((wn, core_name(wn), 'whois_name'))
 
     tiers = [
         ('legal_exact', index.exact, 0),
@@ -385,17 +419,20 @@ def match_org(org, index: GleifIndex):
     for method, idx, which in tiers:
         for qn in query_names:
             key, src = qn[which], qn[2]
-            cands = set()
-            for cc in countries:
-                cands |= idx.get((cc, key), set())
-            if not cands:
-                continue
-            cands, hint = _prefer(cands, index, cities)
-            hint = ','.join(h for h in (src, hint) if h)
-            if len(cands) == 1:
-                lei = next(iter(cands))
-                return lei, method, key, hint
-            return None, 'ambiguous', sorted(cands), method
+            for countries, csrc in country_sets:
+                cands = set()
+                for cc in countries:
+                    cands |= idx.get((cc, key), set())
+                if not cands:
+                    continue
+                cands, hint = _prefer(cands, index, cities, postcodes)
+                hint = ','.join(h for h in (src, csrc, hint) if h)
+                if len(cands) == 1:
+                    lei = next(iter(cands))
+                    return lei, method, key, hint
+                return None, 'ambiguous', sorted(cands), method
+
+    countries = iyp_countries + whois_countries
 
     # Fuzzy, blocked on (country, first token of core name).
     if countries and len(core) >= 4:
@@ -410,16 +447,18 @@ def match_org(org, index: GleifIndex):
                 best_score = hits[0][1]
                 best_leis = {block[h[2]][1] for h in hits if h[1] == best_score}
                 runner_up = max((h[1] for h in hits if block[h[2]][1] not in best_leis), default=0)
-                best_leis, hint = _prefer(best_leis, index, cities)
+                best_leis, hint = _prefer(best_leis, index, cities, postcodes)
                 if len(best_leis) == 1 and best_score - runner_up >= FUZZY_MARGIN:
                     lei = next(iter(best_leis))
+                    if whois_countries and not iyp_countries:
+                        hint = ','.join(h for h in ('whois_country', hint) if h)
                     return lei, 'fuzzy', hits[0][0], f'score={best_score:.0f}{"," + hint if hint else ""}'
                 return None, 'ambiguous', sorted(best_leis), 'fuzzy'
 
     # No country in IYP: only accept a globally unique exact legal-name match.
     if not countries:
         cands = index.global_exact.get(norm, set())
-        cands, hint = _prefer(cands, index, cities)
+        cands, hint = _prefer(cands, index, cities, postcodes)
         if len(cands) == 1:
             return next(iter(cands)), 'legal_exact_nocountry', norm, hint
         if len(cands) > 1:
@@ -460,7 +499,7 @@ def apply_overrides(mapping: pd.DataFrame, path: str, orgs: pd.DataFrame,
 
 
 def _row(org, name, lei, method, matched_name, hint, index: GleifIndex) -> dict:
-    legal_name, countries, city, entity_status, reg_status = index.records[lei]
+    legal_name, countries, city, entity_status, reg_status, _postcode = index.records[lei]
     return {
         'iyp_org_name': name,
         'lei': lei,
@@ -480,11 +519,12 @@ def _row(org, name, lei, method, matched_name, hint, index: GleifIndex) -> dict:
     }
 
 
-def run_matching(orgs: pd.DataFrame, index: GleifIndex):
+def run_matching(orgs: pd.DataFrame, index: GleifIndex, whois: dict = None):
+    whois = whois or {}
     matched, ambiguous = [], []
     stats = Counter()
     for org in orgs.itertuples(index=False):
-        lei, method, extra, hint = match_org(org, index)
+        lei, method, extra, hint = match_org(org, index, whois.get(org.name))
         stats[method] += 1
         if lei:
             matched.append(_row(org, org.name, lei, method, extra, hint, index))
@@ -508,7 +548,8 @@ def run_matching(orgs: pd.DataFrame, index: GleifIndex):
 # Report
 # --------------------------------------------------------------------------- #
 
-def write_report(path, orgs, mapping, ambiguous, stats, publish_date):
+def write_report(path, orgs, mapping, ambiguous, stats, publish_date, whois=None):
+    whois = whois or {}
     total = len(orgs)
     with_as = orgs[orgs.n_as > 0]
     as_total = orgs.n_as.sum()
@@ -528,6 +569,12 @@ def write_report(path, orgs, mapping, ambiguous, stats, publish_date):
         f'({as_covered / max(as_total, 1):.1%}) point to a matched organization', '',
         '## Matches by method', '', '| method | confidence | count |', '|---|---|---|',
     ]
+    if whois:
+        n_whois_hint = int(mapping.hint.fillna('').str.contains('whois').sum()) if not mapping.empty else 0
+        lines[lines.index('## Results')-1:lines.index('## Results')-1] = [
+            f'- Organizations with registry (RDAP) data: {len(whois)}; '
+            f'matches that needed it: {n_whois_hint} (see `hint` column)',
+        ]
     if not mapping.empty:
         for method, cnt in mapping.match_method.value_counts().items():
             lines.append(f'| {method} | {CONFIDENCE[method]} | {cnt} |')
@@ -564,6 +611,11 @@ def main():
     p.add_argument('--gleif-zip', help='Use a local golden copy zip instead of downloading')
     p.add_argument('--iyp-csv', help='Read organizations from CSV instead of querying IYP')
     p.add_argument('--write-unmatched', action='store_true', help='Also write unmatched.csv')
+    p.add_argument('--no-whois', action='store_true', help='Skip registry (RDAP) enrichment')
+    p.add_argument('--rdap-cache', default='cache/rdap_cache.json',
+                   help='Persistent cache of RDAP lookups (keep it between runs)')
+    p.add_argument('--rdap-budget', type=int, default=int(os.environ.get('RDAP_BUDGET', 3000)),
+                   help='Maximum number of new RDAP requests per run')
     args = p.parse_args()
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s',
@@ -582,6 +634,19 @@ def main():
     logging.info('Matching...')
     mapping, ambiguous, stats = run_matching(orgs, index)
     logging.info(f'Matching stats: {dict(stats)}')
+
+    whois = {}
+    if not args.no_whois:
+        # Spend the RDAP budget on organizations that are unmatched, ambiguous or
+        # matched with low confidence, largest first; cached lookups are free.
+        good = set(mapping[mapping.confidence >= 0.9].iyp_org_name) if not mapping.empty else set()
+        priority = set(orgs.name) - good
+        whois = whois_enrich.enrich(orgs, args.rdap_cache, args.rdap_budget, priority)
+        if whois:
+            logging.info('Matching again with registry data...')
+            mapping, ambiguous, stats = run_matching(orgs, index, whois)
+            logging.info(f'Matching stats: {dict(stats)}')
+
     mapping = apply_overrides(mapping, args.overrides, orgs, index)
 
     mapping.to_csv(os.path.join(args.out_dir, 'iyp_gleif_mapping.csv'), index=False)
@@ -592,7 +657,7 @@ def main():
         um = orgs[~orgs.name.isin(matched | amb)][['name', 'countries', 'n_as']].copy()
         um['countries'] = um.countries.map(';'.join)
         um.sort_values('n_as', ascending=False).to_csv(os.path.join(args.out_dir, 'unmatched.csv'), index=False)
-    write_report(os.path.join(args.out_dir, 'report.md'), orgs, mapping, ambiguous, stats, publish_date)
+    write_report(os.path.join(args.out_dir, 'report.md'), orgs, mapping, ambiguous, stats, publish_date, whois)
     with open(os.path.join(args.out_dir, 'metadata.json'), 'w') as f:
         json.dump({
             'generated': datetime.now(tz=timezone.utc).isoformat(),
@@ -601,6 +666,7 @@ def main():
             'n_orgs': int(len(orgs)),
             'n_matched': int(len(mapping)),
             'n_ambiguous': int(len(ambiguous)),
+            'n_whois_enriched': len(whois),
             'fuzzy_threshold': FUZZY_THRESHOLD,
         }, f, indent=2)
     logging.info(f'Wrote {len(mapping)} matches and {len(ambiguous)} ambiguous cases to {args.out_dir}/')

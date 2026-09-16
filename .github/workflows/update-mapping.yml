@@ -32,6 +32,17 @@ jobs:
 
       - run: uv sync --frozen
 
+      - name: Restore RDAP lookup cache
+        # Registry lookups are done incrementally (RDAP_BUDGET per run) and cached.
+        # The cache key is unique per run so the updated cache is always saved; the
+        # restore key picks up the most recent one.
+        uses: actions/cache@v4
+        with:
+          path: cache/rdap_cache.json
+          key: rdap-cache-${{ github.run_id }}
+          restore-keys: |
+            rdap-cache-
+
       - name: Run matcher
         env:
           # Defaults point at the public IYP instance; override via repository
@@ -39,9 +50,11 @@ jobs:
           IYP_BOLT_URI: ${{ vars.IYP_BOLT_URI }}
           IYP_USER: ${{ vars.IYP_USER }}
           IYP_PASSWORD: ${{ secrets.IYP_PASSWORD }}
+          # Max new RDAP requests per run (default 3000, roughly 20-30 minutes).
+          RDAP_BUDGET: ${{ vars.RDAP_BUDGET }}
         run: |
           # Empty env vars would override the in-script defaults; unset them.
-          for v in IYP_BOLT_URI IYP_USER IYP_PASSWORD; do
+          for v in IYP_BOLT_URI IYP_USER IYP_PASSWORD RDAP_BUDGET; do
             [ -z "${!v}" ] && unset "$v"
           done
           uv run match-gleif --out-dir data --cache-dir cache --write-unmatched

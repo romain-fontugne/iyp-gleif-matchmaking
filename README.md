@@ -19,6 +19,9 @@ this one.
 | `report.md` | summary statistics, also shown in the Action's job summary |
 | `metadata.json` | run metadata (GLEIF publish date, counts) |
 
+`cache/rdap_cache.json` (not committed, kept in the Actions cache) holds registry
+lookups, see below.
+
 ## How matching works
 
 Organizations in IYP are identified by name only, so the matcher pulls in everything
@@ -34,6 +37,38 @@ country and HQ country). Names are normalized (casefold, diacritics, punctuation
 GLEIF's *other entity names* (trading names, alternative-language and transliterated
 names) are indexed too; network operators usually appear under a trading name.
 
+### Registry (whois) enrichment
+
+CAIDA as2org IDs stored in IYP (`CaidaOrgID`) are whois handles suffixed with their
+registry, e.g. `LPL-141-ARIN`, `ORG-DTAG1-RIPE`, `@aut-2497-JPNIC`. `whois_enrich.py`
+uses them for one RDAP lookup per organization: `{rir}/entity/{handle}` for real org
+handles, `rdap.org/autnum/{asn}` for `@aut-` handles and for organizations without a
+usable handle (first managed ASN). The registrant's name, country, city and postal code
+are then fed into the matcher:
+
+- the registered name is an extra query name (`hint` = `whois_name`). This mostly helps
+  `@aut-` organizations, whose IYP name is only an as-name/descr while the aut-num now
+  references a proper organisation object;
+- the registered country is used as a block when IYP has no country, or no candidate in
+  its countries (`hint` = `whois_country`);
+- city and postal code break ties between same-name candidates (`hint` = `city`,
+  `postcode`). Postal code also uses PeeringDB data when available.
+
+Lookups run *after* a first matching pass, so the request budget (`--rdap-budget`,
+default 3000 per run, `RDAP_BUDGET` in the Action) is spent on organizations that are
+unmatched, ambiguous or matched below 0.9, largest first. Results (including 404s) are
+cached for 180 days, so coverage grows run after run. Requests are throttled per host;
+a 429 or 5xx disables that host for the rest of the run. Bulk whois dumps are not an
+option here: RIPE and APNIC dummify organisation objects in their public dumps, and
+ARIN/LACNIC bulk access requires an agreement.
+
+Set expectations accordingly: for ARIN handles the registered name is what CAIDA already
+reports, so the gain there is country/city/postcode; the name gain is for `@aut-` and NIR
+(JPNIC, KRNIC, …) organizations. Large unmatched entities such as government agencies
+simply have no LEI, whatever whois says.
+
+### Tiers
+
 Matching runs in tiers and stops at the first tier that yields candidates:
 
 | `match_method` | confidence | rule |
@@ -46,8 +81,8 @@ Matching runs in tiers and stops at the first tier that yields candidates:
 | `fuzzy` | 0.7 | `token_sort_ratio >= 92` within (country, first token) block, unique best with margin |
 | `legal_exact_nocountry` | 0.5 | org has no country in IYP; globally unique exact legal name |
 
-When a tier returns several LEIs, ties are broken by entity status (`ACTIVE` only) and
-then by PeeringDB city vs. GLEIF legal-address city. If that still leaves more than one
+When a tier returns several LEIs, ties are broken by entity status (`ACTIVE` only), then
+by postal code and city (from PeeringDB or the registry) vs. GLEIF's legal address. If that still leaves more than one
 candidate the organization goes to `ambiguous.csv` rather than being guessed.
 `ANNULLED` and `DUPLICATE` LEI registrations are never matched.
 
@@ -76,11 +111,13 @@ Requires [uv](https://docs.astral.sh/uv/). Dependencies are pinned in `uv.lock`.
 uv sync
 uv run match-gleif                     # queries public IYP, downloads GLEIF (~300 MB zip)
 uv run match-gleif --gleif-zip cache/gleif-lei2-YYYY-MM-DD.csv.zip   # reuse a download
-uv run match-gleif --iyp-csv orgs.csv --gleif-zip test.zip  # offline test
+uv run match-gleif --iyp-csv orgs.csv --gleif-zip test.zip --no-whois  # offline test
+uv run match-gleif --rdap-budget 0             # use cached registry lookups only
 uv lock --upgrade                      # refresh pinned dependencies
 ```
 
-Environment: `IYP_BOLT_URI`, `IYP_USER`, `IYP_PASSWORD` (default: public IYP instance).
+Environment: `IYP_BOLT_URI`, `IYP_USER`, `IYP_PASSWORD` (default: public IYP instance),
+`RDAP_BUDGET` (default 3000).
 
 The Action reads the same variables from repository variables/secrets, so the workflow
 runs unchanged against a private IYP instance.
@@ -93,8 +130,10 @@ runs unchanged against a private IYP instance.
 - GLEIF has no website field, so IYP websites are carried through for review but not
   used for matching. Matching the website's registrable domain against GLEIF names is a
   possible extra signal.
-- PeeringDB `zipcode` is also available on the `EXTERNAL_ID` relationship and could serve
-  as a second tie-breaker against GLEIF's legal-address postal code.
+- PeeringDB `zipcode` is also available on the `EXTERNAL_ID` relationship and could feed
+  the postal-code tie-breaker like the registry postal code does.
+- NIR handles (JPNIC, KRNIC, TWNIC, …) are only resolved through APNIC's autnum RDAP,
+  which may return a stub; querying the NIRs' own RDAP servers would improve this.
 - CAIDA as2org names are often truncated or all-caps whois names; a per-source
   normalization could help.
 - The next stage is an IYP crawler that imports `iyp_gleif_mapping.csv` as
