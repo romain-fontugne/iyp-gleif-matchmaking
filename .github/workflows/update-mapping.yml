@@ -1,0 +1,64 @@
+name: Update IYP ↔ GLEIF mapping
+
+on:
+  schedule:
+    # IYP dumps are rebuilt weekly; GLEIF publishes daily. Run every Monday 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+  push:
+    # Re-run when the matcher or the manual overrides change.
+    paths:
+      - 'match_gleif.py'
+      - 'overrides/**'
+      - '.github/workflows/update-mapping.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-mapping
+  cancel-in-progress: false
+
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - run: uv sync --frozen
+
+      - name: Run matcher
+        env:
+          # Defaults point at the public IYP instance; override via repository
+          # variables/secrets to use a private one.
+          IYP_BOLT_URI: ${{ vars.IYP_BOLT_URI }}
+          IYP_USER: ${{ vars.IYP_USER }}
+          IYP_PASSWORD: ${{ secrets.IYP_PASSWORD }}
+        run: |
+          # Empty env vars would override the in-script defaults; unset them.
+          for v in IYP_BOLT_URI IYP_USER IYP_PASSWORD; do
+            [ -z "${!v}" ] && unset "$v"
+          done
+          uv run match-gleif --out-dir data --cache-dir cache --write-unmatched
+
+      - name: Summarize
+        run: cat data/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit updated mapping
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if git diff --cached --quiet; then
+            echo 'No changes to the mapping.'
+            exit 0
+          fi
+          n_matched=$(uv run python -c "import json; print(json.load(open('data/metadata.json'))['n_matched'])")
+          gleif_date=$(uv run python -c "import json; print(json.load(open('data/metadata.json'))['gleif_publish_date'] or 'latest')")
+          git commit -m "Update mapping: ${n_matched} matches (GLEIF ${gleif_date})"
+          git push

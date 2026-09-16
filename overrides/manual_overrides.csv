@@ -1,0 +1,5 @@
+iyp_org_name,lei,action
+# One row per decision. action is "accept" or "reject".
+#   accept: force this org -> LEI (replaces whatever the matcher found). Use after checking by hand.
+#   reject: drop this specific org -> LEI match. Leave lei empty to drop every match for the org.
+# Lines starting with # are ignored.
