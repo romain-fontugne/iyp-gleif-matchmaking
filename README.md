@@ -27,7 +27,7 @@ sensible default.
 ```mermaid
 flowchart TD
     subgraph inputs [Inputs]
-        IYP["IYP (one Cypher query)<br/>Organization name, countries, ASNs,<br/>PeeringDB id/city/address/aka/name_long, CAIDA whois handles"]
+        IYP["IYP (one Cypher query)<br/>Organization name, countries, ASNs, AS names,<br/>PeeringDB id/city/address/aka/name_long, CAIDA whois handles"]
         GC["GLEIF golden copy (lei2, daily)<br/>legal + other names, countries, city, postal code,<br/>HQ address, status, entity category, ELF code"]
     end
     GC --> LF["Learn legal forms per ELF code<br/>(spółka akcyjna, aktiebolag, sp z o o, ...)"]
@@ -39,13 +39,14 @@ flowchart TD
         T1["legal_exact 1.0<br/>name = legal name, same country"] -->|none| T2["other_name_exact 0.95<br/>name = trading / alt-language name"]
         T2 -->|none| T3["legal_core 0.9<br/>legal form stripped"]
         T3 -->|none| T4["other_name_core 0.85"]
-        T4 -->|none| T5["fuzzy 0.7<br/>token_sort_ratio ≥ 92 in (country, first token) block,<br/>unique best by ≥ 3 points"]
+        T4 -->|none| TA["as_name_exact 0.85 / as_name_core 0.75<br/>names of the org's ASes, all variants pooled;<br/>two AS names pointing at different LEIs ⇒ ambiguous"]
+        TA -->|none| T5["fuzzy 0.7<br/>token_sort_ratio ≥ 92 in (country, first token) block,<br/>unique best by ≥ 3 points"]
         T5 -->|none| T5b["address_name 0.6<br/>GLEIF HQ at the same (country, postcode, street number)<br/>as PeeringDB / registry address, and name evidence:<br/>token_set_ratio ≥ 60 or a shared distinctive token"]
         T5b -->|none, org has no country| T6["legal_exact_nocountry 0.5<br/>globally unique legal name"]
     end
     IDX -.-> tiers
 
-    T1 & T2 & T3 & T4 & T5 & T5b & T6 -->|candidates| N{how many?}
+    T1 & T2 & T3 & T4 & TA & T5 & T5b & T6 -->|candidates| N{how many?}
     N -->|1| M[match]
     N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → name matches with parentheticals kept<br/>→ same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ jurisdiction in the query countries → ISSUED over LAPSED<br/>→ postal code → city"]
     TB -->|1| M
@@ -87,6 +88,28 @@ registry provides a city or postal code.
 
 Jurisdiction is compared before registration status on purpose: a lapsed record of the
 right entity is a better answer than a current record of a foreign namesake.
+
+**AS names.** `(:AS)-[:NAME]->(:Name)` gives the names of the networks an
+organization manages. RIPE's asnames file is the useful source: its value is the
+aut-num handle followed by its `descr`, which for RIPE-region networks is often the
+legal name (`DTAG Deutsche Telekom AG`), so the name is also tried without its first
+token when that token is uppercase and the rest is not. This is the weakest name
+evidence in the pipeline, for two reasons, and is handled accordingly:
+
+- An AS name names a *network*, not a legal entity. Names that are handles, single
+  tokens or made only of generic words (`GOOGLE`, `AS-COGENT`, and `Communications
+  Corporation`, which is what survives stripping the handle guess from `NTT
+  Communications Corporation`) are discarded: at least one token must be neither a
+  legal form, an industry word nor a number.
+- An organization can manage networks named after different entities. All AS names of
+  an organization are therefore pooled within a tier instead of being tried one after
+  the other, so an organization whose AS names point at two different LEIs is reported
+  as ambiguous rather than matched on whichever name came first.
+
+Matches from this tier carry `as_name` in `hint`, the AS name used in `matched_name`,
+and their own confidences (0.85 exact, 0.75 core). `report.md` lists them in a separate
+section so the first runs can be reviewed; if the sample looks noisy, filter on
+`confidence >= 0.9` or drop the tier.
 
 **Address tier.** Operating subsidiaries rarely hold the LEI; their parent or an
 affiliate at the same headquarters usually does (`Cogent Communications, LLC` vs GLEIF's

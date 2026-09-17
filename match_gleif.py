@@ -51,6 +51,10 @@ CONFIDENCE = {
     'other_name_exact': 0.95,
     'legal_core': 0.9,
     'other_name_core': 0.85,
+    # AS names describe a network, not a legal entity, so they rank below every name
+    # that is attached to the organization itself.
+    'as_name_exact': 0.85,
+    'as_name_core': 0.75,
     'fuzzy': 0.7,
     'address_name': 0.6,
     'legal_exact_nocountry': 0.5,
@@ -253,6 +257,61 @@ def legal_form_class(form: str) -> str:
     return form
 
 
+# AS names come from RIPE's asnames file (where the value is the aut-num handle
+# followed by its descr, e.g. "DTAG Deutsche Telekom AG"), bgp.tools, CAIDA and
+# PeeringDB. They name a *network*, so they need filtering before being used as
+# entity names.
+# A leading handle is uppercase (DTAG, AS3320, FR-RENATER, LEVEL3-ASN).
+_AS_HANDLE_RE = re.compile(r'^[A-Z0-9][A-Z0-9._-]*$')
+_AS_NAME_JUNK = {
+    'err as name not found', 'unknown', 'unassigned', 'reserved', 'private', 'not assigned',
+    'none', 'na', 'n a', 'null', 'test', 'default', 'customer', 'internet', 'network',
+    'no name', 'noname', 'private customer', 'dummy',
+}
+
+
+def as_name_variants(raw: str) -> list:
+    """Candidate entity names derived from one AS name.
+
+    RIPE's value starts with the aut-num handle, so the name without its first token
+    is offered as well ("DTAG Deutsche Telekom AG" -> also "Deutsche Telekom AG").
+    The first token is only dropped when it is uppercase and the rest is not (a
+    handle followed by a descr), and both variants are kept because the guess can be
+    wrong ("NTT Communications Corporation"). plausible_entity_name() then discards
+    the variants that are too generic to match on.
+    """
+    raw = str(raw or '').strip()
+    tokens = raw.split()
+    if len(tokens) < 2:
+        # A single token is a handle or a brand ("AS-COGENT", "GOOGLE"), never a
+        # legal entity name we can match on.
+        return []
+    out = [raw]
+    if (len(tokens) >= 3 and _AS_HANDLE_RE.match(tokens[0])
+            and any(c.islower() for c in ' '.join(tokens[1:]))):
+        out.append(' '.join(tokens[1:]))
+    return out
+
+
+def plausible_entity_name(norm: str) -> bool:
+    """Whether a normalized AS name can plausibly be a legal entity name.
+
+    Rejects handles, single tokens and names made only of generic words: matching
+    GLEIF on "GOOGLE", "AS-COGENT" or "Communications Corporation" (what is left of
+    "NTT Communications Corporation" once its handle guess is stripped) would
+    produce confident nonsense.
+    """
+    if not norm or len(norm) < 5 or norm in _AS_NAME_JUNK:
+        return False
+    if len(norm.split()) < 2:
+        return False
+    core, _form = split_legal_form(norm)
+    # Needs at least one word that is neither a legal form, a generic industry word
+    # nor a number: "Deutsche Telekom AG" qualifies, "Communications Corporation"
+    # and "AS 12345" do not.
+    return any(not t.isdigit() for t in distinctive_tokens(core))
+
+
 def normalize_postcode(value: str) -> str:
     return re.sub(r'[\s-]', '', str(value or '')).upper()
 
@@ -320,7 +379,8 @@ RETURN o.name AS name,
        [(o)-[:EXTERNAL_ID]->(x:CaidaOrgID) | x.id] AS caida_ids,
        [(o)-[:COUNTRY]->(c:Country) | c.country_code] AS countries,
        [(o)-[:WEBSITE]->(u:URL) | u.url] AS websites,
-       [(a:AS)-[:MANAGED_BY]->(o) | a.asn] AS asns
+       [(a:AS)-[:MANAGED_BY]->(o) | a.asn] AS asns,
+       [(a:AS)-[:MANAGED_BY]->(o) | [(a)-[:NAME]->(n:Name) | n.name]] AS as_names
 """
 
 
@@ -347,6 +407,8 @@ def fetch_iyp_orgs() -> pd.DataFrame:
                     'countries': sorted({str(x).upper() for x in rec['countries'] if x}),
                     'websites': sorted({str(x) for x in rec['websites'] if x}),
                     'asns': sorted({int(a) for a in rec['asns'] if a is not None}),
+                    'as_names': sorted({str(n).strip() for names in (rec['as_names'] or [])
+                                        for n in (names or []) if n and str(n).strip()}),
                     'n_as': len({a for a in rec['asns'] if a is not None}),
                 })
     df = pd.DataFrame(rows)
@@ -358,9 +420,9 @@ def fetch_iyp_orgs() -> pd.DataFrame:
 def load_iyp_orgs_csv(path: str) -> pd.DataFrame:
     """Offline alternative to fetch_iyp_orgs() for testing. Columns:
     name, pdb_ids, caida_ids, countries, websites, n_as, and optionally cities,
-    alt_names and asns (all lists as ';'-separated)."""
+    alt_names, asns and as_names (all lists as ';'-separated)."""
     df = pd.read_csv(path, dtype=str, keep_default_na=False)
-    for col in ('pdb_ids', 'caida_ids', 'countries', 'websites', 'cities', 'alt_names', 'asns'):
+    for col in ('pdb_ids', 'caida_ids', 'countries', 'websites', 'cities', 'alt_names', 'asns', 'as_names'):
         if col not in df:
             df[col] = ''
         df[col] = df[col].map(lambda v: [x for x in v.split(';') if x])
@@ -715,6 +777,51 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                     return lei, method, key, hint
                 return None, 'ambiguous', sorted(cands), method
 
+    # AS names: weaker evidence than the organization's own names, and an
+    # organization can manage networks named after different entities, so they are
+    # tried only after the tiers above, all variants are pooled, and a conflict
+    # between two AS names is reported as ambiguous instead of picked arbitrarily.
+    as_queries = dict()
+    for raw in getattr(org, 'as_names', []) or []:
+        for variant in as_name_variants(raw):
+            n = normalize(variant)
+            if not plausible_entity_name(n) or n in {q[0] for q in query_names} or n in as_queries:
+                continue
+            c, f = split_legal_form(n)
+            as_queries[n] = (c, legal_form_class(f), normalize(variant, keep_paren=True))
+    if as_queries:
+        as_tiers = [
+            ('as_name_exact', (index.exact, index.other), 0),
+            ('as_name_core', (index.core_legal, index.core_other), 1),
+        ]
+        for method, idxs, which in as_tiers:
+            by_variant = dict()
+            for n, (c, fc, rn) in as_queries.items():
+                key = n if which == 0 else c
+                if not key:
+                    continue
+                found = set()
+                for idx in idxs:
+                    for countries, _csrc in country_sets:
+                        for cc in countries:
+                            found |= idx.get((cc, key), set())
+                if found:
+                    by_variant[n] = found
+            if not by_variant:
+                continue
+            cands = set().union(*by_variant.values())
+            # A single variant matched: its legal form and parenthetical are usable.
+            fc, rn = ('', '')
+            if len(by_variant) == 1:
+                only = next(iter(by_variant))
+                _c, fc, rn = as_queries[only]
+            cands, hint = _prefer(cands, index, cities, postcodes, fc,
+                                  tuple(iyp_countries + whois_countries), rn)
+            hint = ','.join(h for h in ('as_name', hint) if h)
+            if len(cands) == 1:
+                return next(iter(cands)), method, '; '.join(sorted(by_variant)), hint
+            return None, 'ambiguous', sorted(cands), method
+
     countries = iyp_countries + whois_countries
 
     # Fuzzy, blocked on (country, first token of core name).
@@ -904,6 +1011,15 @@ def write_report(path, orgs, mapping, ambiguous, stats, publish_date, whois=None
                   '| organization | LEI | legal name | method |', '|---|---|---|---|']
         for r in mapping.sort_values('iyp_n_as', ascending=False).head(25).itertuples():
             lines.append(f'| {r.iyp_org_name} | {r.lei} | {r.lei_legal_name} | {r.match_method} |')
+        as_name = mapping[mapping.match_method.str.startswith('as_name')]
+        if not as_name.empty:
+            lines += ['', '## Matches from AS names (weakest evidence, review these)', '',
+                      f"{len(as_name)} organization(s) matched only through a name attached to one of their ASes. "
+                      'The AS name matched is in the `matched_name` column of the mapping.', '',
+                      '| organization | ASes | AS name used | legal name | method |', '|---|---|---|---|---|']
+            for r in as_name.sort_values('iyp_n_as', ascending=False).head(25).itertuples():
+                lines.append(f'| {r.iyp_org_name} | {r.iyp_n_as} | {r.matched_name} | '
+                             f'{r.lei_legal_name} | {r.match_method} |')
     if not ambiguous.empty:
         lines += ['', '## Largest ambiguous organizations (review these first)', '',
                   '| organization | ASes | candidates |', '|---|---|---|']
