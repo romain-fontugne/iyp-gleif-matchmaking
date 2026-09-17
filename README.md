@@ -1,4 +1,4 @@
-# IYP ↔ GLEIF organization mapping
+# IYP ↔ GLEIF matchmaking ❤️
 
 Curated mapping between [Internet Yellow Pages](https://iyp.iijlab.net) `Organization`
 nodes and [GLEIF](https://www.gleif.org) Legal Entity Identifiers (LEI).
