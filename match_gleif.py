@@ -583,17 +583,27 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
 # --------------------------------------------------------------------------- #
 
 def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
-            form_class: str = '') -> tuple[set, str]:
+            form_class: str = '', countries: tuple = ()) -> tuple[set, str]:
     """Try to reduce a candidate set to one LEI. Returns (candidates, hint).
 
     Same-name candidates are mostly (a) a head office plus its international branches,
     which GLEIF registers under the head office's legal name, (b) the same core name
-    under different legal forms, or (c) unrelated same-name entities (e.g. several
-    "United Community Bank"s). Tie-breaks, in order: active status; same legal-form
-    class as the query ("AG" vs "Aktiengesellschaft" agree, "Stiftung" does not);
-    GENERAL entities over BRANCH/FUND/...; the head office (legal address in the
-    jurisdiction country) over foreign branches; postal code; city. Case (c) stays
-    ambiguous unless a postal code or city is known.
+    under different legal forms, (c) a foreign subsidiary of the same group that is
+    headquartered in the query country (the country block is the union of legal
+    jurisdiction, legal address and HQ country, so e.g. an Ontario-registered entity
+    with a New Jersey head office competes for a US organization), or (d) unrelated
+    same-name entities (e.g. several "United Community Bank"s). Tie-breaks, in order:
+    active status; same legal-form class as the query ("AG" vs "Aktiengesellschaft"
+    agree, "Stiftung" does not); GENERAL entities over BRANCH/FUND/...; the head
+    office (legal address in the jurisdiction country) over foreign branches;
+    registration in one of the query countries over a foreign registration; a current
+    registration over a lapsed one; postal code; city. Case (d) stays ambiguous unless
+    a postal code or city is known.
+
+    ``countries`` are the countries the candidates were looked up under, and are
+    compared against each candidate's legal jurisdiction. Jurisdiction is checked
+    before registration status because a lapsed record of the right entity beats a
+    current record of a foreign namesake.
     """
     if len(cands) <= 1:
         return cands, ''
@@ -614,6 +624,11 @@ def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
         return cands, ','.join(hints)
     if narrow({l for l in cands if index.records[l][7] and index.records[l][7] == index.records[l][8]},
               'head_office'):
+        return cands, ','.join(hints)
+    if countries and narrow({l for l in cands if index.records[l][8] in countries}, 'jurisdiction'):
+        return cands, ','.join(hints)
+    # ANNULLED/DUPLICATE are excluded at load time; this drops LAPSED, RETIRED, MERGED.
+    if narrow({l for l in cands if index.records[l][4] == 'ISSUED'}, 'issued_only'):
         return cands, ','.join(hints)
     if postcodes:
         if narrow({l for l in cands if index.records[l][5] and index.records[l][5] in postcodes}, 'postcode'):
@@ -679,7 +694,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                     cands |= idx.get((cc, key), set())
                 if not cands:
                     continue
-                cands, hint = _prefer(cands, index, cities, postcodes, qn[3])
+                cands, hint = _prefer(cands, index, cities, postcodes, qn[3], tuple(countries))
                 hint = ','.join(h for h in (src, csrc, hint) if h)
                 if len(cands) == 1:
                     lei = next(iter(cands))
@@ -701,7 +716,8 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                 best_score = hits[0][1]
                 best_leis = {block[h[2]][1] for h in hits if h[1] == best_score}
                 runner_up = max((h[1] for h in hits if block[h[2]][1] not in best_leis), default=0)
-                best_leis, hint = _prefer(best_leis, index, cities, postcodes, legal_form_class(form))
+                best_leis, hint = _prefer(best_leis, index, cities, postcodes, legal_form_class(form),
+                                          tuple(countries))
                 if len(best_leis) == 1 and best_score - runner_up >= FUZZY_MARGIN:
                     lei = next(iter(best_leis))
                     if whois_countries and not iyp_countries:
@@ -726,7 +742,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
             top = max(b[0] for b in best)
             leis = {b[1] for b in best if b[0] >= top - FUZZY_MARGIN}
             src = next(b[2] for b in best if b[1] in leis)
-            leis, hint = _prefer(leis, index, cities, postcodes, legal_form_class(form))
+            leis, hint = _prefer(leis, index, cities, postcodes, legal_form_class(form), tuple(countries))
             hint = ','.join(h for h in (src, f'score={top:.0f}', hint) if h)
             if len(leis) == 1:
                 lei = next(iter(leis))

@@ -47,7 +47,7 @@ flowchart TD
 
     T1 & T2 & T3 & T4 & T5 & T5b & T6 -->|candidates| N{how many?}
     N -->|1| M[match]
-    N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ postal code → city"]
+    N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ jurisdiction in the query countries → ISSUED over LAPSED<br/>→ postal code → city"]
     TB -->|1| M
     TB -->|"> 1"| AMB[ambiguous.csv]
     T6 -->|none| UNM[unmatched.csv]
@@ -75,9 +75,16 @@ each ISO 20275 ELF code, name tails shared by ≥ 20% of the entities under that
 same-looking candidates are two distinct LEI records: a head office and its foreign
 branches (GLEIF registers branches under the head office's name, e.g. `UBS AG` in CH and
 in US), the same core under different legal forms (`Deutsche Bank Aktiengesellschaft` vs
-`Deutsche Bank Stiftung`), or unrelated same-name entities (four `United Community
-Bank`s). The first two are resolved by the tie-breaks; the third stays ambiguous unless
-PeeringDB or the registry provides a city or postal code.
+`Deutsche Bank Stiftung`), a foreign group member that the country block pulls in through
+its HQ country (`Allergan Inc`, registered in Ontario, headquartered in New Jersey, next
+to the Delaware `ALLERGAN, INC.` — the `jurisdiction` tie-break picks the one registered
+in the organization's own country), a lapsed registration beside its replacement
+(`FMR, LLC` vs `FMR LLC`, resolved by `issued_only`), or unrelated same-name entities
+(four `United Community Bank`s). Only the last stays ambiguous, unless PeeringDB or the
+registry provides a city or postal code.
+
+Jurisdiction is compared before registration status on purpose: a lapsed record of the
+right entity is a better answer than a current record of a foreign namesake.
 
 **Address tier.** Operating subsidiaries rarely hold the LEI; their parent or an
 affiliate at the same headquarters usually does (`Cogent Communications, LLC` vs GLEIF's
