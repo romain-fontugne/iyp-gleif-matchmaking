@@ -1,121 +1,120 @@
 # IYP ↔ GLEIF matchmaking ❤️
 
 Curated mapping between [Internet Yellow Pages](https://iyp.iijlab.net) `Organization`
-nodes and [GLEIF](https://www.gleif.org) Legal Entity Identifiers (LEI).
+nodes and [GLEIF](https://www.gleif.org) Legal Entity Identifiers (LEI), regenerated
+weekly by a GitHub Action and committed to `data/`.
 
-The mapping is regenerated weekly by a GitHub Action and committed to `data/`. It is
-meant to be consumed by an IYP crawler as a dataset in its own right, in the same way IYP
-imports CAIDA's heuristic AS-to-organization mapping: IYP does not reconcile sources at
-import time, so the reconciliation has to live in a reviewable, versioned artifact like
-this one.
+IYP does not reconcile data sources at import time, so this reconciliation lives here as
+a reviewable, versioned dataset, meant to be imported by an IYP crawler as
+`(:Organization)-[:EXTERNAL_ID {match_method, confidence}]->(:LEI)`. Precision is
+favoured over recall: anything with several equally good candidates is reported as
+ambiguous rather than guessed. Consumers should filter on `confidence`; `>= 0.9` is a
+sensible default.
 
 ## Outputs (`data/`)
 
 | file | content |
 |---|---|
-| `iyp_gleif_mapping.csv` | one row per matched organization: IYP name, LEI, GLEIF legal name, `match_method`, `confidence`, PeeringDB/CAIDA org IDs, countries, number of managed ASes |
-| `ambiguous.csv` | organizations with several equally good LEI candidates. **Review these first**, sorted by `iyp_n_as`, and resolve them in `overrides/`. |
+| `iyp_gleif_mapping.csv` | one row per matched organization: IYP name, LEI, GLEIF legal name and HQ address, `match_method`, `confidence`, `hint`, PeeringDB/CAIDA IDs, countries, number of ASes |
+| `ambiguous.csv` | organizations with several equally good LEI candidates, with LEI, country, category, city and status per candidate. **Review these first** (largest `iyp_n_as` first) and resolve them in `overrides/` |
 | `unmatched.csv` | organizations with no candidate |
-| `report.md` | summary statistics, also shown in the Action's job summary |
-| `metadata.json` | run metadata (GLEIF publish date, counts) |
-| `learned_legal_forms.json` | legal-form suffixes learned from the golden copy, per ELF code (review when matching looks off) |
+| `report.md` | statistics, also shown as the Action's job summary |
+| `learned_legal_forms.json` | legal-form suffixes learned from the golden copy, per ELF code |
+| `metadata.json` | run metadata |
 
-`cache/rdap_cache.json` (not committed, kept in the Actions cache) holds registry
-lookups, see below.
+## Decision process
 
-## How matching works
+```mermaid
+flowchart TD
+    subgraph inputs [Inputs]
+        IYP["IYP (one Cypher query)<br/>Organization name, countries, ASNs,<br/>PeeringDB id/city/address/aka/name_long, CAIDA whois handles"]
+        GC["GLEIF golden copy (lei2, daily)<br/>legal + other names, countries, city, postal code,<br/>HQ address, status, entity category, ELF code"]
+    end
+    GC --> LF["Learn legal forms per ELF code<br/>(spółka akcyjna, aktiebolag, sp z o o, ...)"]
+    LF --> IDX["Index by (country, normalized name):<br/>legal / other names, full / core form, fuzzy blocks by first token;<br/>HQ address by (country, postcode, street number),<br/>dropping addresses shared by > 20 entities"]
+    IYP --> QN["Query names per org:<br/>IYP name → PeeringDB aka/name_long → whois name<br/>(casefold, strip diacritics, punctuation, parentheticals)"]
+    QN --> T1
 
-Organizations in IYP are identified by name only, so the matcher pulls in everything
-IYP knows around the node: countries (from PeeringDB, CAIDA as2org, ...), PeeringDB and
-CAIDA org IDs, websites, and the number of ASes managed. IYP's `peeringdb.org` crawler
-stores the raw PeeringDB org object on the `EXTERNAL_ID` relationship, so PeeringDB
-`city`, `aka` and `name_long` are read from IYP as well; the two alternative names are
-used as additional query names and the city as a tie-breaker. Everything comes from a
-single Cypher query against IYP; no other API is needed. GLEIF records are indexed by
-normalized name, **blocked by country** (union of legal jurisdiction, legal address
-country and HQ country). Names are normalized (casefold, diacritics, punctuation, parentheticals) and a
-"core" form additionally strips legal-form suffixes. Besides a curated list (`Inc`,
-`GmbH`, `株式会社`, ...), suffixes are **learned from the golden copy itself**: for each
-ISO 20275 ELF code, the name tails shared by at least 20% of the entities registered
-under that code are legal forms (`spółka akcyjna`, `aktiebolag`, `sp z o o`,
-`pvt ltd`, `gmbh and co kg`, ...). A short blacklist keeps identity-bearing words
-(`trust`, `bank`, `group`, ...) from being learned.
-GLEIF's *other entity names* (trading names, alternative-language and transliterated
-names) are indexed too; network operators usually appear under a trading name.
+    subgraph tiers ["Tiers (stop at the first one with candidates)"]
+        T1["legal_exact 1.0<br/>name = legal name, same country"] -->|none| T2["other_name_exact 0.95<br/>name = trading / alt-language name"]
+        T2 -->|none| T3["legal_core 0.9<br/>legal form stripped"]
+        T3 -->|none| T4["other_name_core 0.85"]
+        T4 -->|none| T5["fuzzy 0.7<br/>token_sort_ratio ≥ 92 in (country, first token) block,<br/>unique best by ≥ 3 points"]
+        T5 -->|none| T5b["address_name 0.6<br/>GLEIF HQ at the same (country, postcode, street number)<br/>as PeeringDB / registry address, and name evidence:<br/>token_set_ratio ≥ 60 or a shared distinctive token"]
+        T5b -->|none, org has no country| T6["legal_exact_nocountry 0.5<br/>globally unique legal name"]
+    end
+    IDX -.-> tiers
 
-### Registry (whois) enrichment
+    T1 & T2 & T3 & T4 & T5 & T5b & T6 -->|candidates| N{how many?}
+    N -->|1| M[match]
+    N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ postal code → city"]
+    TB -->|1| M
+    TB -->|"> 1"| AMB[ambiguous.csv]
+    T6 -->|none| UNM[unmatched.csv]
 
-CAIDA as2org IDs stored in IYP (`CaidaOrgID`) are whois handles suffixed with their
-registry, e.g. `LPL-141-ARIN`, `ORG-DTAG1-RIPE`, `@aut-2497-JPNIC`. `whois_enrich.py`
-uses them for one RDAP lookup per organization: `{rir}/entity/{handle}` for real org
-handles, `rdap.org/autnum/{asn}` for `@aut-` handles and for organizations without a
-usable handle (first managed ASN). The registrant's name, country, city and postal code
-are then fed into the matcher:
+    M & AMB & UNM --> P1{first pass?}
+    P1 -->|"yes: unmatched, ambiguous or confidence < 0.9<br/>(first: @aut-/@family- handle, no country, ambiguous)"| RDAP["RDAP lookup (whois_enrich.py)<br/>entity/HANDLE or autnum/ASN<br/>→ registered name, country, city, postal code, street<br/>budget per run, cached 180 days"]
+    RDAP --> QN
+    P1 -->|no| OV["overrides/manual_overrides.csv<br/>accept / reject"]
+    OV --> OUT["data/*.csv, report.md"]
+```
 
-- the registered name is an extra query name (`hint` = `whois_name`). This mostly helps
-  `@aut-` organizations, whose IYP name is only an as-name/descr while the aut-num now
-  references a proper organisation object;
-- the registered country is used as a block when IYP has no country, or no candidate in
-  its countries (`hint` = `whois_country`);
-- city and postal code break ties between same-name candidates (`hint` = `city`,
-  `postcode`). Postal code also uses PeeringDB data when available.
+### Notes on the steps
 
-Lookups run *after* a first matching pass. The request budget (`--rdap-budget`, default
-3000 per run, `RDAP_BUDGET` in the Action) is spent only where the registry can add
-something new: `@aut-`/`@family-` organizations (name), organizations without a country
-in IYP (country), and ambiguous ones (city/postal code), largest first. For an
-organization with a real handle and a country, the registered name is what CAIDA already
-reports, so it is not looked up. Results (including 404s) are
-cached for 180 days, so coverage grows run after run. Requests are throttled per host;
-a 429 or 5xx disables that host for the rest of the run. Bulk whois dumps are not an
-option here: RIPE and APNIC dummify organisation objects in their public dumps, and
-ARIN/LACNIC bulk access requires an agreement.
+**Country blocking.** GLEIF records are indexed under the union of legal jurisdiction,
+legal-address country and HQ country; an organization is only compared with records in
+its IYP countries (or, failing that, its registry country, `hint` = `whois_country`).
+`ANNULLED` and `DUPLICATE` registrations are excluded.
 
-Set expectations accordingly: for ARIN handles the registered name is what CAIDA already
-reports, so the gain there is country/city/postcode; the name gain is for `@aut-` and NIR
-(JPNIC, KRNIC, …) organizations. Large unmatched entities such as government agencies
-simply have no LEI, whatever whois says.
+**Legal forms.** A curated list is extended with forms learned from the golden copy: for
+each ISO 20275 ELF code, name tails shared by ≥ 20% of the entities under that code
+(a blacklist keeps `trust`, `bank`, `group`, ... from being learned). The result is in
+`data/learned_legal_forms.json`.
 
-### Tiers
+**Why candidates tie.** Case and punctuation are removed before comparison, so two
+same-looking candidates are two distinct LEI records: a head office and its foreign
+branches (GLEIF registers branches under the head office's name, e.g. `UBS AG` in CH and
+in US), the same core under different legal forms (`Deutsche Bank Aktiengesellschaft` vs
+`Deutsche Bank Stiftung`), or unrelated same-name entities (four `United Community
+Bank`s). The first two are resolved by the tie-breaks; the third stays ambiguous unless
+PeeringDB or the registry provides a city or postal code.
 
-Matching runs in tiers and stops at the first tier that yields candidates:
+**Address tier.** Operating subsidiaries rarely hold the LEI; their parent or an
+affiliate at the same headquarters usually does (`Cogent Communications, LLC` vs GLEIF's
+`Cogent Communications Group, Inc.`, both at 2450 N Street NW). The `address_name` tier
+blocks on GLEIF's **HQ** address (the legal address of US entities is often a registered
+agent shared by thousands of LEIs) keyed by country, postal code and street number, and
+requires name evidence: `token_set_ratio ≥ 60` between core names or a shared token that
+is not a legal form or a generic word (communications, networks, services, ...).
+Addresses shared by more than 20 entities (registered agents, carrier hotels, law firms)
+are never used. Addresses come from PeeringDB (already in IYP, no lookup needed) and from
+the registry. Because this tier mostly lands on a parent or affiliate rather than the
+exact entity holding the AS, its confidence is 0.6 and the method label is distinct, so an
+importer can treat it as a corporate-family link rather than an identifier. When both the
+group and a holding company sit at the same address the result is ambiguous; resolve it
+in `overrides/`.
 
-| `match_method` | confidence | rule |
-|---|---|---|
-| `manual` | 1.0 | from `overrides/manual_overrides.csv` |
-| `legal_exact` | 1.0 | normalized name (or PeeringDB `name_long`/`aka`, flagged `alt_name` in `hint`) == GLEIF legal name, same country |
-| `other_name_exact` | 0.95 | normalized name == one of GLEIF's other names, same country |
-| `legal_core` | 0.9 | legal-form-stripped names equal, same country |
-| `other_name_core` | 0.85 | same, against other names |
-| `fuzzy` | 0.7 | `token_sort_ratio >= 92` within (country, first token) block, unique best with margin |
-| `legal_exact_nocountry` | 0.5 | org has no country in IYP; globally unique exact legal name |
+**Registry data.** CAIDA IDs are whois handles (`LPL-141-ARIN`, `ORG-DTAG1-RIPE`,
+`@aut-2497-JPNIC`). Every organization not matched at ≥ 0.9 is eligible for one RDAP
+lookup because the registered address feeds the address tier; those where the registry
+also adds a name or a country (`@aut-`/`@family-` handles, no country in IYP, ambiguous)
+go first. Bulk whois dumps are not usable (RIPE/APNIC dummify organisation objects;
+ARIN/LACNIC need an agreement). Requests are throttled per host and a 429/5xx disables
+that host for the run.
 
-When a tier returns several LEIs, ties are broken by entity status (`ACTIVE` only), then
-by postal code and city (from PeeringDB or the registry) vs. GLEIF's legal address. If that still leaves more than one
-candidate the organization goes to `ambiguous.csv` rather than being guessed.
-`ANNULLED` and `DUPLICATE` LEI registrations are never matched.
-
-Precision is favoured over recall on purpose. Consumers should filter on `confidence`;
-`>= 0.9` is a reasonable default for IYP.
-
-## Where is the ceiling? (`diagnose_unmatched.py`)
-
-Most unmatched organizations have no LEI: 78% of them manage a single AS, and LEIs are
-held by entities active in financial markets, not by small ISPs. Registry data cannot
-change that. To separate this ceiling from genuine recall problems, sample the unmatched
-set against the GLEIF search API (60 req/min, so run it by hand):
+**The ceiling.** LEIs are held by entities active in financial markets; 78% of unmatched
+organizations manage a single AS and most have no LEI at all. `diagnose_unmatched.py`
+samples the unmatched set against the GLEIF search API (60 req/min, run by hand) and
+reports how many have a near-identical entity in GLEIF (a recall problem) versus none
+(no LEI):
 
 ```sh
 uv run python diagnose_unmatched.py --sample 300 --min-as 2
 ```
 
-It reports the share of sampled organizations with a near-identical GLEIF entity in the
-same country (the matcher missed it: fix normalization or add an override) versus no
-plausible candidate (no LEI). `data/diagnostic.csv` lists the candidates.
-
 ## Manual overrides
 
-`overrides/manual_overrides.csv` is applied last:
+`overrides/manual_overrides.csv` is applied last; pushing to it re-runs the Action.
 
 ```csv
 iyp_org_name,lei,action
@@ -123,46 +122,33 @@ Acme Networks,529900ABCDEFGHIJKL12,accept
 Cogent Communication Group Inc,LEI...,reject
 ```
 
-`accept` forces a match (and replaces the automatic one); `reject` drops a specific
-match, or every match for the org if `lei` is empty. Pushing to `overrides/` re-runs the
-Action.
+`accept` forces a match (replacing the automatic one); `reject` drops that match, or every
+match for the organization if `lei` is empty.
 
 ## Running locally
 
-Requires [uv](https://docs.astral.sh/uv/). Dependencies are pinned in `uv.lock`.
+Requires [uv](https://docs.astral.sh/uv/); dependencies are pinned in `uv.lock`.
 
 ```sh
 uv sync
-uv run match-gleif                     # queries public IYP, downloads GLEIF (~300 MB zip)
+uv run match-gleif                                       # public IYP + latest golden copy (~300 MB zip)
 uv run match-gleif --gleif-zip cache/gleif-lei2-YYYY-MM-DD.csv.zip   # reuse a download
+uv run match-gleif --rdap-budget 0                       # cached registry lookups only
 uv run match-gleif --iyp-csv orgs.csv --gleif-zip test.zip --no-whois  # offline test
-uv run match-gleif --rdap-budget 0             # use cached registry lookups only
-uv lock --upgrade                      # refresh pinned dependencies
 ```
 
 Environment: `IYP_BOLT_URI`, `IYP_USER`, `IYP_PASSWORD` (default: public IYP instance),
-`RDAP_BUDGET` (default 3000).
+`RDAP_BUDGET` (default 3000). The Action reads the same names from repository
+variables/secrets and keeps `cache/rdap_cache.json` in the Actions cache.
 
-The Action reads the same variables from repository variables/secrets, so the workflow
-runs unchanged against a private IYP instance.
+## Next steps
 
-## Known limitations / next steps
-
-- LEI coverage is driven by financial reporting obligations. Large operators, banks,
-  cloud providers and EU/UK entities match well; many small ISPs have no LEI at all, so a
-  low overall match rate with high AS coverage is the expected outcome.
-- GLEIF has no website field, so IYP websites are carried through for review but not
-  used for matching. Matching the website's registrable domain against GLEIF names is a
-  possible extra signal.
-- PeeringDB `zipcode` is also available on the `EXTERNAL_ID` relationship and could feed
-  the postal-code tie-breaker like the registry postal code does.
-- NIR handles (JPNIC, KRNIC, TWNIC, …) are only resolved through APNIC's autnum RDAP,
-  which may return a stub; querying the NIRs' own RDAP servers would improve this.
-- CAIDA as2org names are often truncated or all-caps whois names; a per-source
-  normalization could help.
-- The next stage is an IYP crawler that imports `iyp_gleif_mapping.csv` as
-  `(:Organization)-[:EXTERNAL_ID {match_method, confidence}]->(:LEI)` plus GLEIF Level 1
-  attributes and Level 2 parent relationships for the matched LEIs.
+- IYP crawler importing `iyp_gleif_mapping.csv` plus GLEIF Level 1 attributes and Level 2
+  parent relationships for the matched LEIs.
+- Decide how the IYP crawler models `address_name` matches (identifier vs. corporate
+  family); GLEIF Level 2 parent data could confirm them.
+- Query NIR RDAP servers (JPNIC, KRNIC, ...) directly; use website domains as an extra
+  signal.
 
 ## Data terms
 

@@ -52,10 +52,27 @@ CONFIDENCE = {
     'legal_core': 0.9,
     'other_name_core': 0.85,
     'fuzzy': 0.7,
+    'address_name': 0.6,
     'legal_exact_nocountry': 0.5,
 }
 FUZZY_THRESHOLD = 92   # token_sort_ratio, 0-100
 FUZZY_MARGIN = 3       # best must beat runner-up (different LEI) by this much
+# address_name tier: same (country, postal code, street number) as GLEIF's HQ address
+# AND some name evidence. Addresses shared by more than ADDRESS_BLOCK_MAX entities
+# (registered agents, carrier hotels, law firms) are never used.
+ADDRESS_NAME_MIN_RATIO = 60
+ADDRESS_BLOCK_MAX = 20
+# Tokens that do not count as name evidence for the address tier.
+GENERIC_TOKENS = {
+    'the', 'and', 'of', 'for', 'de', 'la', 'le', 'du', 'des', 'der', 'die', 'das', 'und',
+    'communications', 'communication', 'telecom', 'telecommunications', 'telecommunication',
+    'network', 'networks', 'internet', 'services', 'service', 'solutions', 'systems', 'technology',
+    'technologies', 'digital', 'data', 'cloud', 'hosting', 'online', 'media', 'global', 'international',
+    'group', 'holding', 'holdings', 'company', 'enterprises', 'enterprise', 'industries', 'partners',
+    'capital', 'management', 'consulting', 'net', 'com', 'inc', 'corp', 'ltd', 'llc', 'gmbh', 'sa', 'ag',
+    'bv', 'nv', 'plc', 'co', 'usa', 'us', 'uk', 'europe', 'america', 'asia', 'pacific', 'north', 'south',
+    'east', 'west', 'new', 'one', 'first', 'united', 'national', 'general', 'american', 'european',
+}
 
 # Legal-form tokens stripped from the *end* of a normalized name to produce the
 # "core" name. Multi-token entries are matched before single tokens. This list is
@@ -169,26 +186,104 @@ def normalize(name: str) -> str:
     return s
 
 
-def core_name(norm: str) -> str:
-    """Strip legal-form suffixes from the end of an already-normalized name."""
+def split_legal_form(norm: str) -> tuple[str, str]:
+    """Split an already-normalized name into (core, legal-form suffix)."""
     tokens = norm.split()
+    form = []
     changed = True
     while changed and len(tokens) > 1:
         changed = False
         for multi in _MULTI:
             n = len(multi)
             if len(tokens) > n and tokens[-n:] == multi:
+                form = tokens[-n:] + form
                 tokens = tokens[:-n]
                 changed = True
                 break
         if not changed and len(tokens) > 1 and tokens[-1] in _SINGLE:
+            form = tokens[-1:] + form
             tokens = tokens[:-1]
             changed = True
-    return ' '.join(tokens)
+    return ' '.join(tokens), ' '.join(form)
+
+
+def core_name(norm: str) -> str:
+    """Strip legal-form suffixes from the end of an already-normalized name."""
+    return split_legal_form(norm)[0]
+
+
+# Legal forms that denote the same kind of entity, so "Deutsche Bank AG" and
+# "Deutsche Bank Aktiengesellschaft" agree while "Deutsche Bank Stiftung" does not.
+# Only used to break ties between same-core candidates; anything not listed is its
+# own class.
+_FORM_CLASSES = {
+    'AG': ['ag', 'aktiengesellschaft', 'sa', 's a', 'societe anonyme', 'sociedad anonima', 'spa',
+           'societa per azioni', 'spolka akcyjna', 'społka akcyjna', 'nv', 'n v', 'naamloze vennootschap',
+           'plc', 'public limited company', 'ab', 'aktiebolag', 'asa', 'oyj', 'as', 'a s', 'aksjeselskap',
+           'aktieselskab', 'kk', 'kabushiki kaisha', 'kabushiki gaisha', '株式会社', 'ad', 'pao', 'pjsc', 'jsc'],
+    'LTD': ['ltd', 'limited', 'co ltd', 'company limited', 'pty ltd', 'pty limited', 'pte ltd', 'pvt ltd',
+            'private limited', 'sdn bhd', 'ltda', 'gmbh', 'mbh', 'ug', 'sarl', 's a r l', 'srl', 's r l', 'sl',
+            'bv', 'b v', 'besloten vennootschap', 'sp z o o', 'sp z oo', 'spolka z ograniczona odpowiedzialnoscia',
+            'oy', 'aps', 'sro', 's r o', 'doo', 'd o o', 'ooo', 'llc', 'l l c', 'limited liability company',
+            'eood', 'ood', 'kft', 'tov', 'sas', 's a s', 'sau'],
+    'INC': ['inc', 'incorporated', 'corp', 'corporation', 'co', 'company'],
+    'LP': ['lp', 'llp', 'kg', 'gmbh and co kg', 'co kg', 'and co kg', 'cv', 'c v', 'sc', 'scs'],
+}
+_FORM_CLASS = {form: cls for cls, forms in _FORM_CLASSES.items() for form in forms}
+
+
+def legal_form_class(form: str) -> str:
+    """Canonical class of a legal-form suffix ('' if none); unknown forms map to themselves."""
+    if not form:
+        return ''
+    if form in _FORM_CLASS:
+        return _FORM_CLASS[form]
+    # Multi-token forms such as "gmbh and co kg" are classified by their last known part.
+    toks = form.split()
+    for i in range(len(toks)):
+        sub = ' '.join(toks[i:])
+        if sub in _FORM_CLASS:
+            return _FORM_CLASS[sub]
+    return form
 
 
 def normalize_postcode(value: str) -> str:
     return re.sub(r'[\s-]', '', str(value or '')).upper()
+
+
+_STREET_NUMBER_RE = re.compile(r'(?<![\w-])(\d{1,6})(?![\w-]*\d{3,})')
+_UNIT_WORDS = {'suite', 'ste', 'unit', 'floor', 'fl', 'level', 'apt', 'room', 'rm', 'office', 'bldg', 'building', 'no', 'nr'}
+
+
+def street_number(line: str) -> str:
+    """First house/street number in an address line, skipping unit/floor numbers.
+    '1025 Eldorado Blvd., Suite 400' -> 1025; 'Landgrabenweg 151' -> 151;
+    'Suite 400, 1 Canada Square' -> 1; 'PO Box 123' -> 123 (a PO box is a fine key too)."""
+    if not line:
+        return ''
+    norm = normalize(line)
+    toks = norm.split()
+    for i, tok in enumerate(toks):
+        m = re.match(r'^(\d{1,6})[a-z]?$', tok)
+        if not m:
+            m = re.match(r'^(\d{1,6})-\d{1,6}$', tok)  # "12-14 Main St", "2-3-1 Otemachi"
+        if m and not (i > 0 and toks[i - 1] in _UNIT_WORDS):
+            return m.group(1).lstrip('0') or '0'
+    return ''
+
+
+def address_key(country: str, postcode: str, line: str):
+    """Blocking key for the address tier, or None if any part is missing."""
+    cc = (country or '').strip().upper()
+    pc = normalize_postcode(postcode)
+    num = street_number(line)
+    if len(cc) != 2 or len(pc) < 3 or not num:
+        return None
+    return (cc, pc, num)
+
+
+def distinctive_tokens(core: str) -> set:
+    return {t for t in core.split() if len(t) >= 3 and t not in GENERIC_TOKENS and t not in _SINGLE}
 
 
 def first_token(norm: str) -> str:
@@ -214,7 +309,8 @@ IYP_QUERY = """
 MATCH (o:Organization)
 RETURN o.name AS name,
        [(o)-[r:EXTERNAL_ID]->(x:PeeringdbOrgID) |
-        {id: x.id, city: r.city, aka: r.aka, name_long: r.name_long}] AS pdb,
+        {id: x.id, city: r.city, aka: r.aka, name_long: r.name_long,
+         address1: r.address1, zipcode: r.zipcode, country: r.country}] AS pdb,
        [(o)-[:EXTERNAL_ID]->(x:CaidaOrgID) | x.id] AS caida_ids,
        [(o)-[:COUNTRY]->(c:Country) | c.country_code] AS countries,
        [(o)-[:WEBSITE]->(u:URL) | u.url] AS websites,
@@ -239,6 +335,8 @@ def fetch_iyp_orgs() -> pd.DataFrame:
                     'pdb_ids': sorted({str(p['id']) for p in pdb if p.get('id') is not None}),
                     'cities': sorted({normalize(p.get('city') or '') for p in pdb} - {''}),
                     'alt_names': sorted(alt),
+                    'addresses': sorted({k for k in (address_key(p.get('country'), p.get('zipcode'), p.get('address1'))
+                                               for p in pdb) if k}),
                     'caida_ids': sorted({str(x) for x in rec['caida_ids'] if x is not None}),
                     'countries': sorted({str(x).upper() for x in rec['countries'] if x}),
                     'websites': sorted({str(x) for x in rec['websites'] if x}),
@@ -261,6 +359,11 @@ def load_iyp_orgs_csv(path: str) -> pd.DataFrame:
             df[col] = ''
         df[col] = df[col].map(lambda v: [x for x in v.split(';') if x])
     df['cities'] = df['cities'].map(lambda l: [normalize(c) for c in l])
+    # Optional 'addresses' column: 'CC|postcode|street line' entries separated by ';'.
+    if 'addresses' not in df:
+        df['addresses'] = ''
+    df['addresses'] = df['addresses'].map(
+        lambda v: [k for k in (address_key(*a.split('|', 2)) for a in v.split(';') if a.count('|') == 2) if k])
     df['countries'] = df['countries'].map(lambda l: [c.upper() for c in l])
     df['n_as'] = pd.to_numeric(df['n_as'], errors='coerce').fillna(0).astype(int)
     return df
@@ -304,7 +407,10 @@ class GleifIndex:
     core_legal[(cc, core)]  -> set(LEI)
     core_other[(cc, core)]  -> set(LEI)
     fuzzy_block[(cc, first_token)] -> list[(core, LEI)]   (legal + other names)
-    records[LEI] -> (legal_name, countries, city, entity_status, reg_status, postcode)
+    records[LEI] -> (legal_name, countries, city, entity_status, reg_status, postcode,
+                     category, legal_country, jurisdiction, legal_form, address_text)
+    category is GLEIF's EntityCategory (GENERAL, BRANCH, FUND, ...). Branches share the
+    head office's legal name, which is the main source of same-name candidates.
     """
 
     def __init__(self):
@@ -314,12 +420,19 @@ class GleifIndex:
         self.core_other = defaultdict(set)
         self.fuzzy_block = defaultdict(list)
         self.global_exact = defaultdict(set)
+        # (country, postcode, street number) of the HQ address (legal address as
+        # fallback) -> LEIs. Crowded keys are dropped after loading.
+        self.address = defaultdict(set)
         self.records = {}
 
-    def add(self, lei, legal_name, other_names, countries, city, entity_status, reg_status, postcode=''):
-        self.records[lei] = (legal_name, tuple(sorted(countries)), city, entity_status, reg_status, postcode)
+    def add(self, lei, legal_name, other_names, countries, city, entity_status, reg_status, postcode='',
+            category='', legal_country='', jurisdiction='', address=None, address_text=''):
         ln = normalize(legal_name)
-        lc = core_name(ln)
+        lc, form = split_legal_form(ln)
+        self.records[lei] = (legal_name, tuple(sorted(countries)), city, entity_status, reg_status, postcode,
+                             category, legal_country, jurisdiction, legal_form_class(form), address_text)
+        if address:
+            self.address[address].add(lei)
         self.global_exact[ln].add(lei)
         seen_fuzzy = set()
         for cc in countries:
@@ -357,11 +470,16 @@ def _discover_columns(header: list[str]) -> dict:
         'legal_country': 'Entity.LegalAddress.Country',
         'legal_city': 'Entity.LegalAddress.City',
         'legal_postcode': 'Entity.LegalAddress.PostalCode',
+        'legal_line': 'Entity.LegalAddress.FirstAddressLine',
+        'hq_line': 'Entity.HeadquartersAddress.FirstAddressLine',
+        'hq_postcode': 'Entity.HeadquartersAddress.PostalCode',
+        'hq_city': 'Entity.HeadquartersAddress.City',
         'hq_country': 'Entity.HeadquartersAddress.Country',
         'jurisdiction': 'Entity.LegalJurisdiction',
         'entity_status': 'Entity.EntityStatus',
         'reg_status': 'Registration.RegistrationStatus',
         'elf': 'Entity.LegalForm.EntityLegalFormCode',
+        'category': 'Entity.EntityCategory',
     }
     missing = [v for k, v in cols.items() if k != 'other_names' and v not in header]
     if missing:
@@ -405,8 +523,9 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
             with open(learned_forms_path, 'w') as f:
                 json.dump(learned, f, indent=1, ensure_ascii=False, sort_keys=True)
         usecols = [cols['lei'], cols['legal_name'], cols['legal_country'], cols['legal_city'],
-                   cols['legal_postcode'], cols['hq_country'], cols['jurisdiction'], cols['entity_status'],
-                   cols['reg_status']] + cols['other_names']
+                   cols['legal_postcode'], cols['hq_country'], cols['category'], cols['jurisdiction'], cols['entity_status'],
+                   cols['reg_status'], cols['legal_line'], cols['hq_line'], cols['hq_postcode'], cols['hq_city']
+                   ] + cols['other_names']
         logging.info(f'Reading {csv_name} ({len(cols["other_names"])} other-name columns)')
         n = 0
         skipped = 0
@@ -425,6 +544,15 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
                                  r[cols['legal_country']].strip().upper(),
                                  r[cols['hq_country']].strip().upper()}
                     countries.discard('')
+                    # HQ address first: the legal address of US entities is often a
+                    # registered agent shared by thousands of LEIs.
+                    hq_cc = r[cols['hq_country']].strip().upper()
+                    addr = address_key(hq_cc, r[cols['hq_postcode']], r[cols['hq_line']])
+                    addr_text = f"{r[cols['hq_line']]}, {r[cols['hq_postcode']]} {r[cols['hq_city']]}, {hq_cc}"
+                    if not addr:
+                        addr = address_key(r[cols['legal_country']], r[cols['legal_postcode']], r[cols['legal_line']])
+                        addr_text = (f"{r[cols['legal_line']]}, {r[cols['legal_postcode']]} {r[cols['legal_city']]}, "
+                                     f"{r[cols['legal_country']].strip().upper()}")
                     index.add(
                         lei=r[cols['lei']],
                         legal_name=r[cols['legal_name']],
@@ -434,10 +562,19 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
                         entity_status=r[cols['entity_status']],
                         reg_status=reg,
                         postcode=normalize_postcode(r[cols['legal_postcode']]),
+                        category=r[cols['category']],
+                        legal_country=r[cols['legal_country']].strip().upper(),
+                        jurisdiction=jurisdiction_cc(r[cols['jurisdiction']]),
+                        address=addr,
+                        address_text=addr_text if addr else '',
                     )
                     n += 1
                 logging.info(f'  ...{n} records indexed')
-    logging.info(f'Indexed {n} LEI records ({skipped} annulled/duplicate skipped)')
+    crowded = [k for k, v in index.address.items() if len(v) > ADDRESS_BLOCK_MAX]
+    for k in crowded:
+        del index.address[k]
+    logging.info(f'Indexed {n} LEI records ({skipped} annulled/duplicate skipped); '
+                 f'{len(index.address)} usable HQ addresses ({len(crowded)} crowded addresses dropped)')
     return index
 
 
@@ -445,24 +582,46 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
 # Matching
 # --------------------------------------------------------------------------- #
 
-def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = ()) -> tuple[set, str]:
-    """Try to reduce a candidate set to one LEI. Returns (candidates, hint)."""
+def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
+            form_class: str = '') -> tuple[set, str]:
+    """Try to reduce a candidate set to one LEI. Returns (candidates, hint).
+
+    Same-name candidates are mostly (a) a head office plus its international branches,
+    which GLEIF registers under the head office's legal name, (b) the same core name
+    under different legal forms, or (c) unrelated same-name entities (e.g. several
+    "United Community Bank"s). Tie-breaks, in order: active status; same legal-form
+    class as the query ("AG" vs "Aktiengesellschaft" agree, "Stiftung" does not);
+    GENERAL entities over BRANCH/FUND/...; the head office (legal address in the
+    jurisdiction country) over foreign branches; postal code; city. Case (c) stays
+    ambiguous unless a postal code or city is known.
+    """
     if len(cands) <= 1:
         return cands, ''
-    active = {l for l in cands if index.records[l][3] == 'ACTIVE'}
-    if len(active) == 1:
-        return active, 'active_only'
-    if active:
-        cands = active
+    hints = []
+
+    def narrow(subset, hint):
+        nonlocal cands
+        if subset and len(subset) < len(cands):
+            cands = subset
+            hints.append(hint)
+        return len(cands) == 1
+
+    if narrow({l for l in cands if index.records[l][3] == 'ACTIVE'}, 'active_only'):
+        return cands, ','.join(hints)
+    if form_class and narrow({l for l in cands if index.records[l][9] == form_class}, 'legal_form'):
+        return cands, ','.join(hints)
+    if narrow({l for l in cands if index.records[l][6] in ('GENERAL', '')}, 'general_entity'):
+        return cands, ','.join(hints)
+    if narrow({l for l in cands if index.records[l][7] and index.records[l][7] == index.records[l][8]},
+              'head_office'):
+        return cands, ','.join(hints)
     if postcodes:
-        by_pc = {l for l in cands if index.records[l][5] and index.records[l][5] in postcodes}
-        if len(by_pc) == 1:
-            return by_pc, 'postcode'
+        if narrow({l for l in cands if index.records[l][5] and index.records[l][5] in postcodes}, 'postcode'):
+            return cands, ','.join(hints)
     if cities:
-        by_city = {l for l in cands if index.records[l][2] in cities}
-        if len(by_city) == 1:
-            return by_city, 'city'
-    return cands, ''
+        if narrow({l for l in cands if index.records[l][2] in cities}, 'city'):
+            return cands, ','.join(hints)
+    return cands, ','.join(hints)
 
 
 def match_org(org, index: GleifIndex, whois: dict = None):
@@ -475,7 +634,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
     """
     whois = whois or {}
     norm = normalize(org.name)
-    core = core_name(norm)
+    core, form = split_legal_form(norm)
     if not norm:
         return None, 'unmatched', None, ''
     iyp_countries = list(org.countries or [])
@@ -487,16 +646,23 @@ def match_org(org, index: GleifIndex, whois: dict = None):
     if whois.get('city'):
         cities.append(normalize(whois['city']))
     postcodes = [normalize_postcode(whois['postcode'])] if whois.get('postcode') else []
+    addresses = [(k, 'pdb_address') for k in (getattr(org, 'addresses', []) or [])]
+    if whois.get('street'):
+        wk = address_key(whois.get('country'), whois.get('postcode'), whois['street'])
+        if wk and wk not in {a[0] for a in addresses}:
+            addresses.append((wk, 'whois_address'))
     # Query names: the IYP name first, then PeeringDB name_long / aka, then whois.
-    query_names = [(norm, core, '')]
+    query_names = [(norm, core, '', legal_form_class(form))]
     for alt in getattr(org, 'alt_names', []) or []:
         an = normalize(alt)
         if an and an != norm:
-            query_names.append((an, core_name(an), 'alt_name'))
+            ac, af = split_legal_form(an)
+            query_names.append((an, ac, 'alt_name', legal_form_class(af)))
     if whois.get('name'):
         wn = normalize(whois['name'])
         if wn and wn not in {q[0] for q in query_names}:
-            query_names.append((wn, core_name(wn), 'whois_name'))
+            wc, wf = split_legal_form(wn)
+            query_names.append((wn, wc, 'whois_name', legal_form_class(wf)))
 
     tiers = [
         ('legal_exact', index.exact, 0),
@@ -513,7 +679,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                     cands |= idx.get((cc, key), set())
                 if not cands:
                     continue
-                cands, hint = _prefer(cands, index, cities, postcodes)
+                cands, hint = _prefer(cands, index, cities, postcodes, qn[3])
                 hint = ','.join(h for h in (src, csrc, hint) if h)
                 if len(cands) == 1:
                     lei = next(iter(cands))
@@ -535,7 +701,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                 best_score = hits[0][1]
                 best_leis = {block[h[2]][1] for h in hits if h[1] == best_score}
                 runner_up = max((h[1] for h in hits if block[h[2]][1] not in best_leis), default=0)
-                best_leis, hint = _prefer(best_leis, index, cities, postcodes)
+                best_leis, hint = _prefer(best_leis, index, cities, postcodes, legal_form_class(form))
                 if len(best_leis) == 1 and best_score - runner_up >= FUZZY_MARGIN:
                     lei = next(iter(best_leis))
                     if whois_countries and not iyp_countries:
@@ -543,10 +709,34 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                     return lei, 'fuzzy', hits[0][0], f'score={best_score:.0f}{"," + hint if hint else ""}'
                 return None, 'ambiguous', sorted(best_leis), 'fuzzy'
 
+    # Address tier: GLEIF HQ address at the same (country, postcode, street number) as
+    # PeeringDB / the registry, plus name evidence. This mostly finds the parent or an
+    # affiliate registered at the same headquarters, hence the low confidence.
+    if addresses:
+        core_tokens = distinctive_tokens(core)
+        best = []
+        for key, src in addresses:
+            for lei in index.address.get(key, ()):
+                cand_core = core_name(normalize(index.records[lei][0]))
+                score = fuzz.token_set_ratio(core, cand_core)
+                shared = core_tokens & distinctive_tokens(cand_core)
+                if score >= ADDRESS_NAME_MIN_RATIO or shared:
+                    best.append((score, lei, src))
+        if best:
+            top = max(b[0] for b in best)
+            leis = {b[1] for b in best if b[0] >= top - FUZZY_MARGIN}
+            src = next(b[2] for b in best if b[1] in leis)
+            leis, hint = _prefer(leis, index, cities, postcodes, legal_form_class(form))
+            hint = ','.join(h for h in (src, f'score={top:.0f}', hint) if h)
+            if len(leis) == 1:
+                lei = next(iter(leis))
+                return lei, 'address_name', core_name(normalize(index.records[lei][0])), hint
+            return None, 'ambiguous', sorted(leis), 'address_name'
+
     # No country in IYP: only accept a globally unique exact legal-name match.
     if not countries:
         cands = index.global_exact.get(norm, set())
-        cands, hint = _prefer(cands, index, cities, postcodes)
+        cands, hint = _prefer(cands, index, cities, postcodes, legal_form_class(form))
         if len(cands) == 1:
             return next(iter(cands)), 'legal_exact_nocountry', norm, hint
         if len(cands) > 1:
@@ -587,13 +777,15 @@ def apply_overrides(mapping: pd.DataFrame, path: str, orgs: pd.DataFrame,
 
 
 def _row(org, name, lei, method, matched_name, hint, index: GleifIndex) -> dict:
-    legal_name, countries, city, entity_status, reg_status, _postcode = index.records[lei]
+    legal_name, countries, city, entity_status, reg_status, _pc, category, *_ = index.records[lei]
     return {
         'iyp_org_name': name,
         'lei': lei,
         'lei_legal_name': legal_name,
         'lei_countries': ';'.join(countries),
+        'lei_address': index.records[lei][10],
         'entity_status': entity_status,
+        'entity_category': category,
         'registration_status': reg_status,
         'match_method': method,
         'confidence': CONFIDENCE[method],
@@ -623,7 +815,10 @@ def run_matching(orgs: pd.DataFrame, index: GleifIndex, whois: dict = None):
                 'iyp_n_as': org.n_as,
                 'tier': hint,
                 'candidates': ';'.join(extra),
-                'candidate_names': ' | '.join(f'{index.records[l][0]} [{index.records[l][3]}]' for l in extra),
+                # Same-looking names are distinct LEI records; show what tells them apart.
+                'candidate_names': ' | '.join(
+                    f'{index.records[l][0]} [{l}, {index.records[l][7] or "?"}, {index.records[l][6] or "?"}, '
+                    f'{index.records[l][2] or "?"}, {index.records[l][3]}]' for l in extra),
             })
     mapping = pd.DataFrame(matched)
     if not mapping.empty:
@@ -725,22 +920,22 @@ def main():
 
     whois = {}
     if not args.no_whois:
-        # Spend the RDAP budget only where the registry can add something the
-        # matcher does not already have: a name for CAIDA's synthesized @aut-/@family-
-        # organizations, a country for organizations without one, and city/postal
-        # code for ambiguous ones. For an org with a real handle and a country, the
-        # registered name is what CAIDA already reports, so a lookup is wasted.
+        # Every organization not matched at >= 0.9 is worth a lookup because the
+        # registered address feeds the address tier. First in line are those where the
+        # registry adds a name or a country too: CAIDA's synthesized @aut-/@family-
+        # organizations, organizations without a country, and ambiguous ones.
         good = set(mapping[mapping.confidence >= 0.9].iyp_org_name) if not mapping.empty else set()
         amb = set(ambiguous.iyp_org_name) if not ambiguous.empty else set()
-        useful = set()
+        candidates, first = set(), set()
         for org in orgs.itertuples(index=False):
             if org.name in good:
                 continue
+            candidates.add(org.name)
             synthesized = any(str(c).startswith('@') for c in org.caida_ids)
             if synthesized or not org.countries or org.name in amb:
-                useful.add(org.name)
-        logging.info(f'RDAP: {len(useful)} organizations where registry data could help')
-        whois = whois_enrich.enrich(orgs, args.rdap_cache, args.rdap_budget, useful, only=useful)
+                first.add(org.name)
+        logging.info(f'RDAP: {len(candidates)} organizations eligible for lookup, {len(first)} prioritized')
+        whois = whois_enrich.enrich(orgs, args.rdap_cache, args.rdap_budget, first, only=candidates)
         if whois:
             logging.info('Matching again with registry data...')
             mapping, ambiguous, stats = run_matching(orgs, index, whois)

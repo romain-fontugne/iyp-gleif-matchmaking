@@ -52,6 +52,33 @@ HOST_INTERVAL = {
 DEFAULT_INTERVAL = 0.5
 CACHE_TTL = timedelta(days=180)
 NEGATIVE_TTL = timedelta(days=60)
+# Bump when the parsed fields change so old positive entries are refreshed.
+CACHE_VERSION = 2
+
+_PC_TOKEN_RE = re.compile(r'^[A-Z0-9][A-Z0-9-]{1,9}$', re.IGNORECASE)
+_PHONE_LINE_RE = re.compile(r'\b(tel|fax|phone|mobile)\b|\+\d', re.IGNORECASE)
+
+
+def postcode_from_label(lines: list) -> str:
+    """Postal code from a free-text address label (RIPE, APNIC, AFRINIC give no
+    structured fields): the last run of digit-bearing tokens on a line after the
+    street line, e.g. "53227 Bonn" -> 53227, "London EC2N 4AA" -> EC2N 4AA,
+    "Broomfield, CO 80021" -> 80021, "100-0004 Tokyo" -> 100-0004."""
+    for line in lines[1:]:
+        if _PHONE_LINE_RE.search(line):
+            continue
+        toks = [t for t in re.split(r'[\s,]+', line) if t]
+        best, run = [], []
+        for t in toks + ['']:
+            if t and any(ch.isdigit() for ch in t) and _PC_TOKEN_RE.match(t) and not t.startswith('+'):
+                run.append(t)
+            else:
+                if run:
+                    best = run
+                run = []
+        if best and 3 <= len(' '.join(best)) <= 10:
+            return ' '.join(best)
+    return ''
 
 _HANDLE_RE = re.compile(r'^(?P<handle>.+)-(?P<source>[A-Z][A-Z0-9.]+)$')
 _AUT_RE = re.compile(r'^@aut-(?P<asn>\d+)$')
@@ -134,6 +161,10 @@ def parse_vcard(vcard_array) -> dict:
         elif key == 'adr':
             # Structured: [pobox, ext, street, locality, region, postcode, country]
             if isinstance(value, list) and len(value) >= 7 and any(value):
+                street = value[2]
+                if isinstance(street, list):
+                    street = ' '.join(str(x) for x in street if x)
+                out['street'] = out.get('street') or str(street or '').strip()
                 out['city'] = out.get('city') or str(value[3] or '').strip()
                 out['postcode'] = out.get('postcode') or str(value[5] or '').strip()
                 out['country'] = out.get('country') or _country_code(str(value[6] or ''))
@@ -141,6 +172,14 @@ def parse_vcard(vcard_array) -> dict:
             if label:
                 lines = [l.strip() for l in str(label).splitlines() if l.strip()]
                 out.setdefault('address', ' | '.join(lines))
+                if not out.get('street'):
+                    # First line that contains a digit is usually the street line.
+                    for line in lines:
+                        if any(ch.isdigit() for ch in line):
+                            out['street'] = line
+                            break
+                if not out.get('postcode'):
+                    out['postcode'] = postcode_from_label(lines)
                 # Registries that only give a free-text label (RIPE) often end with
                 # the country. Take it only if it parses unambiguously.
                 if not out.get('country') and lines:
@@ -203,6 +242,8 @@ class RdapCache:
         e = self.data.get(url)
         if not e:
             return False
+        if e.get('status') == 200 and e.get('v', 1) < CACHE_VERSION:
+            return False  # parsed before a field was added (e.g. street); refresh
         ts = datetime.fromisoformat(e['fetched'])
         ttl = CACHE_TTL if e.get('status') == 200 else NEGATIVE_TTL
         return datetime.now(tz=timezone.utc) - ts < ttl
@@ -211,7 +252,8 @@ class RdapCache:
         return (self.data.get(url) or {}).get('info', {})
 
     def put(self, url: str, status: int, info: dict):
-        self.data[url] = {'fetched': datetime.now(tz=timezone.utc).isoformat(), 'status': status, 'info': info}
+        self.data[url] = {'fetched': datetime.now(tz=timezone.utc).isoformat(), 'status': status,
+                          'info': info, 'v': CACHE_VERSION}
 
     def save(self):
         os.makedirs(os.path.dirname(self.path) or '.', exist_ok=True)
