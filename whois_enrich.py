@@ -264,14 +264,16 @@ class RdapClient:
             return 0, {}
 
 
-def enrich(orgs, cache_path: str, budget: int, priority_names: set = None) -> dict:
+def enrich(orgs, cache_path: str, budget: int, priority_names: set = None, only: set = None) -> dict:
     """Look up organizations via RDAP. Returns {org_name: info}.
 
     ``orgs`` must have columns name, caida_ids, asns, n_as. Cached results are used
     for every organization; at most ``budget`` new HTTP requests are made, spent on
     ``priority_names`` first (typically organizations the matcher could not match),
     ordered by number of ASes. For each organization the candidate URLs are tried in
-    order until one returns data; every attempt is cached, including 404s.
+    order until one returns data; every attempt is cached, including 404s. If
+    ``only`` is given, new lookups are restricted to those organizations (cached
+    results are still used for everyone).
     """
     cache = RdapCache(cache_path)
     client = RdapClient()
@@ -291,7 +293,7 @@ def enrich(orgs, cache_path: str, budget: int, priority_names: set = None) -> di
                     break
                 continue  # cached negative: try the next candidate
             pending.append(url)
-        if pending:
+        if pending and (only is None or org.name in only):
             prio = 0 if priority_names is None or org.name in priority_names else 1
             todo.append((prio, -int(org.n_as), org.name, pending))
     todo.sort()

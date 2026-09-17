@@ -18,6 +18,7 @@ this one.
 | `unmatched.csv` | organizations with no candidate |
 | `report.md` | summary statistics, also shown in the Action's job summary |
 | `metadata.json` | run metadata (GLEIF publish date, counts) |
+| `learned_legal_forms.json` | legal-form suffixes learned from the golden copy, per ELF code (review when matching looks off) |
 
 `cache/rdap_cache.json` (not committed, kept in the Actions cache) holds registry
 lookups, see below.
@@ -32,8 +33,13 @@ stores the raw PeeringDB org object on the `EXTERNAL_ID` relationship, so Peerin
 used as additional query names and the city as a tie-breaker. Everything comes from a
 single Cypher query against IYP; no other API is needed. GLEIF records are indexed by
 normalized name, **blocked by country** (union of legal jurisdiction, legal address
-country and HQ country). Names are normalized (casefold, diacritics, punctuation) and a
-"core" form additionally strips legal-form suffixes (`Inc`, `GmbH`, `株式会社`, ...).
+country and HQ country). Names are normalized (casefold, diacritics, punctuation, parentheticals) and a
+"core" form additionally strips legal-form suffixes. Besides a curated list (`Inc`,
+`GmbH`, `株式会社`, ...), suffixes are **learned from the golden copy itself**: for each
+ISO 20275 ELF code, the name tails shared by at least 20% of the entities registered
+under that code are legal forms (`spółka akcyjna`, `aktiebolag`, `sp z o o`,
+`pvt ltd`, `gmbh and co kg`, ...). A short blacklist keeps identity-bearing words
+(`trust`, `bank`, `group`, ...) from being learned.
 GLEIF's *other entity names* (trading names, alternative-language and transliterated
 names) are indexed too; network operators usually appear under a trading name.
 
@@ -54,9 +60,12 @@ are then fed into the matcher:
 - city and postal code break ties between same-name candidates (`hint` = `city`,
   `postcode`). Postal code also uses PeeringDB data when available.
 
-Lookups run *after* a first matching pass, so the request budget (`--rdap-budget`,
-default 3000 per run, `RDAP_BUDGET` in the Action) is spent on organizations that are
-unmatched, ambiguous or matched below 0.9, largest first. Results (including 404s) are
+Lookups run *after* a first matching pass. The request budget (`--rdap-budget`, default
+3000 per run, `RDAP_BUDGET` in the Action) is spent only where the registry can add
+something new: `@aut-`/`@family-` organizations (name), organizations without a country
+in IYP (country), and ambiguous ones (city/postal code), largest first. For an
+organization with a real handle and a country, the registered name is what CAIDA already
+reports, so it is not looked up. Results (including 404s) are
 cached for 180 days, so coverage grows run after run. Requests are throttled per host;
 a 429 or 5xx disables that host for the rest of the run. Bulk whois dumps are not an
 option here: RIPE and APNIC dummify organisation objects in their public dumps, and
@@ -88,6 +97,21 @@ candidate the organization goes to `ambiguous.csv` rather than being guessed.
 
 Precision is favoured over recall on purpose. Consumers should filter on `confidence`;
 `>= 0.9` is a reasonable default for IYP.
+
+## Where is the ceiling? (`diagnose_unmatched.py`)
+
+Most unmatched organizations have no LEI: 78% of them manage a single AS, and LEIs are
+held by entities active in financial markets, not by small ISPs. Registry data cannot
+change that. To separate this ceiling from genuine recall problems, sample the unmatched
+set against the GLEIF search API (60 req/min, so run it by hand):
+
+```sh
+uv run python diagnose_unmatched.py --sample 300 --min-as 2
+```
+
+It reports the share of sampled organizations with a near-identical GLEIF entity in the
+same country (the matcher missed it: fix normalization or add an override) versus no
+plausible candidate (no LEI). `data/diagnostic.csv` lists the candidates.
 
 ## Manual overrides
 

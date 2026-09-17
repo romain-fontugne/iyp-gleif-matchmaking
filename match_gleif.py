@@ -83,7 +83,61 @@ LEGAL_SUFFIXES = [
 _MULTI = [s.split() for s in LEGAL_SUFFIXES if ' ' in s]
 _SINGLE = {s for s in LEGAL_SUFFIXES if ' ' not in s}
 
+# Generic words that may dominate the tail of names under some ELF codes (trusts,
+# funds, associations) but carry identity; never learn them as legal forms.
+_NEVER_LEARN = {
+    'trust', 'fund', 'funds', 'bank', 'group', 'holding', 'holdings', 'partners',
+    'capital', 'association', 'foundation', 'society', 'university', 'church',
+    'council', 'authority', 'agency', 'international', 'services', 'systems',
+    'network', 'networks', 'communications', 'telecom', 'technologies', 'solutions',
+}
+
+
+def add_legal_suffixes(suffixes):
+    """Extend the suffix lists (e.g. with forms learned from the golden copy)."""
+    for suf in suffixes:
+        toks = suf.split()
+        if not toks:
+            continue
+        if len(toks) == 1:
+            _SINGLE.add(toks[0])
+        elif toks not in _MULTI:
+            _MULTI.append(toks)
+    # Longest multi-token forms first so "gmbh and co kg" beats "co kg".
+    _MULTI.sort(key=len, reverse=True)
+
+
+def learn_legal_forms(tails_by_code: dict, min_count: int = 50, min_share: float = 0.2) -> dict:
+    """Learn legal-form suffixes from the golden copy.
+
+    ``tails_by_code`` maps an ISO 20275 ELF code to a Counter of (tail_length,
+    tail) over the normalized legal names registered under that code. For each code
+    with enough names, every tail (1-4 tokens) that ends at least ``min_share`` of
+    the names is a legal form for that jurisdiction: this recovers "spolka
+    akcyjna", "aktiebolag", "sp z o o", "pvt ltd", "co ltd", "kabushiki kaisha",
+    "gmbh and co kg" and their local variants without a hand-written list.
+    Returns {code: [suffixes]}.
+    """
+    learned = {}
+    for code, (n_names, tails) in tails_by_code.items():
+        if n_names < min_count:
+            continue
+        found = []
+        for (length, tail), cnt in tails.most_common():
+            if cnt / n_names < min_share:
+                break
+            toks = tail.split()
+            if any(t in _NEVER_LEARN or t.isdigit() for t in toks):
+                continue
+            if length == 1 and len(toks[0]) < 2:
+                continue
+            found.append(tail)
+        if found:
+            learned[code] = found
+    return learned
+
 _PUNCT_RE = re.compile(r'[^\w\s]', re.UNICODE)
+_PAREN_RE = re.compile(r'\s*[\(\[][^\)\]]*[\)\]]')
 _WS_RE = re.compile(r'\s+')
 
 
@@ -98,6 +152,11 @@ def normalize(name: str) -> str:
         return ''
     s = unicodedata.normalize('NFKD', str(name))
     s = ''.join(c for c in s if not unicodedata.combining(c))
+    # Drop parentheticals ("Vodafone Idea Ltd. (VIL)", "SingTel (Internet Exchange)")
+    # unless that would leave nothing.
+    stripped = _PAREN_RE.sub('', s).strip()
+    if stripped:
+        s = stripped
     s = s.casefold().replace('&', ' and ')
     # CJK company suffixes are glued to the name; separate them so they can be
     # treated as tokens.
@@ -302,6 +361,7 @@ def _discover_columns(header: list[str]) -> dict:
         'jurisdiction': 'Entity.LegalJurisdiction',
         'entity_status': 'Entity.EntityStatus',
         'reg_status': 'Registration.RegistrationStatus',
+        'elf': 'Entity.LegalForm.EntityLegalFormCode',
     }
     missing = [v for k, v in cols.items() if k != 'other_names' and v not in header]
     if missing:
@@ -309,13 +369,41 @@ def _discover_columns(header: list[str]) -> dict:
     return cols
 
 
-def load_gleif(zip_path: str) -> GleifIndex:
+def learn_legal_forms_from_golden_copy(z: zipfile.ZipFile, csv_name: str, cols: dict) -> dict:
+    """First pass over the golden copy: collect name tails per ELF code."""
+    logging.info('Learning legal forms from ELF codes...')
+    tails_by_code = {}
+    with z.open(csv_name) as fh:
+        for chunk in pd.read_csv(fh, usecols=[cols['legal_name'], cols['elf']], dtype=str,
+                                 keep_default_na=False, chunksize=500_000):
+            for name, code in zip(chunk[cols['legal_name']], chunk[cols['elf']]):
+                if not code or len(code) != 4:
+                    continue
+                toks = normalize(name).split()
+                if len(toks) < 2:
+                    continue
+                entry = tails_by_code.setdefault(code, [0, Counter()])
+                entry[0] += 1
+                for length in range(1, min(4, len(toks) - 1) + 1):
+                    entry[1][(length, ' '.join(toks[-length:]))] += 1
+    learned = learn_legal_forms({k: tuple(v) for k, v in tails_by_code.items()})
+    n = sum(len(v) for v in learned.values())
+    logging.info(f'Learned {n} legal-form suffixes from {len(learned)} ELF codes')
+    return learned
+
+
+def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
     index = GleifIndex()
     with zipfile.ZipFile(zip_path) as z:
         csv_name = next(n for n in z.namelist() if n.lower().endswith('.csv'))
         with z.open(csv_name) as fh:
             header = next(csv.reader(io.TextIOWrapper(fh, encoding='utf-8')))
         cols = _discover_columns(header)
+        learned = learn_legal_forms_from_golden_copy(z, csv_name, cols)
+        add_legal_suffixes(suf for sufs in learned.values() for suf in sufs)
+        if learned_forms_path:
+            with open(learned_forms_path, 'w') as f:
+                json.dump(learned, f, indent=1, ensure_ascii=False, sort_keys=True)
         usecols = [cols['lei'], cols['legal_name'], cols['legal_country'], cols['legal_city'],
                    cols['legal_postcode'], cols['hq_country'], cols['jurisdiction'], cols['entity_status'],
                    cols['reg_status']] + cols['other_names']
@@ -629,7 +717,7 @@ def main():
         zip_path, publish_date = args.gleif_zip, ''
     else:
         zip_path, publish_date = download_gleif(args.cache_dir)
-    index = load_gleif(zip_path)
+    index = load_gleif(zip_path, os.path.join(args.out_dir, 'learned_legal_forms.json'))
 
     logging.info('Matching...')
     mapping, ambiguous, stats = run_matching(orgs, index)
@@ -637,11 +725,22 @@ def main():
 
     whois = {}
     if not args.no_whois:
-        # Spend the RDAP budget on organizations that are unmatched, ambiguous or
-        # matched with low confidence, largest first; cached lookups are free.
+        # Spend the RDAP budget only where the registry can add something the
+        # matcher does not already have: a name for CAIDA's synthesized @aut-/@family-
+        # organizations, a country for organizations without one, and city/postal
+        # code for ambiguous ones. For an org with a real handle and a country, the
+        # registered name is what CAIDA already reports, so a lookup is wasted.
         good = set(mapping[mapping.confidence >= 0.9].iyp_org_name) if not mapping.empty else set()
-        priority = set(orgs.name) - good
-        whois = whois_enrich.enrich(orgs, args.rdap_cache, args.rdap_budget, priority)
+        amb = set(ambiguous.iyp_org_name) if not ambiguous.empty else set()
+        useful = set()
+        for org in orgs.itertuples(index=False):
+            if org.name in good:
+                continue
+            synthesized = any(str(c).startswith('@') for c in org.caida_ids)
+            if synthesized or not org.countries or org.name in amb:
+                useful.add(org.name)
+        logging.info(f'RDAP: {len(useful)} organizations where registry data could help')
+        whois = whois_enrich.enrich(orgs, args.rdap_cache, args.rdap_budget, useful, only=useful)
         if whois:
             logging.info('Matching again with registry data...')
             mapping, ambiguous, stats = run_matching(orgs, index, whois)
