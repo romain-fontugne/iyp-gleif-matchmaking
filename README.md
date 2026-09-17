@@ -47,7 +47,7 @@ flowchart TD
 
     T1 & T2 & T3 & T4 & T5 & T5b & T6 -->|candidates| N{how many?}
     N -->|1| M[match]
-    N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ jurisdiction in the query countries → ISSUED over LAPSED<br/>→ postal code → city"]
+    N -->|"> 1"| TB["Tie-breaks, in order<br/>ACTIVE status → name matches with parentheticals kept<br/>→ same legal-form class (AG ≈ Aktiengesellschaft)<br/>→ GENERAL over BRANCH/FUND → head office<br/>→ jurisdiction in the query countries → ISSUED over LAPSED<br/>→ postal code → city"]
     TB -->|1| M
     TB -->|"> 1"| AMB[ambiguous.csv]
     T6 -->|none| UNM[unmatched.csv]
@@ -79,8 +79,10 @@ in US), the same core under different legal forms (`Deutsche Bank Aktiengesellsc
 its HQ country (`Allergan Inc`, registered in Ontario, headquartered in New Jersey, next
 to the Delaware `ALLERGAN, INC.` — the `jurisdiction` tie-break picks the one registered
 in the organization's own country), a lapsed registration beside its replacement
-(`FMR, LLC` vs `FMR LLC`, resolved by `issued_only`), or unrelated same-name entities
-(four `United Community Bank`s). Only the last stays ambiguous, unless PeeringDB or the
+(`FMR, LLC` vs `FMR LLC`, resolved by `issued_only`), an entity that differs from another
+only by a parenthetical, which name normalization removes (`Swisscom (Schweiz) AG` vs
+`Swisscom AG`, resolved by `exact_paren`), or unrelated same-name entities (four
+`United Community Bank`s). Only the last stays ambiguous, unless PeeringDB or the
 registry provides a city or postal code.
 
 Jurisdiction is compared before registration status on purpose: a lapsed record of the

@@ -162,18 +162,24 @@ _WS_RE = re.compile(r'\s+')
 # Normalization
 # --------------------------------------------------------------------------- #
 
-def normalize(name: str) -> str:
+def normalize(name: str, keep_paren: bool = False) -> str:
     """Full normalization: casefold, strip diacritics, drop punctuation, collapse
-    whitespace. Does NOT strip legal forms."""
+    whitespace. Does NOT strip legal forms.
+
+    ``keep_paren`` keeps the content of parentheses, which is used as a tie-break:
+    two candidates that differ only by a parenthetical ("Swisscom AG" vs "Swisscom
+    (Schweiz) AG") are indistinguishable otherwise.
+    """
     if not name:
         return ''
     s = unicodedata.normalize('NFKD', str(name))
     s = ''.join(c for c in s if not unicodedata.combining(c))
     # Drop parentheticals ("Vodafone Idea Ltd. (VIL)", "SingTel (Internet Exchange)")
     # unless that would leave nothing.
-    stripped = _PAREN_RE.sub('', s).strip()
-    if stripped:
-        s = stripped
+    if not keep_paren:
+        stripped = _PAREN_RE.sub('', s).strip()
+        if stripped:
+            s = stripped
     s = s.casefold().replace('&', ' and ')
     # CJK company suffixes are glued to the name; separate them so they can be
     # treated as tokens.
@@ -583,7 +589,7 @@ def load_gleif(zip_path: str, learned_forms_path: str = None) -> GleifIndex:
 # --------------------------------------------------------------------------- #
 
 def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
-            form_class: str = '', countries: tuple = ()) -> tuple[set, str]:
+            form_class: str = '', countries: tuple = (), raw_norm: str = '') -> tuple[set, str]:
     """Try to reduce a candidate set to one LEI. Returns (candidates, hint).
 
     Same-name candidates are mostly (a) a head office plus its international branches,
@@ -593,9 +599,11 @@ def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
     jurisdiction, legal address and HQ country, so e.g. an Ontario-registered entity
     with a New Jersey head office competes for a US organization), or (d) unrelated
     same-name entities (e.g. several "United Community Bank"s). Tie-breaks, in order:
-    active status; same legal-form class as the query ("AG" vs "Aktiengesellschaft"
-    agree, "Stiftung" does not); GENERAL entities over BRANCH/FUND/...; the head
-    office (legal address in the jurisdiction country) over foreign branches;
+    active status; the name that also matches with parentheticals kept ("Swisscom
+    (Schweiz) AG" over "Swisscom AG"); same legal-form class as the query ("AG" vs
+    "Aktiengesellschaft" agree, "Stiftung" does not); GENERAL entities over
+    BRANCH/FUND/...; the head office (legal address in the jurisdiction country)
+    over foreign branches;
     registration in one of the query countries over a foreign registration; a current
     registration over a lapsed one; postal code; city. Case (d) stays ambiguous unless
     a postal code or city is known.
@@ -603,7 +611,8 @@ def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
     ``countries`` are the countries the candidates were looked up under, and are
     compared against each candidate's legal jurisdiction. Jurisdiction is checked
     before registration status because a lapsed record of the right entity beats a
-    current record of a foreign namesake.
+    current record of a foreign namesake. ``raw_norm`` is the query name normalized
+    with parentheticals kept.
     """
     if len(cands) <= 1:
         return cands, ''
@@ -617,6 +626,9 @@ def _prefer(cands: set, index: GleifIndex, cities: list, postcodes: list = (),
         return len(cands) == 1
 
     if narrow({l for l in cands if index.records[l][3] == 'ACTIVE'}, 'active_only'):
+        return cands, ','.join(hints)
+    if raw_norm and narrow({l for l in cands if normalize(index.records[l][0], keep_paren=True) == raw_norm},
+                           'exact_paren'):
         return cands, ','.join(hints)
     if form_class and narrow({l for l in cands if index.records[l][9] == form_class}, 'legal_form'):
         return cands, ','.join(hints)
@@ -667,17 +679,19 @@ def match_org(org, index: GleifIndex, whois: dict = None):
         if wk and wk not in {a[0] for a in addresses}:
             addresses.append((wk, 'whois_address'))
     # Query names: the IYP name first, then PeeringDB name_long / aka, then whois.
-    query_names = [(norm, core, '', legal_form_class(form))]
+    raw_norm = normalize(org.name, keep_paren=True)
+    query_names = [(norm, core, '', legal_form_class(form), raw_norm)]
     for alt in getattr(org, 'alt_names', []) or []:
         an = normalize(alt)
         if an and an != norm:
             ac, af = split_legal_form(an)
-            query_names.append((an, ac, 'alt_name', legal_form_class(af)))
+            query_names.append((an, ac, 'alt_name', legal_form_class(af), normalize(alt, keep_paren=True)))
     if whois.get('name'):
         wn = normalize(whois['name'])
         if wn and wn not in {q[0] for q in query_names}:
             wc, wf = split_legal_form(wn)
-            query_names.append((wn, wc, 'whois_name', legal_form_class(wf)))
+            query_names.append((wn, wc, 'whois_name', legal_form_class(wf),
+                                normalize(whois['name'], keep_paren=True)))
 
     tiers = [
         ('legal_exact', index.exact, 0),
@@ -694,7 +708,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                     cands |= idx.get((cc, key), set())
                 if not cands:
                     continue
-                cands, hint = _prefer(cands, index, cities, postcodes, qn[3], tuple(countries))
+                cands, hint = _prefer(cands, index, cities, postcodes, qn[3], tuple(countries), qn[4])
                 hint = ','.join(h for h in (src, csrc, hint) if h)
                 if len(cands) == 1:
                     lei = next(iter(cands))
@@ -717,7 +731,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
                 best_leis = {block[h[2]][1] for h in hits if h[1] == best_score}
                 runner_up = max((h[1] for h in hits if block[h[2]][1] not in best_leis), default=0)
                 best_leis, hint = _prefer(best_leis, index, cities, postcodes, legal_form_class(form),
-                                          tuple(countries))
+                                          tuple(countries), raw_norm)
                 if len(best_leis) == 1 and best_score - runner_up >= FUZZY_MARGIN:
                     lei = next(iter(best_leis))
                     if whois_countries and not iyp_countries:
@@ -742,7 +756,8 @@ def match_org(org, index: GleifIndex, whois: dict = None):
             top = max(b[0] for b in best)
             leis = {b[1] for b in best if b[0] >= top - FUZZY_MARGIN}
             src = next(b[2] for b in best if b[1] in leis)
-            leis, hint = _prefer(leis, index, cities, postcodes, legal_form_class(form), tuple(countries))
+            leis, hint = _prefer(leis, index, cities, postcodes, legal_form_class(form), tuple(countries),
+                                 raw_norm)
             hint = ','.join(h for h in (src, f'score={top:.0f}', hint) if h)
             if len(leis) == 1:
                 lei = next(iter(leis))
@@ -752,7 +767,7 @@ def match_org(org, index: GleifIndex, whois: dict = None):
     # No country in IYP: only accept a globally unique exact legal-name match.
     if not countries:
         cands = index.global_exact.get(norm, set())
-        cands, hint = _prefer(cands, index, cities, postcodes, legal_form_class(form))
+        cands, hint = _prefer(cands, index, cities, postcodes, legal_form_class(form), (), raw_norm)
         if len(cands) == 1:
             return next(iter(cands)), 'legal_exact_nocountry', norm, hint
         if len(cands) > 1:
