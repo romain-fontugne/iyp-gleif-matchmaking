@@ -1,53 +1,53 @@
 # IYP ↔ GLEIF matching report
 
-- Generated: 2026-09-16 23:45 UTC
-- GLEIF golden copy publish date: 2026-09-16
+- Generated: 2026-09-17 03:57 UTC
+- GLEIF golden copy publish date: 2026-09-17
 - IYP organizations: 97955 (87220 manage at least one AS)
 - Organizations with a country in IYP: 90876
-- Organizations with registry (RDAP) data: 2997; matches that needed it: 3 (see `hint` column)
+- Organizations with registry (RDAP) data: 3330; matches that needed it: 5 (see `hint` column)
 
 ## Results
 
-- Matched: **13194** (13.5% of orgs)
-- Ambiguous (needs manual review): 250
-- Unmatched: 84511
-- AS coverage: 19971 of 112618 AS→Organization links (17.7%) point to a matched organization
+- Matched: **14107** (14.4% of orgs)
+- Ambiguous (needs manual review): 389
+- Unmatched: 83459
+- AS coverage: 21210 of 112618 AS→Organization links (18.8%) point to a matched organization
 
 ## Matches by method
 
 | method | confidence | count |
 |---|---|---|
-| legal_exact | 1.0 | 8918 |
-| legal_core | 0.9 | 2240 |
-| other_name_exact | 0.95 | 1072 |
-| fuzzy | 0.7 | 470 |
-| other_name_core | 0.85 | 285 |
-| legal_exact_nocountry | 0.5 | 209 |
+| legal_exact | 1.0 | 8959 |
+| legal_core | 0.9 | 3135 |
+| other_name_exact | 0.95 | 1085 |
+| fuzzy | 0.7 | 402 |
+| other_name_core | 0.85 | 315 |
+| legal_exact_nocountry | 0.5 | 211 |
 
 ## Matched organizations by country (top 20)
 
 | country | count |
 |---|---|
-| US | 4975 |
-| IN | 869 |
-| DE | 850 |
-| GB | 540 |
-| FR | 443 |
-| IT | 392 |
-| CA | 390 |
-| AU | 333 |
-| CH | 260 |
-| AT | 244 |
-| ES | 231 |
-| SE | 229 |
-| NL | 216 |
-| RO | 162 |
+| US | 5123 |
+| DE | 865 |
+| IN | 858 |
+| PL | 549 |
+| GB | 544 |
+| IT | 457 |
+| FR | 449 |
+| CA | 392 |
+| AU | 337 |
+| ES | 266 |
+| NL | 258 |
+| CH | 258 |
+| AT | 248 |
+| SE | 243 |
+| RO | 164 |
+| TR | 161 |
 | CZ | 154 |
-| PL | 153 |
-| DK | 152 |
-| RU | 133 |
+| DK | 154 |
+| RU | 138 |
 | FI | 128 |
-| NO | 108 |
 
 ## Largest matched organizations (by number of ASes)
 
@@ -66,15 +66,15 @@
 | Credit Suisse Group | 549300506SI9CRFV9Z86 | CREDIT SUISSE GROUP AG | other_name_exact |
 | Comcast Cable Communications, LLC | 549300T2R1ZBGV1UVE31 | COMCAST CABLE COMMUNICATIONS, LLC | legal_exact |
 | Oracle Corporation | 1Z4GXXU7ZHVWFCD8TV52 | ORACLE CORPORATION | legal_exact |
-| KGI Securities (Thailand) Public Company Limited | 529900UR8P8JDG3YZS51 | บริษัท หลักทรัพย์ เคจีไอ (ประเทศไทย) จำกัด (มหาชน) | other_name_exact |
 | VOCUS PTY LTD | 549300KWP0QLMVT5UD71 | VOCUS PTY LTD | legal_exact |
+| KGI Securities (Thailand) Public Company Limited | 529900UR8P8JDG3YZS51 | บริษัท หลักทรัพย์ เคจีไอ (ประเทศไทย) จำกัด (มหาชน) | other_name_exact |
 | Equinix, Inc. | 549300EVUN2BTLJ3GT74 | EQUINIX, INC. | legal_exact |
 | GoDaddy.com, LLC | 54930014QNWWH8OAC930 | GODADDY.COM, LLC | legal_exact |
-| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | TEGNA Inc. | 549300YC5EDBGX85AO10 | TEGNA INC. | legal_exact |
+| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | PJSC "Vimpelcom" | 253400C0ETXZ1NMZ3W36 | Публичное акционерное общество "Вымпел-Коммуникации" | other_name_exact |
-| JAB Wireless, INC. | 549300R4BES1TY0WZK46 | JAB Wireless, Inc | legal_exact |
 | One New Zealand Group Limited | 213800FEF7L8M4ESA972 | ONE NEW ZEALAND GROUP LIMITED | legal_exact |
+| JAB Wireless, INC. | 549300R4BES1TY0WZK46 | JAB Wireless, Inc | legal_exact |
 | Charter Communications Inc | 0J0XRGZE3PBRFEZ7MV65 | CHARTER COMMUNICATIONS, INC. | legal_exact |
 | Citigroup Inc. | 6SHGI4ZSSLCXXQSBB395 | CITIGROUP INC. | legal_exact |
 | Akamai Technologies, Inc. | OC1LZNN2LF5WTJ5RIL89 | AKAMAI TECHNOLOGIES, INC. | legal_exact |
@@ -84,27 +84,27 @@
 | organization | ASes | candidates |
 |---|---|---|
 | Bank of America, National Association | 15 | Bank of America National Association [ACTIVE] | Bank Of America, National Association [ACTIVE] |
+| Swisscom (Schweiz) AG | 13 | Swisscom AG [ACTIVE] | Swisscom (Schweiz) AG [ACTIVE] |
 | BNP PARIBAS S.A. | 10 | BNP PARIBAS [ACTIVE] | BNP PARIBAS [ACTIVE] |
 | FMR LLC | 9 | FMR, LLC [ACTIVE] | FMR LLC [ACTIVE] |
-| Deutsche Bank AG | 8 | Deutsche Bank Aktiengesellschaft [ACTIVE] | DEUTSCHE BANK AKTIENGESELLSCHAFT [ACTIVE] |
 | ING Bank N.V. | 8 | ING BANK N.V. [ACTIVE] | ING BANK N.V. [ACTIVE] |
+| McKinsey & Company, Inc. | 8 | MCKINSEY & COMPANY, INC. (MALAYSIA) [ACTIVE] | MCKINSEY & COMPANY, INC. [ACTIVE] |
+| Deutsche Bank AG | 8 | Deutsche Bank Stiftung [ACTIVE] | Deutsche Bank Aktiengesellschaft [ACTIVE] | DEUTSCHE BANK AKTIENGESELLSCHAFT [ACTIVE] |
+| McKinsey & Company | 7 | MCKINSEY & COMPANY, INC. (MALAYSIA) [ACTIVE] | MCKINSEY & COMPANY, INC. [ACTIVE] |
 | Jabil | 6 | JABIL INC. [ACTIVE] | JABIL SDN. BHD. [ACTIVE] |
+| Toya sp.z.o.o | 6 | "TOYA" SPÓŁKA AKCYJNA [ACTIVE] | "TOYA"-SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ [ACTIVE] |
 | UBS AG | 5 | UBS AG [ACTIVE] | UBS AG [ACTIVE] |
-| Gannett Co. Inc. | 4 | GANNETT MEDIA CORP. [ACTIVE] | USA TODAY CO., INC. [ACTIVE] | TEGNA INC. [ACTIVE] |
+| Equinix (Netherlands) B.V. | 5 | Equinix (Netherlands) B.V. [ACTIVE] | EQUINIX (EMEA) B.V. [ACTIVE] |
 | Barclays Bank PLC | 4 | BARCLAYS BANK PLC [ACTIVE] | BARCLAYS BANK PLC [ACTIVE] |
-| trivago N.V. | 4 | trivago N.V. [ACTIVE] | trivago N.V. [ACTIVE] |
+| Bayer AG | 4 | Bayer GmbH [ACTIVE] | Bayer GbR [ACTIVE] | Bayer LIMITED [ACTIVE] | Bayer Aktiengesellschaft [ACTIVE] |
 | Tieto Norway AS | 4 | TIETO NORWAY AS [ACTIVE] | TIETO NORWAY AS [ACTIVE] |
-| Bayer AG | 4 | Bayer GmbH [ACTIVE] | Bayer LIMITED [ACTIVE] | Bayer Aktiengesellschaft [ACTIVE] |
-| STEL S.R.L. | 3 | STEL S.R.L. [ACTIVE] | STEL S.R.L. [ACTIVE] | STEL S.R.L. [ACTIVE] |
+| Siemens AG | 4 | Siemens Stiftung [ACTIVE] | Siemens Aktiengesellschaft [ACTIVE] |
+| Gannett Co. Inc. | 4 | GANNETT MEDIA CORP. [ACTIVE] | USA TODAY CO., INC. [ACTIVE] | TEGNA INC. [ACTIVE] |
+| trivago N.V. | 4 | trivago N.V. [ACTIVE] | trivago N.V. [ACTIVE] |
+| Juniper Networks, Inc. | 4 | JUNIPER NETWORKS (US), INC. [ACTIVE] | JUNIPER NETWORKS, INC. [ACTIVE] |
+| ENGIE SA | 3 | ENGIE CC [ACTIVE] | ENGIE [ACTIVE] |
 | Fisher Scientific | 3 | Fisher Scientific Company [ACTIVE] | FISHER SCIENTIFIC SAS [ACTIVE] |
-| Macarne Limited | 3 | MACARNE LIMITED [ACTIVE] | Macarne Limited [ACTIVE] |
-| AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED | 3 | AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED [ACTIVE] | AUSTRALIA AND NEW ZEALAND BANKING GROUP LIMITED [ACTIVE] |
-| United Community Bank | 3 | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] |
-| CIBC World Markets | 3 | CIBC WORLD MARKETS CORP. [ACTIVE] | CIBC WORLD MARKETS INC. [ACTIVE] |
+| WorldPay (UK) Limited | 3 | WORLDPAY LIMITED [ACTIVE] | WORLDPAY (UK) LIMITED [ACTIVE] |
 | Allergan, Inc. | 3 | Allergan Inc [ACTIVE] | ALLERGAN, INC. [ACTIVE] |
-| Banco de Sabadell SA | 2 | BANCO DE SABADELL [ACTIVE] | BANCO DE SABADELL S.A. [ACTIVE] |
-| Mizuho Bank, Ltd | 2 | Mizuho Bank, Ltd. [ACTIVE] | MIZUHO BANK, LTD. [ACTIVE] | MIZUHO BANK, LTD. [ACTIVE] |
-| Bird B.V. | 2 | Bird B.V. [ACTIVE] | Bird B.V. [ACTIVE] |
-| Airbus Defence and Space SAS | 2 | AIRBUS DEFENCE AND SPACE SAS [ACTIVE] | AIRBUS DEFENCE AND SPACE SAS [ACTIVE] |
-| Farm Credit Services of America | 2 | Farm Credit Services of America, PCA [ACTIVE] |
-| Swedbank AS | 2 | "Swedbank" AS [ACTIVE] | SWEDBANK AS [ACTIVE] |
+| Ekco B.V. | 3 | Luna B.V. [ACTIVE] | Luna Investments C.V. [ACTIVE] |
+| United Community Bank | 3 | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] | United Community Bank [ACTIVE] |
