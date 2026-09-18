@@ -2,18 +2,26 @@ name: Update IYP ↔ GLEIF mapping
 
 on:
   schedule:
-    # IYP dumps are rebuilt weekly; GLEIF publishes daily. Run every Monday 06:00 UTC.
-    - cron: '0 6 * * 1'
+    # Registry (RDAP) enrichment is incremental: each run only spends RDAP_BUDGET new
+    # lookups, so the backlog of organizations to look up is worked through run after
+    # run. Every run also pays a fixed ~50 minutes to download and index the GLEIF
+    # golden copy, so a few long runs enrich far more than many short ones: twice a
+    # week at 30000 lookups is ~60000 lookups/week for 100 minutes of fixed cost,
+    # where daily at 6000 was ~42000 lookups/week for 350 minutes of fixed cost.
+    # The 3-4 day gap also stays under the 7-day GitHub cache eviction window.
+    - cron: '0 6 * * 1,4'
   workflow_dispatch:
   push:
     # Re-run when the matcher or the manual overrides change.
     paths:
       - 'match_gleif.py'
+      - 'whois_enrich.py'
       - 'overrides/**'
       - '.github/workflows/update-mapping.yml'
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: update-mapping
@@ -22,7 +30,10 @@ concurrency:
 jobs:
   match:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    # Downloading and indexing the GLEIF golden copy takes roughly 50 minutes and the
+    # RDAP budget below adds up to another 250. Kept just under the 6-hour hard limit
+    # GitHub enforces on a single job.
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
 
@@ -43,6 +54,20 @@ jobs:
           restore-keys: |
             rdap-cache-
 
+      - name: Fall back to the RDAP cache artifact
+        # GitHub evicts caches that go untouched for 7 days and that window is not
+        # configurable. Running twice a week keeps the cache alive, but if the
+        # schedule is paused or a week of runs fails we would throw away months of
+        # accumulated lookups. The artifact saved below is kept for 30 days and is
+        # restored here whenever the cache came back empty.
+        if: hashFiles('cache/rdap_cache.json') == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache
+          gh run download --repo "$GITHUB_REPOSITORY" --name rdap-cache --dir cache \
+            || echo 'No RDAP cache artifact available; starting from an empty cache.'
+
       - name: Run matcher
         env:
           # Defaults point at the public IYP instance; override via repository
@@ -50,14 +75,29 @@ jobs:
           IYP_BOLT_URI: ${{ vars.IYP_BOLT_URI }}
           IYP_USER: ${{ vars.IYP_USER }}
           IYP_PASSWORD: ${{ secrets.IYP_PASSWORD }}
-          # Max new RDAP requests per run (default 3000, roughly 20-30 minutes).
-          RDAP_BUDGET: ${{ vars.RDAP_BUDGET }}
+          # Max new RDAP requests per run. RDAP is throttled per host (~2 requests per
+          # second overall), so 30000 lookups take roughly 4 hours. Lower than the
+          # timeout on purpose: the cache is written every 200 lookups, but a job
+          # killed mid-run still loses the rest of the pipeline. Set the RDAP_BUDGET
+          # repository variable to override.
+          RDAP_BUDGET: ${{ vars.RDAP_BUDGET || '30000' }}
         run: |
           # Empty env vars would override the in-script defaults; unset them.
           for v in IYP_BOLT_URI IYP_USER IYP_PASSWORD RDAP_BUDGET; do
             [ -z "${!v}" ] && unset "$v"
           done
           uv run match-gleif --out-dir data --cache-dir cache --write-unmatched
+
+      - name: Save RDAP cache artifact
+        # Month-long safety net for the restore step above. Saved even when the
+        # matcher fails, since the cache is written incrementally during the run.
+        if: always() && hashFiles('cache/rdap_cache.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: rdap-cache
+          path: cache/rdap_cache.json
+          retention-days: 30
+          overwrite: true
 
       - name: Summarize
         run: cat data/report.md >> "$GITHUB_STEP_SUMMARY"

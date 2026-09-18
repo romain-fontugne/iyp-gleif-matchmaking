@@ -1044,8 +1044,8 @@ def main():
     p.add_argument('--no-whois', action='store_true', help='Skip registry (RDAP) enrichment')
     p.add_argument('--rdap-cache', default='cache/rdap_cache.json',
                    help='Persistent cache of RDAP lookups (keep it between runs)')
-    p.add_argument('--rdap-budget', type=int, default=int(os.environ.get('RDAP_BUDGET', 3000)),
-                   help='Maximum number of new RDAP requests per run')
+    p.add_argument('--rdap-budget', type=int, default=int(os.environ.get('RDAP_BUDGET', 6000)),
+                   help='Maximum number of new RDAP requests per run (~45-60 minutes at 6000)')
     args = p.parse_args()
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s',

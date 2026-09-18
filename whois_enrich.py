@@ -13,8 +13,9 @@ For each organization we perform at most one RDAP lookup:
   3. otherwise the first ASN      -> https://rdap.org/autnum/{asn}
 
 and keep the registrant's name, country, city and postal code. Results (including
-404s) are cached on disk so the weekly run only spends its request budget on
-organizations that have not been looked up yet.
+404s) are cached on disk so each run only spends its request budget on organizations
+that have not been looked up yet: the backlog is worked through run after run, and
+the cache must be preserved between runs for that to converge.
 
 RIR bulk dumps are not an alternative: RIPE (and APNIC, which runs the same software)
 dummify organisation objects in the public FTP dumps, and ARIN/LACNIC bulk whois
