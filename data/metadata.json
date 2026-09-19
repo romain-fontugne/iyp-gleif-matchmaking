@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-17T14:55:56.099514+00:00",
-  "gleif_publish_date": "2026-09-17",
+  "generated": "2026-09-19T01:25:58.111004+00:00",
+  "gleif_publish_date": "2026-09-18",
   "iyp_uri": "neo4j://iyp-bolt.ihr.live:7687",
   "n_orgs": 97955,
-  "n_matched": 15145,
-  "n_ambiguous": 209,
-  "n_whois_enriched": 5986,
+  "n_matched": 15667,
+  "n_ambiguous": 234,
+  "n_whois_enriched": 30538,
   "fuzzy_threshold": 92
 }
