@@ -1,27 +1,27 @@
 # IYP ↔ GLEIF matching report
 
-- Generated: 2026-09-19 01:25 UTC
-- GLEIF golden copy publish date: 2026-09-18
+- Generated: 2026-09-21 12:05 UTC
+- GLEIF golden copy publish date: 2026-09-21
 - IYP organizations: 97955 (87220 manage at least one AS)
 - Organizations with a country in IYP: 90876
-- Organizations with registry (RDAP) data: 30538; matches that needed it: 682 (see `hint` column)
+- Organizations with registry (RDAP) data: 30658; matches that needed it: 682 (see `hint` column)
 
 ## Results
 
-- Matched: **15667** (16.0% of orgs)
+- Matched: **15668** (16.0% of orgs)
 - Ambiguous (needs manual review): 234
-- Unmatched: 82054
-- AS coverage: 24425 of 112618 AS→Organization links (21.7%) point to a matched organization
+- Unmatched: 82053
+- AS coverage: 24426 of 112618 AS→Organization links (21.7%) point to a matched organization
 
 ## Matches by method
 
 | method | confidence | count |
 |---|---|---|
 | legal_exact | 1.0 | 9073 |
-| legal_core | 0.9 | 3229 |
-| other_name_exact | 0.95 | 1092 |
+| legal_core | 0.9 | 3228 |
+| other_name_exact | 0.95 | 1093 |
 | address_name | 0.6 | 853 |
-| fuzzy | 0.7 | 400 |
+| fuzzy | 0.7 | 401 |
 | other_name_core | 0.85 | 319 |
 | as_name_exact | 0.85 | 248 |
 | as_name_core | 0.75 | 228 |
@@ -64,8 +64,8 @@
 | MTS PJSC | 2534008FX8EXH1FMJA74 | Публичное акционерное общество "Мобильные ТелеСистемы" | other_name_exact |
 | Cogent Communications, LLC | 549300KFWFYF8Q1U0Y26 | COGENT COMMUNICATIONS GROUP, LLC | address_name |
 | Apogee Telecom Inc. | 5493004A58A6J83OF885 | APOGEE TELECOM, INC. | legal_exact |
-| Vercara, LLC | 254900GFIR7U1E9IO007 | VERCARA, LLC | legal_exact |
 | Microsoft Corporation | INR2EJN1ERAN0W5ZP974 | MICROSOFT CORPORATION | legal_exact |
+| Vercara, LLC | 254900GFIR7U1E9IO007 | VERCARA, LLC | legal_exact |
 | HP Inc. | WHKXQACZ14C5XRO8LW03 | HP INC. | legal_exact |
 | Orange S.A. | 969500MCOONR8990S771 | ORANGE | legal_core |
 | Credit Suisse Group | 549300506SI9CRFV9Z86 | CREDIT SUISSE GROUP AG | other_name_exact |
@@ -77,8 +77,8 @@
 | Zayo Bandwidth | QKKPM5UA1HL7X4C5KD20 | Education Networks of America, Inc. | as_name_exact |
 | CS Loxinfo Public Company Limited | 549300HG5527UPZLTT69 | บริษัท ไทยออยล์ จำกัด (มหาชน) | as_name_exact |
 | GoDaddy.com, LLC | 54930014QNWWH8OAC930 | GODADDY.COM, LLC | legal_exact |
-| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | TEGNA Inc. | 549300YC5EDBGX85AO10 | TEGNA INC. | legal_exact |
+| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | PJSC MegaFon | 213800HE6VDVJWT85874 | ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "МЕГАФОН" | as_name_core |
 | PJSC "Vimpelcom" | 253400C0ETXZ1NMZ3W36 | Публичное акционерное общество "Вымпел-Коммуникации" | other_name_exact |
 
