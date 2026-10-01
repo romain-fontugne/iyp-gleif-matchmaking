@@ -618,7 +618,8 @@
   "sa",
   "scr sa",
   "r s a",
-  "c r s a"
+  "c r s a",
+  "scr s a"
  ],
  "AXSB": [
   "gmbh"
@@ -671,8 +672,8 @@
   "inc"
  ],
  "BCF5": [
-  "limited",
   "plc",
+  "limited",
   "ltd"
  ],
  "BCSV": [
@@ -1916,10 +1917,7 @@
   "credito",
   "de credito",
   "cooperativa de credito",
-  "sociedad cooperativa de credito",
-  "credito v",
-  "de credito v",
-  "coop de credito v"
+  "sociedad cooperativa de credito"
  ],
  "STX7": [
   "scio"
