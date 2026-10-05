@@ -326,6 +326,10 @@
  "6IIM": [
   "llc"
  ],
+ "6JS5": [
+  "r l",
+  "s r l"
+ ],
  "6L6P": [
   "fechado"
  ],
@@ -992,7 +996,8 @@
  "EUT4": [
   "l s",
   "r l s",
-  "a r l s"
+  "a r l s",
+  "sarl s"
  ],
  "EVBW": [
   "inc"
@@ -2287,8 +2292,7 @@
   "spc ltd"
  ],
  "YRMK": [
-  "s a",
-  "sa"
+  "s a"
  ],
  "YRUJ": [
   "n c",
