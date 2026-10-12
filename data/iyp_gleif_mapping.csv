@@ -205,7 +205,7 @@ Nebius B.V.,7245007BJVUC2IS8OG74,Nebius B.V.,NL,"Burgerweeshuispad 101, 1076ER A
 Nokia Solutions and Networks Oy,549300FI8QIVYMUMBB43,Nokia Solutions and Networks Oy,FI,"Karakaari 7, 02610 Espoo, FI",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,nokia solutions and networks oy,,FI,,ORG-NSNO1-RIPE,,6
 Orange Espagne SA,213800GJ4GQ117JAEO62,ORANGE ESPAGNE SA,ES,"PARQUE EMPRESARIAL LA FINCA PASEO CLUB DEPORTIVO 1, 28223 Pozuelo de Alarcón, ES",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,orange espagne sa,,ES,,ORG-AA23-RIPE;ORG-CDTS1-RIPE;ORG-JTS1-RIPE;ORG-RET1-RIPE;ORG-ULT1-RIPE;ORG-YIF1-RIPE,,6
 Pfizer Inc.,765LHXWGK1KXCLTFYQ30,PFIZER INC.,US,"235 EAST 42ND STREET, 10017 NEW YORK, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pfizer inc,,US,,PFIZER-ARIN,,6
-ROCKWELL AUTOMATION Inc.,VH3R4HHBHH12O0EXZJ88,"ROCKWELL AUTOMATION, INC.",US,"1201 South 2nd Street, 53204 Milwaukee, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,rockwell automation inc,,US,,ROCKWE-4-ARIN,,6
+ROCKWELL AUTOMATION Inc.,VH3R4HHBHH12O0EXZJ88,"ROCKWELL AUTOMATION, INC.",US,"1201 South 2nd Street, 53204 Milwaukee, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,rockwell automation inc,,US,,ROCKWE-4-ARIN,,6
 "Retail Finance International Holdings, Inc.",549300MYIJ6YFFNQVQ04,"RETAIL FINANCE INTERNATIONAL HOLDINGS, INC.",US,"170 WEST ELECTION ROAD, 84020 DRAPER, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,retail finance international holdings inc,,US,,RFIH-ARIN,,6
 SL Green Realty Corp,549300VQZPJU97H3GT17,SL GREEN REALTY CORP.,US,"420 Lexington Avenue, 10170 New York, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,sl green realty corp,,US,,SGRC-1-ARIN,,6
 "SS&C Technologies, Inc.",549300KY09TR3J12JU49,"SS&C TECHNOLOGIES, INC.",US,"80 Lamberton Road, 06095 Windsor, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,ss and c technologies inc,,US,,SSCTEC-1-ARIN,,6
@@ -390,7 +390,7 @@ NL-ix,724500VXWNPXOKEFGJ67,Broadband Hosting B.V.,NL,"Wilhelminakade 123, 3072AP
 Nasdaq Technology AB,549300NDSVV1SNFBN158,Nasdaq Technology AB,SE,"Tullvaktsvägen 15, 115 56 Stockholm, SE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,nasdaq technology ab,,SE,,ORG-OTA16-RIPE,,4
 Nebius Inc.,984500D7CK10C2E51479,NEBIUS INC.,US,"251 LITTLE FALLS DRIVE, 19808 WILMINGTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,nebius inc,,NL;US,41325,NB-374-ARIN,https://www.nebius.com,4
 Nestle Operational Services Worldwide SA,549300ZHRXVJK0XLDL63,NESTLÉ OPERATIONAL SERVICES WORLDWIDE SA,CH,"AVENUE NESTLÉ 55, 1800 VEVEY, CH",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,nestle operational services worldwide sa,,CH,,ORG-NOSW1-RIPE,,4
-Nets Denmark A/S,254900BRZQKTDEMO5239,Nets Denmark A/S,DK,"Klausdalsbrovej 601, 2750 Ballerup, DK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,nets denmark a s,,DK,,ORG-BA162-RIPE,,4
+Nets Denmark A/S,254900BRZQKTDEMO5239,Nets Denmark A/S,DK,"Klausdalsbrovej 601, 2750 Ballerup, DK",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,nets denmark a s,,DK,,ORG-BA162-RIPE,,4
 Nomura International Plc,DGQCSV2PHVF7I2743539,Nomura International PLC,GB,"1 Angel Lane, EC4R 3AB London, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,nomura international plc,,GB,,ORG-NIP3-RIPE,,4
 NorthC Deutschland GmbH,894500F1OA33TSEFEF81,NorthC Deutschland GmbH,DE,"Am Tower 5, 90475 Nürnberg, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,northc deutschland gmbh,,DE,297,ORG-IEG12-RIPE,https://www.northcdatacenters.com/de/,4
 ORANGE BUSINESS SERVICES U.S. Inc.,98450069A0EE3E0CDD40,"ORANGE BUSINESS SERVICES U.S., INC.",US,"11921 Freedom Drive Suite 720, 20190 Reston, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,orange business services u s inc,,US,,ORG-GO2-RIPE,,4
@@ -494,7 +494,7 @@ Booz Allen Hamilton Inc.,549300D7XCH2480XU542,BOOZ ALLEN HAMILTON INC.,US,"8283 
 Bose Corporation,VISE071ADXGCST1W4H53,BOSE CORPORATION,US,"100 THE MOUNTAIN ROAD, 01701 FRAMINGHAM, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,bose corporation,,US,,BOSECO-ARIN,,3
 "Bridgestone Americas, Inc.",5493004ZNSHWM5T6LZ89,"BRIDGESTONE AMERICAS, INC.",US,"8275 S EASTERN AVE, 89123 LAS VEGAS, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,bridgestone americas inc,,US,,BA-ARIN,,3
 Bristol-Myers Squibb Company,HLYYNH7UQUORYSJQCN42,BRISTOL-MYERS SQUIBB COMPANY,US,"Route 206 & Province Line Road, 08543 Princeton, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,bristol myers squibb company,,US,,BRISTO-15-ARIN;BRISTO-15-Z-ARIN,,3
-BusinessCom CZ spol. s r.o.,549300HX0DBZHZ1IQV32,BusinessCom CZ spol. s r.o.,CZ,"Blanicka 590/3, 120 00 Prague, CZ",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,businesscom cz spol s r o,,CZ,,ORG-BCSS2-RIPE,,3
+BusinessCom CZ spol. s r.o.,549300HX0DBZHZ1IQV32,BusinessCom CZ spol. s r.o.,CZ,"Blanicka 3, 120 00 Praha, CZ",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,businesscom cz spol s r o,,CZ,,ORG-BCSS2-RIPE,,3
 CANCOM Austria AG,5299008ARRNJFPBNTM78,CANCOM Austria AG,AT,"Wienerbergstraße 53, 1120 Wien, AT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,cancom austria ag,,AT,,ORG-KBA27-RIPE,,3
 "CAPGEMINI AMERICA, INC.",549300VFJP26RLHQFV30,"CAPGEMINI AMERICA, INC.",US,"830 Bear Tavern Road, 08628 Ewing, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,capgemini america inc,,US,,CAPGE-1-ARIN,,3
 CINECA CONSORZIO INTERUNIVERSITARIO,8156009C21866F119720,CINECA CONSORZIO INTERUNIVERSITARIO,IT,"VIA MAGNANELLI, 6/3, 40033 CASALECCHIO DI RENO, IT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,cineca consorzio interuniversitario,,IT,,ORG-CCI2-RIPE,,3
@@ -720,7 +720,7 @@ UVT Internet s.r.o.,984500887C73C3B50276,ÚVT Internet s.r.o.,CZ,"Hrnčířská 
 United Community Bank,5493000XYE7QL54NMB52,United Community Bank,US,"301 N Main St, 62629 Chatham, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,united community bank,"active_only,postcode",US,,UCB-111-ARIN;UCB-34-ARIN;UCB-35-ARIN,,3
 United Telephone Company,54930007C3F106BQJE31,UNITED TELEPHONE COMPANY,US,"120 TAYLOR ST, 37034-3123 CHAPEL HILL, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,united telephone company,,US,24945,UNITED-32-ARIN,http://www.united.net,3
 University of Cyprus,213800CGVPXWKWQJHX83,UNIVERSITY OF CYPRUS,CY,"1 PANEPISTIMIOU AVENUE, 2109 NICOSIA, CY",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,university of cyprus,,CY,20495,ORG-UOC1-RIPE,,3
-University of Miami,5493008ZSVWUNRYQE312,University of Miami,US,"1320 South Dixie Highway, 33146 Coral Gables, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,university of miami,,US,,UMIA-ARIN;UMIA-Z-ARIN,,3
+University of Miami,5493008ZSVWUNRYQE312,University of Miami,US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,university of miami,,US,,UMIA-ARIN;UMIA-Z-ARIN,,3
 University of Minnesota,5493008DXSHLQ88T7F63,Regents of the University of Minnesota,US,"2221 University Avenue, 55414 Minneapolis, US",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,LAPSED,legal_exact,1.0,regents of the university of minnesota,alt_name,US,9189,UNIVER-233-Z-ARIN,https://it.umn.edu/,3
 Upheads AS,894500KFOE30A5K39M11,UPHEADS AS,NO,"Vestre Svanholmen 4, 4313 SANDNES, NO",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,upheads as,,NO,,ORG-UA280-RIPE,,3
 VSHosting s.r.o.,315700UGV59WP9W6BS79,VSHosting s.r.o.,CZ,"Sodomkova 1579/5, 102 00 Praha, CZ",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,vshosting s r o,,CZ,2404,ORG-VS21-RIPE,https://www.vshosting.cz,3
@@ -1601,7 +1601,7 @@ thyssenkrupp Information Management GmbH,549300N9I4G9JIZ3BE21,thyssenkrupp Infor
 1A Smart Start LLC,549300Y3X61YYL8N1522,1A Smart Start LLC,US,"500 East Dallas Road, 76051 Grapevine, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,1a smart start llc,,US,,SS-721-ARIN,,1
 1iT Pty Ltd,875500Z043BNSAWTJF73,1iT Pty Ltd,AU,"106 Churchill Avenue, 6008 Subiaco, AU",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,1it pty ltd,,AU,,ORG-PL26-AP-APNIC,,1
 1nce GmbH,391200DIHZ5DG65WRM79,1nce GmbH,DE,"Sternengasse 14-16, 50676 Köln, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,1nce gmbh,,DE,26422,ORG-GA725-RIPE,,1
-1oT OU,984500NB4062F8B63655,1oT OÜ,EE,"Järvevana tee 7b, 10112 Tallinn, EE",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,1ot ou,,EE,,ORG-OA1152-RIPE,,1
+1oT OU,984500NB4062F8B63655,1oT OÜ,EE,"Tatari tn 1, 10112 Tallinn, EE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,1ot ou,,EE,,ORG-OA1152-RIPE,,1
 24 Seven Communications Ltd,984500DBH06F2EA94F44,24 SEVEN COMMUNICATIONS (HOLDINGS) LTD,GB,"20-22 Bridge End, LS1 4DJ Leeds, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,24 seven communications ltd,,GB,,ORG-SCL9-RIPE,,1
 24-7 Intouch Incorporated,5493008QE4P83SG46D68,24-7 Intouch Incorporated,CA,"240 Kennedy Street, R3C 1T1 Winnipeg, CA",INACTIVE,GENERAL,RETIRED,legal_exact,1.0,24 7 intouch incorporated,,CA,,INTOU-9-ARIN,,1
 27363 Securities OU,9845009C4A4E65A1E096,27363 Securities OÜ,EE,"Tartu mnt 67/1-13b, 10115 Tallinn, EE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,27363 securities ou,,EE,,ORG-SO203-RIPE,,1
@@ -2758,7 +2758,7 @@ CHICAGO SYMPHONY ORCHESTRA,549300X8FNV4MT27TO90,CHICAGO SYMPHONY ORCHESTRA,US,,A
 CHIMCOMPLEX SA BORZESTI,549300FCIHJZOG56WD36,CHIMCOMPLEX SA BORZEȘTI,RO,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,chimcomplex sa borzesti,,RO,,ORG-CSB15-RIPE,,1
 "CHOATE, HALL & STEWART, LLP",549300VWU7XQMHNKT311,"CHOATE, HALL & STEWART LLP",US,"2 International Place, 02110 Boston, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,choate hall and stewart llp,,US,,CHSL-4-ARIN,,1
 CHRISTIE'S INC.,BEDEKR115DKRS10G8027,Christie's Inc.,US,"20 Rockefeller Plaza, 10020-1513 New York, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,christie s inc,,US,,CHRIS-191-ARIN,,1
-CI Investments Inc.,5493001AF5NWM7LFW446,CI INVESTMENTS INC.,CA,"15 York Street, M5J 0A3 Toronto, CA",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,ci investments inc,active_only,CA,,CI-78-ARIN,,1
+CI Investments Inc.,5493001AF5NWM7LFW446,CI INVESTMENTS INC.,CA,"15 York Street, M5J 0A3 Toronto, CA",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,ci investments inc,active_only,CA,,CI-78-ARIN,,1
 CIB Bank Zrt.,549300MSY5NIVC0BME80,CIB BANK ZRT.,HU,"PETREZSELYEM UTCA 2-8., 1024 BUDAPEST, HU",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,cib bank zrt,,HU,,ORG-CBZ1-RIPE,,1
 CIK Telecom INC,549300WBQSSF2R765B55,CIK Telecom Inc.,CA,"241 Whitehall Drive, L3R5G5 Markham, CA",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,cik telecom inc,,CA,25413,CIKTE-ARIN,https://www.ciktel.com/,1
 CIMB Bank Berhad,549300PLDYJMOW8QKZ45,CIMB BANK BERHAD,MY;SG,"30 RAFFLES PLACE, #04-01, 048622 SINGAPORE, SG",ACTIVE,BRANCH,ISSUED,legal_exact,1.0,cimb bank berhad,,SG,,ORG-CBB1-AP-APNIC,,1
@@ -3272,14 +3272,14 @@ Corporacion Confidere SA,9598001PEAAQHULYSA62,CORPORACION CONFIDERE SA,ES,"CALLE
 Corporation of The District of North Vancouver,2549009GU7BBP9A2NY32,The Corporation Of The District Of North Vancouver,CA,"355 West Queens Road, V7N 4N5 Vancouver, CA",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,corporation of the district of north vancouver,,CA,,CDNV-ARIN,,1
 Corteva AgriScience LLC,LTQMAOOXIYXCDZKIWJ44,CORTEVA AGRISCIENCE LLC,US,"9330 ZIONSVILLE ROAD, 46268 INDIANAPOLIS, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,corteva agriscience llc,,US,,CAL-276-ARIN,,1
 "Cortex, a.s.",31570010000000103400,"CORTEX, a.s.",CZ,"U Elektry 974/1c, 190 00 Praha 9, CZ",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,cortex a s,,CZ,26997,ORG-CA1874-RIPE,,1
-Corus Entertainment Inc,549300DVZFTUMM4M2O84,CORUS ENTERTAINMENT INC.,CA,"1500, 850 - 2ND STREET SW, T2P 0R8 CALGARY, CA",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,corus entertainment inc,,CA,,CE-192-ARIN,,1
+Corus Entertainment Inc,549300DVZFTUMM4M2O84,CORUS ENTERTAINMENT INC.,CA,"1500, 850 - 2ND STREET SW, T2P 0R8 CALGARY, CA",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,corus entertainment inc,,CA,,CE-192-ARIN,,1
 Costa Crociere S.p.a.,8156007E606D24BE8F80,"""COSTA CROCIERE S.P.A.""",IT,"PIAZZA PICCAPIETRA, 48, 16121 GENOVA, IT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,costa crociere s p a,,IT,,ORG-CCS12-RIPE,,1
 Costar UK Limited,984500C10AE59S8KEE62,COSTAR UK LIMITED,GB,"5 Churchill Place, E14 5HU London, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,costar uk limited,,GB,,ORG-FN6-RIPE,,1
 Costco Wholesale Corporation,29DX7H14B9S6O3FD6V18,COSTCO WHOLESALE CORPORATION,US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,costco wholesale corporation,,US,,COSTCO-3-ARIN,,1
 Cotral S.p.A.,815600AED113855A2204,COTRAL S.P.A.,IT,"VIA ALIMENA BERNARDINO, 105, 00173 ROMA, IT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,cotral s p a,,IT,,ORG-CS607-RIPE,,1
 Coty Inc.,549300BO9IWPF3S48F93,COTY INC.,US,"350 5TH AVENUE, 10118 NEW YORK, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,coty inc,,US,,COTYI-ARIN,,1
 County of Bergen,549300SC7R4EFIYK0S67,County of Bergen,US,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,county of bergen,,US,,CB-664-ARIN,,1
-County of Orange,254900JK6VDGKKNNKL68,County Of Orange,US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,county of orange,exact_paren,US,,COUNTY-22-ARIN,,1
+County of Orange,254900JK6VDGKKNNKL68,County Of Orange,US,"400 W. Civic Center Drive, 92701 Santa Ana, US",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,county of orange,exact_paren,US,,COUNTY-22-ARIN,,1
 County of Riverside,254900CB5HEOBAVTY629,County of Riverside,US,"4080 Lemon St, 92502 Riverside, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,county of riverside,,US,,CRIS-ARIN,,1
 County of Sacramento,549300OXI5MD45L13R20,County of Sacramento,US,"700 H Street, 95814 Sacramento, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,county of sacramento,,US,,COUNTY-1-ARIN,,1
 County of San Diego,254900MKIGRAYVDUZ926,County of San Diego,US,"1600 Pacific Hwy., 92101 San Diego, US",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,county of san diego,,US,,NMD-ARIN,,1
@@ -3416,7 +3416,7 @@ DIGINETICA S.R.L.,81560038E2E2A6058A26,DIGINETICA S.R.L.,IT,"VIA MARZIALE, 9, 40
 "DIGITAL COMM LINK, INC.",5493004BZNEBFGTEZL88,"Digital Comm Link, Inc.",US,"10450 State Road 84, 33324 Davie, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,digital comm link inc,,US,,DCL-82-ARIN,,1
 DIGITALSIGN - CERTIFICADORA DIGITAL S.A.,8945001QNLMP119X8559,DIGITALSIGN - CERTIFICADORA DIGITAL S.A.,PT,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,digitalsign certificadora digital s a,,PT,,ORG-DCDS2-RIPE,,1
 DIGITRAL PRIVATE LIMITED,984500UC363C08A7CA66,DIGITRAL PRIVATE LIMITED,IN,"2nd Floor, Skyview 10, The Skyview Sy no 83/1 Raidurgam, 500081 HYDERABAD, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,digitral private limited,,IN,,ORG-IPL21-AP-APNIC,,1
-"DIRECTV Latin America, LLC",254900218V8O7C1XLZ88,"DIRECTV LATIN AMERICA, LLC",US,"1209 ORANGE ST, 19801 WILMINGTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,directv latin america llc,,US,,DIRECT-108-ARIN,,1
+"DIRECTV Latin America, LLC",254900218V8O7C1XLZ88,"DIRECTV LATIN AMERICA, LLC",US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,directv latin america llc,,US,,DIRECT-108-ARIN,,1
 DISTRIBUTIE ENERGIE ELECTRICA ROMANIA S.A.,787200VVN9BWJ1OEYF17,DISTRIBUȚIE ENERGIE ELECTRICĂ ROMANIA S.A.,RO,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,distributie energie electrica romania s a,,RO,,ORG-SDDA2-RIPE,,1
 DISTRIBUTIE ENERGIE OLTENIA S.A.,315700HKWFNJIZN9KM92,DISTRIBUTIE ENERGIE OLTENIA S.A.,RO,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,distributie energie oltenia s a,,RO,,ORG-CEZ1-RIPE,,1
 "DITEC, a.s.",097900BHML0000099519,"DITEC, a.s.",SK,"Mlynské Nivy 55, 821 09 Bratislava, SK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,ditec a s,,SK,,ORG-DITE1-RIPE,,1
@@ -3652,7 +3652,7 @@ EDELCAP SECURITIES LIMITED,254900JMWNSZJPS9BO21,EDELCAP SECURITIES LIMITED,IN,,A
 EDERA Group a.s.,315700F9QCMSGGJLDK82,EDERA Group a.s.,CZ,"Arnošta z Pardubic 2789, 530 02 Pardubice, CZ",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edera group a s,,CZ,9485,,https://www.edera.cz,1
 EDF ENERGY NUCLEAR GENERATION LIMITED,5299004QFXGTMTN5WX36,EDF ENERGY NUCLEAR GENERATION LIMITED,GB,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edf energy nuclear generation limited,,GB,,ORG-EENG1-RIPE,,1
 "EDF Trading North America, LLC",4PLZOSBINH3Y5LEZR334,"EDF TRADING NORTH AMERICA, LLC",US,"601 TRAVIS ST, 77002-3253 HOUSTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edf trading north america llc,,US,,ETNAL-ARIN,,1
-EDP Renewables North America LLC,YRVEJFXK3OP1ORW1BY18,EDP RENEWABLES NORTH AMERICA LLC,US,"1501 McKinney Street, 77010 Houston, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,edp renewables north america llc,,US,,ERNAL-ARIN,,1
+EDP Renewables North America LLC,YRVEJFXK3OP1ORW1BY18,EDP RENEWABLES NORTH AMERICA LLC,US,"1501 McKinney Street, 77010 Houston, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edp renewables north america llc,,US,,ERNAL-ARIN,,1
 EDP S.A.,529900CLC3WDMGI9VH80,"EDP, S.A.",PT,"Avenida 24 de Julho, n.º 12, 1249-300 LISBOA, PT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edp s a,,PT,,ORG-EEDP1-RIPE,,1
 EDWARDS LIFESCIENCES CORPORATION,YA13X31F3V31L8TMPR58,EDWARDS LIFESCIENCES CORPORATION,US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,edwards lifesciences corporation,,US,,ELC-91-ARIN,,1
 EET Group A/S,529900KATQDXPJECX349,EET GROUP A/S,DK,"Bregnerødvej 133D, 3460 Birkerød, DK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,eet group a s,,DK,,ORG-EGA34-RIPE,,1
@@ -3870,7 +3870,7 @@ Euroins Romania Asigurare Reasigurare SA,315700GZA843JXKTJ400,EUROINS ROMANIA AS
 Euronext Technologies SAS,635400WLLXMJLKFMZC15,EURONEXT TECHNOLOGIES SAS,FR,"14 Place des Reflets, 92400 Courbevoie, FR",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,euronext technologies sas,,FR,,ORG-SEN1-RIPE,,1
 European Bank for Reconstruction and Development,549300HTGDOVDU6OGK19,EUROPEAN BANK FOR RECONSTRUCTION AND DEVELOPMENT,GB,"5 BANK STREET, E14 4BG LONDON, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,european bank for reconstruction and development,,GB,,ORG-EBRD1-RIPE,,1
 European Central Bank,549300DTUYXVMJXZNY75,European Central Bank,DE,"Sonnemannstrasse 20, 60314 Frankfurt am Main, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,european central bank,,DE,,ORG-ECB4-RIPE,,1
-European Centre for Medium-Range Weather Forecasts (ECMWF),549300X1OUUKYPXI9C23,EUROPEAN CENTRE FOR MEDIUM-RANGE WEATHER FORECASTS,GB,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,european centre for medium range weather forecasts,,GB,,ORG-ECFM5-RIPE,,1
+European Centre for Medium-Range Weather Forecasts (ECMWF),549300X1OUUKYPXI9C23,EUROPEAN CENTRE FOR MEDIUM-RANGE WEATHER FORECASTS,GB,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,european centre for medium range weather forecasts,,GB,,ORG-ECFM5-RIPE,,1
 European IO-N Investment Group SL,959800WBY855YTF8QB10,EUROPEAN IO-N INVESTMENT GROUP SL,ES,"Calle Juan de la Cierva 27 Bl.4, Piso 1, Pta.A, 03203 Elche/Elx, ES",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,european io n investment group sl,,ES,,ORG-EIIG1-RIPE,,1
 European Investment Bank,5493006YXS1U5GIHE750,European Investment Bank,EU;LU,"98-100, boulevard Konrad Adenauer, L-2950 Luxembourg, LU",ACTIVE,INTERNATIONAL_ORGANIZATION,ISSUED,legal_exact,1.0,european investment bank,,LU,,ORG-EIB5-RIPE,,1
 European Medicines Agency,213800XTW4IPFATDAT04,EUROPEAN MEDICINES AGENCY,NL,"DOMENICO SCARLATTILAAN 6, 1083 HS AMSTERDAM, NL",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,european medicines agency,,NL,,ORG-EMA4-RIPE,,1
@@ -3953,7 +3953,7 @@ FIS SOLUTIONS (INDIA) PRIVATE LIMITED,2549007KO50BCWJR5N68,FIS Solutions (India)
 FLANCO RETAIL SA,7872001Q9C0OVPSQZB97,FLANCO RETAIL SA,RO,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,flanco retail sa,,RO,,ORG-FRS2-RIPE,,1
 FLOKLI OU,9845004E9D79EC769A90,FLOKLI OÜ,EE,"Pikaliiva tn 7-4, 13517 Tallinn, EE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,flokli ou,,EE,,ORG-FO61-RIPE,,1
 FLSmidth A/S,213800G7EG4156NNPG91,FLSMIDTH A/S,DK,"VIGERSLEV ALLÉ 77, 2500 VALBY, DK",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,flsmidth a s,,DK,,ORG-FA359-RIPE,,1
-FLSmidth Private Limited,3358006W26QXXX2BGN30,FLSMIDTH PRIVATE LIMITED,IN,"Flsmidth House 34, Egatoor, Rajiv Gandhi Salai, 603103 Kelambakkam, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,flsmidth private limited,,IN,,ORG-FPL9-AP-APNIC,,1
+FLSmidth Private Limited,3358006W26QXXX2BGN30,FLSMIDTH PRIVATE LIMITED,IN,"Flsmidth House 34, Egatoor, Rajiv Gandhi Salai, 603103 Kelambakkam, IN",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,flsmidth private limited,,IN,,ORG-FPL9-AP-APNIC,,1
 FLYERS ENERGY LLC,54930031CKGU8O707H11,"Flyers Energy, LLC",US,"2360 Lindbergh Street, 95602 Auburn, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,flyers energy llc,,US,,FEL-115-ARIN,,1
 FLYING BARK PRODUCTIONS PTY LTD,549300QZ5ZJ6OI016419,FLYING BARK PRODUCTIONS PTY LTD,AU,"23 DOODY STREET, 2015 ALEXANDRIA, AU",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,flying bark productions pty ltd,,AU,,ORG-FBPP1-AP-APNIC,,1
 FMC Corporation,CKDHZ2X64EEBQCSP7013,FMC CORPORATION,US,"2929 Walnut street, 19104 Philadelphia, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,fmc corporation,,US,,FMCCOR-1-ARIN,,1
@@ -4569,7 +4569,7 @@ Healthcare of Ontario Pension Plan Trust Fund,KRVONIXV1JBEY6WQ6092,Healthcare of
 Healthlogic Systems Corporation,5493007EC0E4PAJDW398,HEALTHLOGIC SYSTEMS CORPORATION,US,"600 Peachtree St NE, 30308 Atlanta, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,healthlogic systems corporation,,US,,HSC-21-ARIN,,1
 "Healthpeak Properties, Inc.",254900M6MTMZM0I22L81,"Healthpeak Properties, Inc.",US,"4600 South Syracuse Street, 80237 Denver, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,healthpeak properties inc,,US,,HCPI-1-ARIN,,1
 "Healthy Directions, LLC",549300SRIW0PFXL7VS64,"Healthy Directions, LLC",US,"7811 Montrose Road, 20854 Potomac, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,healthy directions llc,,US,,HDL-18-ARIN,,1
-Heartland Bank and Trust Company,EFBDHEMMHTWI378O4988,Heartland Bank And Trust Company,US,"401 North Hershey Road, 61702 Bloomington, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,heartland bank and trust company,,US,,HBT-15-ARIN,,1
+Heartland Bank and Trust Company,EFBDHEMMHTWI378O4988,Heartland Bank and Trust Company,US,"401 N Hershey Rd, 61704 Bloomington, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,heartland bank and trust company,,US,,HBT-15-ARIN,,1
 Heartland Regional Medical Center,54930048GEE524OJTH20,HEARTLAND REGIONAL MEDICAL CENTER,US,"5325 Faraon Street, 64506 Saint Joseph, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,heartland regional medical center,,US,,HRMC-5-ARIN,,1
 Hecla Mining Company,5493009Y6HOBZD1QD537,HECLA MINING COMPANY,US,"6500 NORTH MINERAL DRIVE, 83815 COEUR D'ALENE, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,hecla mining company,,US,,HM-198-ARIN,,1
 HedgeServ Corporation,984500468549E03BC816,HedgeServ Corporation,US,"CORPORATION TRUST CENTER 1209 ORANGE ST, 19801 WILMINGTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,hedgeserv corporation,,US,,HEDGE-3-ARIN,,1
@@ -4725,6 +4725,7 @@ IFB FINWEST SA,259400WHAQRDM192X083,IFB FINWEST SA,RO,,ACTIVE,GENERAL,ISSUED,leg
 IFFCO-TOKIO GENERAL INSURANCE COMPANY LIMITED,3358005QZKHJBWOGXQ54,IFFCO-TOKIO GENERAL INSURANCE COMPANY LIMITED,IN,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,iffco tokio general insurance company limited,,IN,,@aut-151762-APNIC,,1
 IFM Electronic GmbH,529900PS14UIV1T87B19,ifm electronic gmbh,DE,"Friedrichstraße 1, 45128 Essen, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,ifm electronic gmbh,,DE,,ORG-IE9-RIPE,,1
 IForce IT GmbH,984500O8A942B47E9978,IForce IT GmbH,AT,"Lenaugasse 9/Lokal 2, 1080 Wien, AT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,iforce it gmbh,,AT,,ORG-IIG6-RIPE,,1
+IGENITI CONSULTING PRIVATE LIMITED,3358000JPHANXOBMRZ93,IGENITI CONSULTING PRIVATE LIMITED,IN,"41/1, NEW NO 35, THIRD FLOOR, NANJAPPA ROAD, SHANTI NAGAR,, 560027 BENGALURU, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,igeniti consulting private limited,,IN,,@aut-153637-APNIC,,1
 IGT,549300DER0Q7DUTBAU95,IGT,US,"9295 Prototype Drive, 89521 Reno, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,igt,,US,,IGT-2-ARIN,,1
 IGT SOLUTIONS PRIVATE LIMITED,335800I75FIKPJCQTF64,IGT SOLUTIONS PRIVATE LIMITED,IN,"2ND FLOOR, INFOTECH CENTRE, 14/2,OLD DELHI GURGAON ROAD, 122016 GURGAON, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,igt solutions private limited,,IN,,ORG-IT12-AP-APNIC,,1
 IGT TECHNOLOGIES PHILIPPINES INC.,8945009S4HY161MZCJ55,IGT TECHNOLOGIES PHILIPPINES INC.,PH,"6th Flr., 18/20 Upper KcKinley Road, 1634 TAGUIG CITY, PH",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,igt technologies philippines inc,,PH,,ORG-ITPI1-AP-APNIC,,1
@@ -4902,7 +4903,7 @@ Inspired Gaming (UK) Limited,213800G8ZUJBCQDA4Y37,INSPIRED GAMING (UK) LIMITED,G
 "Insteel Industries, Inc.",52990026LKY4MOX3L174,"Insteel Industries, Inc.",US,"1373 Boggs Drive, 27030 Mount Airy, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,insteel industries inc,,US,,II-406-ARIN,,1
 Institut Pasteur,969500QQ51NJ9ZEVW304,INSTITUT PASTEUR,FR,"28 RUE DU DOCTEUR ROUX, 75015 PARIS, FR",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,institut pasteur,,FR,,ORG-IP29-RIPE,,1
 Institut Straumann AG,5299000QVHTLEN6ONZ35,Institut Straumann AG,CH,"Peter Merian-Weg 12, 4002 Basel, CH",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,institut straumann ag,,CH,40764,ORG-ISA97-RIPE,,1
-Institute For Development And Research In Banking Technology,984500CF576EB8C99575,INSTITUTE FOR DEVELOPMENT AND RESEARCH IN BANKING TECHNOLOGY,IN,"10-3-311, IDRBT, Castele Hills Road No. 1, Masab Tank, 500057 Hyderabad, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,institute for development and research in banking technology,,IN,,@aut-153301-APNIC,,1
+Institute For Development And Research In Banking Technology,984500CF576EB8C99575,INSTITUTE FOR DEVELOPMENT AND RESEARCH IN BANKING TECHNOLOGY,IN,"10-3-311, IDRBT, Castele Hills Road No. 1, Masab Tank, 500057 Hyderabad, IN",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,institute for development and research in banking technology,,IN,,@aut-153301-APNIC,,1
 Institute for Advanced Study,549300DGGG1W0LST8W05,Institute For Advanced Study,US,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,institute for advanced study,,US,,IAS-1-ARIN,,1
 "Institutional Cash Distributors Technology, LLC",213800IZZFD5RLBIZ318,"INSTITUTIONAL CASH DISTRIBUTORS TECHNOLOGY, LLC",US,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,institutional cash distributors technology llc,,US,,ICDTL-ARIN,,1
 "Instructure, Inc",52990065R1T7XMXQK163,"Instructure, Inc.",US,"6330 SOUTH 3000 EAST, SUITE 700, 84121 Salt Lake City, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,instructure inc,,US,,INSTR-17-ARIN,,1
@@ -5268,7 +5269,7 @@ LPS GATE LTD,984500DB5BD9O8EB1M42,LPS GATE LTD,CY,"Αρχιεπισκόπου Μ
 LUCILE SALTER PACKARD CHILDREN'S HOSPITAL AT STANFORD,254900E2SCYUWLKDAS68,LUCILE SALTER PACKARD CHILDREN'S HOSPITAL AT STANFORD,US,"700 WELCH ROAD, 94304 PALO ALTO, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,lucile salter packard children s hospital at stanford,,US,,LUCIL-ARIN,,1
 "LUKA KOPER, pristaniski in logisticni sistem, delniska druzba",549300H1GO5N7BK34P37,"LUKA KOPER, pristaniški in logistični sistem, delniška družba",SI,"Vojkovo nabrežje 038, 6000 KOPER - CAPODISTRIA, SI",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,luka koper pristaniski in logisticni sistem delniska druzba,,SI,,ORG-LKPI1-RIPE,,1
 "LUTRON ELECTRONICS CO., INC.",549300249SGIP698A829,"LUTRON ELECTRONICS CO., INC.",US,"7200 Suter Road, 18036 Allentown, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,lutron electronics co inc,,US,,LUTRO-ARIN,,1
-"LUXAIR, Societe Luxembourgeoise de Navigation Aerienne S.A.",54930077C5ECH6DA3P35,"LUXAIR, Société Luxembourgeoise de Navigation Aérienne S.A.",LU,"25, rue Gabriel Lippmann, L-5365 Münsbach, LU",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,luxair societe luxembourgeoise de navigation aerienne s a,,LU,,ORG-LSLD1-RIPE,,1
+"LUXAIR, Societe Luxembourgeoise de Navigation Aerienne S.A.",54930077C5ECH6DA3P35,"LUXAIR, Société Luxembourgeoise de Navigation Aérienne S.A.",LU,"1, avenue de l’Aéroport, L-1110 Senningerberg, LU",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,luxair societe luxembourgeoise de navigation aerienne s a,,LU,,ORG-LSLD1-RIPE,,1
 LYRA NETWORK PRIVATE LIMITED,984500667AE060C07B73,LYRA NETWORK PRIVATE LIMITED,IN,"2nd floor, 24, Techniplex-1, 400062 Mumbai, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,lyra network private limited,,IN,,ORG-LNPL2-AP-APNIC,,1
 La Sportiva S.p.A.,815600DFDEF753417989,LA SPORTIVA S.P.A.,IT,"VIA ISCHIA, 2, 38030 ZIANO DI FIEMME, IT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,la sportiva s p a,,IT,,ORG-LSS30-RIPE,,1
 La-Z-Boy Incorporated,549300WNO1WMN9ZG2519,LA-Z-BOY INCORPORATED,US,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,la z boy incorporated,,US,,LAZBOY-ARIN,,1
@@ -5502,7 +5503,7 @@ MIDAS ODEME VE ELEKTRONIK PARA HIZMETLERI ANONIM SIRKETI,7890001WZAH1952OVM96,M�
 MIDWEST EXPRESS INC,549300G80T7HPIV7ZR07,Midwest Express Inc.,US,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,midwest express inc,,US,,HME-3-ARIN,,1
 MIGROS TICARET ANONIM SIRKETI,789000L1JHPL1R9B2J15,MİGROS TİCARET ANONİM ŞİRKETİ,TR,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,migros ticaret anonim sirketi,,TR,,ORG-MTAS1-RIPE,,1
 MIGUEL GONCALVES UNIPESSOAL LDA,984500A4AH8D09C4A415,"MIGUEL GONÇALVES, UNIPESSOAL LDA",PT,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,miguel goncalves unipessoal lda,,PT,,ORG-MGUL1-RIPE,,1
-MINIPRIX SRL,787200SP2GIGWDQZ7302,MINIPRIX SRL,RO,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,miniprix srl,,RO,,ORG-MS361-RIPE,,1
+MINIPRIX SRL,787200SP2GIGWDQZ7302,MINIPRIX SRL,RO,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,miniprix srl,,RO,,ORG-MS361-RIPE,,1
 MINISTERSTWO INFRASTRUKTURY,259400F2328G3JGCFU17,Ministerstwo Infrastruktury,PL,"Warszawa Tytusa Chałubińskiego 4/6, 00-928 Warszawa, PL",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,LAPSED,legal_exact,1.0,ministerstwo infrastruktury,,PL,,ORG-MA746-RIPE,,1
 "MIO Partners, Inc.",82E6XECQ6EF1KVVIKP88,"MIO PARTNERS, INC.",US,"630 5TH AVENUE, 10111 NEW YORK, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,mio partners inc,,US,,MU-31-ARIN,,1
 MIRAMO spol. s.r.o.,315700PD1YIMB6V3MI57,MIRAMO spol. s r.o.,CZ,"č.p. 265, 742 55 Albrechtičky, CZ",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,miramo spol s r o,,CZ,39052,ORG-MSS1-RIPE,http://www.miramo.cz,1
@@ -5588,7 +5589,7 @@ Marchon Eyewear Inc.,5493000KNTM61FXCNG10,"MARCHON EYEWEAR, INC.",US,"201 Old Co
 Marel Holding B.V.,724500NG7D2992M47019,Marel Holding B.V.,NL,"Handelstraat 3, 5831AV Boxmeer, NL",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,marel holding b v,,NL,,ORG-MHB3-RIPE,,1
 Marex Hong Kong Limited,549300HB1LIWRUJGPE30,Marex Hong Kong Limited,HK,"Suite 3106-3111 ICBC Tower, 999077 Hong Kong, HK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,marex hong kong limited,,HK,,ORG-MHKL1-AP-APNIC,,1
 "Marfeel Solutions, S.L.",959800JCVHHFG8CV7628,MARFEEL SOLUTIONS S.L.,ES,"AVENIDA JOSEP TARRADELLAS 20 - 30 P. 6, 08029 Barcelona, ES",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,marfeel solutions s l,,ES,,ORG-MSS52-RIPE,,1
-Mariapps Marine Solutions Private Limited,2549008FQ7XY6F7XWA20,MARIAPPS MARINE SOLUTIONS PRIVATE LIMITED,IN,"3rd Floor, MariApps House, Plot No. A2-09, Smart City Kochi SEZ, 682042 Ernakulam, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,mariapps marine solutions private limited,,IN,,ORG-MMSP3-AP-APNIC,,1
+Mariapps Marine Solutions Private Limited,2549008FQ7XY6F7XWA20,MARIAPPS MARINE SOLUTIONS PRIVATE LIMITED,IN,"3rd Floor MariApps House, Plot No A2-09 SmartCity Kochi SEZ, 682042 Ernakulam, IN",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,mariapps marine solutions private limited,,IN,,ORG-MMSP3-AP-APNIC,,1
 Mariborska livarna Maribor d.d.,4851000C0D5MUASQQU45,MARIBORSKA LIVARNA MARIBOR d.d.,SI,"Oreško nabrežje 9, 2000 Maribor, SI",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,mariborska livarna maribor d d,,SI,,ORG-MLM22-RIPE,,1
 Marina Bay Sands Pte Ltd,549300UFYS6QI2KC6S92,MARINA BAY SANDS PTE. LTD.,SG,"80 ROBINSON ROAD, 068807 SINGAPORE, SG",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,marina bay sands pte ltd,,SG,,ORG-MBSP1-AP-APNIC,,1
 Marist University,5493000BKJZ2XNMP5G97,Marist College,US,"3399 North Rd, 12601 Poughkeepsie, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,marist college,alt_name,US,41058,MARIST-1-Z-ARIN,http://marist.edu,1
@@ -6555,7 +6556,7 @@ Pinki Tours & Travels,335800OOUZF7YQOPAU50,PINKI TOURS AND TRAVELS (REGD),IN,"C 
 "Pioneer Hi-Bred International, Inc.",5493004ECOMLGLLNNE40,"PIONEER HI-BRED INTERNATIONAL, INC.",US,"7100 NW 62ND AVENUE, 50131 JOHNSTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pioneer hi bred international inc,,US,,PIONEE-12-ARIN,,1
 Pirelli & C. S.p.A.,815600A0C9AFC1F2A709,PIRELLI & C. S.P.A.,IT,"VIALE PIERO E ALBERTO PIRELLI, 25, 20126 MILANO, IT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pirelli and c s p a,,IT,,ORG-PCS12-RIPE,,1
 Pirkan Opiskelija-asunnot Oy,743700UT27XR7EESZG59,Pirkan Opiskelija-asunnot Oy,FI,"Sorsapuisto 1, FI-33500 TAMPERE, FI",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pirkan opiskelija asunnot oy,,FI,,ORG-KOO1-RIPE,,1
-Pirum Systems Limited,213800F2KUVLIFOYYP87,PIRUM SYSTEMS LIMITED,GB,"2 COPTHALL AVENUE, EC2R 7DA LONDON, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pirum systems limited,,GB,,ORG-PSL16-RIPE,,1
+Pirum Systems Limited,213800F2KUVLIFOYYP87,PIRUM SYSTEMS LIMITED,GB,"10 CROWN PLACE, EC2A 4FT LONDON, GB",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,pirum systems limited,,GB,,ORG-PSL16-RIPE,,1
 Pittsburgh Penguins LP,25490060N3KXB0KDWA15,Pittsburgh Penguins LP,US,"1001 Fifth Aveneu, 15219 Pittsburgh, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,pittsburgh penguins lp,,US,,PITTS-18-ARIN,,1
 Placid Refining Company LLC,254900KROH14JYOZFG71,PLACID REFINING COMPANY LLC,US,"402 N Fourth Street, 70802 Baton Rouge, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,placid refining company llc,,US,,PRL-69-ARIN,,1
 "Plains All American Pipeline, L.P.",5521FA2ITF25TVH63740,"PLAINS ALL AMERICAN PIPELINE, L.P.",US,"333 Clay Street, Suite 1600, 77002 Houston, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,plains all american pipeline l p,,US,,AAPL-2-ARIN,,1
@@ -6642,7 +6643,7 @@ Proact IT UK Limited,213800CQ7HZW4UTWMK97,PROACT IT UK LIMITED,GB,,ACTIVE,GENERA
 Procne S.R.L.,815600029F378B65DF31,PROCNE S.R.L.,IT,"VIA COTONIFICIO, 45, 33010 TAVAGNACCO, IT",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,procne s r l,,IT,,ORG-PR25-RIPE,,1
 Prodware SA,9695005LHRU1IBDMSE79,PRODWARE SA,FR,"45 QUAI DE LA SEINE, 75019 PARIS, FR",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,prodware sa,,FR,,ORG-PS497-RIPE,,1
 ProfiSMS s.r.o.,984500G2H80906756776,ProfiSMS s.r.o.,CZ,"Thámova 166/18, 186 00 Karlín, CZ",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,profisms s r o,,CZ,,ORG-PS428-RIPE,,1
-Programmed Maintenance Services Limited,254900II9FAYSBQG8I03,PROGRAMMED MAINTENANCE SERVICES LIMITED,AU,"47 Burswood Rd, 6100 Perth, AU",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,programmed maintenance services limited,,AU,,ORG-PMSL2-AP-APNIC,,1
+Programmed Maintenance Services Limited,254900II9FAYSBQG8I03,PROGRAMMED MAINTENANCE SERVICES LIMITED,AU,"47 Burswood Rd, 6100 Perth, AU",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,programmed maintenance services limited,,AU,,ORG-PMSL2-AP-APNIC,,1
 Prometheus Hyperscale,254900VA11PEOLNGQS22,Prometheus Hyperscale,US,"8936 County Road, 82930 Evanston, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,prometheus hyperscale,,US,,WHWBL-ARIN,,1
 Promo Plus SRL,787200GT6QBNP6X99780,PROMO PLUS SRL,RO,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,promo plus srl,,RO,38338,ORG-PPS19-RIPE,https://torchbyte.com,1
 Promocion Tecnologica y Comercial S.A.,959800JTMFQRV2J4U368,PROMOCION TECNOLOGICA Y COMERCIAL S.A.,ES,"Calle Julian Camarillo 29 E5, 28037 Madrid, ES",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,promocion tecnologica y comercial s a,,ES,,ORG-PTYC1-RIPE,,1
@@ -6787,7 +6788,7 @@ Radicenter OU,549300PH68V21E8A8697,Radicenter OÜ,EE,"Kitse põik 9, 80031 Pärn
 Radiocable Ingenieros,9598009BAJSS12PRT572,RADIOCABLE INGENIEROS SL,ES,"Poligono Juncaril C/ Deifontes 230 B, 18220 Albolote, ES",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,radiocable ingenieros sl,alt_name,ES,31976,,https://radiokable.net,1
 Radiometer Medical ApS,529900J2Y5O1CUMT7J87,RADIOMETER MEDICAL ApS,DK,"Åkandevej 21, 2700 Brønshøj, DK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,radiometer medical aps,,DK,,ORG-RMA28-RIPE,,1
 "Radnet Management, Inc.",549300T3TJ6A0P5TXM13,"RADNET MANAGEMENT, INC.",US,"1510 Cotner Avenue, 90025 Los Angeles, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,radnet management inc,,US,,RADNET-1-ARIN,,1
-Rady Children's Hospital - San Diego,549300FOKP65GNO33016,RADY CHILDREN'S HOSPITAL SAN DIEGO,US,"3020 CHILDREN'S WAY MC 5052, 92123 SAN DIEGO, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,rady children s hospital san diego,,US,,RCHSD-ARIN,,1
+Rady Children's Hospital - San Diego,549300FOKP65GNO33016,RADY CHILDREN'S HOSPITAL SAN DIEGO,US,"3020 CHILDREN'S WAY MC 5052, 92123 SAN DIEGO, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,rady children s hospital san diego,,US,,RCHSD-ARIN,,1
 Ragn-Sells Recycling AB,549300JFULLLAHS8RB24,Ragn-Sells Recycling AB,SE,"Box 952, 191 29 Sollentuna, SE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,ragn sells recycling ab,,SE,,ORG-ABUS1216-RIPE,,1
 Raidio Teilifis Eireann,635400MG4UYDP5YSXB97,Raidió Teilifís Éireann,IE,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,raidio teilifis eireann,,IE,,ORG-RTE1-RIPE,,1
 Raidió Teilifís Éireann,635400MG4UYDP5YSXB97,Raidió Teilifís Éireann,IE,,ACTIVE,GENERAL,ISSUED,legal_exact,1.0,raidio teilifis eireann,,IE,9904,,https://www.rte.ie,1
@@ -7192,7 +7193,7 @@ Salt Mobile SA,5067000K78B43112Q041,Salt Mobile SA,CH,"Avenue de Malley 2, 1008 
 Salt River Project Agricultural Improvement & Power District,SHB8HO6GKXJ83RX5OV39,Salt River Project Agricultural Improvement and Power District,US,"1500 North Mill Avenue, 85281 Tempe, US",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,salt river project agricultural improvement and power district,,US,,SRPAIPD-1-ARIN,,1
 Salten Kraftsamband AS,549300YOU5PLJ7JSD185,SALTEN KRAFTSAMBAND AS,NO,"Eliasbakken 7, 8200 Fauske, NO",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,salten kraftsamband as,,NO,,ORG-SKA71-RIPE,,1
 Salva Kindlustuse AS,529900JIJRUSGYDVSN42,Salva Kindlustuse AS,EE,"Pärnu mnt 16, 10141 Kesklinna linnaosa, Tallinn, Harju maakond, EE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,salva kindlustuse as,,EE,,ORG-SA859-RIPE,,1
-Salzburger Flughafen GmbH,529900ANDKBZXTONSV89,Salzburger Flughafen GmbH,AT,"Innsbrucker Bundesstr. 95, 5020 Salzburg, AT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,salzburger flughafen gmbh,,AT,,ORG-SFG11-RIPE,,1
+Salzburger Flughafen GmbH,529900ANDKBZXTONSV89,Salzburger Flughafen GmbH,AT,"Innsbrucker Bundesstraße 95, 5020 Salzburg, AT",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,salzburger flughafen gmbh,,AT,,ORG-SFG11-RIPE,,1
 Samba Bank Limited,2138007CNPNW8FJ7KI18,SAMBA BANK LIMITED,PK,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,samba bank limited,,PK,,ORG-SBL5-AP-APNIC,,1
 "Sambanova Systems, Inc.",2549002D18MMEIO51D20,SambaNova Systems Inc,US,"2100 Geng Road, 94303 Palo Alto, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,sambanova systems inc,,US,31012,SS-2554-ARIN,,1
 "Samlyn Capital, LLC",M7TBENZQZR3UFFXAPX42,"SAMLYN CAPITAL, LLC",US,"251 LITTLE FALLS DRIVE, 19808 WILMINGTON, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,samlyn capital llc,,US,,SCL-206-ARIN,,1
@@ -8602,12 +8603,13 @@ Wawa Inc.,549300HUG8C5J4EYDF61,"WAWA, INC.",US,"260 West Baltimore Pike, 19063 M
 We The Curious Limited,213800LH8MW3LYGQTK11,WE THE CURIOUS LIMITED,GB,,ACTIVE,GENERAL,LAPSED,legal_exact,1.0,we the curious limited,,GB,,ORG-ABL15-RIPE,,1
 WeStreet Federal Credit Union,254900HOKI2167ISWL57,WESTREET FEDERAL CREDIT UNION,US,"9323 E 21ST ST, 74129 TULSA, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,westreet federal credit union,,US,,WFCU-36-ARIN,,1
 Wealden District Council,213800PV2DRGJ4HXV178,WEALDEN DISTRICT COUNCIL,GB,,ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,legal_exact,1.0,wealden district council,,GB,,ORG-WDC5-RIPE,,1
-WebLager A/S,9845003A4T96063D9F70,WebLager A/S,DK,"Skagerrakvej 16, 6715 Esbjerg N, DK",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,weblager a s,,DK,,ORG-DSA72-RIPE,,1
+WebLager A/S,9845003A4T96063D9F70,WebLager A/S,DK,"Skagerrakvej 16, 6715 Esbjerg N, DK",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,weblager a s,,DK,,ORG-DSA72-RIPE,,1
 Webhosting24 GmbH,984500E3DK2BD56B2C76,webhosting24 GmbH,DE,"Korbinianplatz 17, 80807 München, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,webhosting24 gmbh,,DE,20549,ORG-WG80-RIPE,https://www.webhosting24.de/,1
 Webster University,549300545ET3KOPPFZ98,Webster University,US,"470 East Lockwood Avenue, 63119 Saint Louis, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,webster university,,US,,WEBSTE-6-ARIN,,1
 "Wedbush Securities, Inc.",549300CSX55MXZ47EI78,WEDBUSH SECURITIES INC.,US,"225 S. LAKE AVE. PENTHOUSE, 91101 LOS ANGELES, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,wedbush securities inc,,US,,WS-522-ARIN,,1
 Weeks Medical Center,549300PJ2F2DGY23O437,Weeks Medical Center,US,"173 Middle Street, 03584 Lancaster, US",ACTIVE,GENERAL,LAPSED,legal_exact,1.0,weeks medical center,,US,,WMC-85-ARIN,,1
 "Weil, Gotshal & Manges LLP",549300BR5SXDCE77QM34,"WEIL, GOTSHAL & MANGES LLP",US,"767 FIFTH AVE, 10153 NEW YORK, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,weil gotshal and manges llp,,US,,WGML-3-ARIN,,1
+"Weis Markets, Inc",529900BHGN509NRKGP29,"WEIS MARKETS, INC.",US,"1000 S 2ND ST, 17801 SUNBURY, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,weis markets inc,,US,,WM-361-ARIN,,1
 Weiss Asset Management LP,IT8LF3P4X72T709F5Z71,WEISS ASSET MANAGEMENT LP,US,"222 Berkeley Street, 02116 Boston, US",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,weiss asset management lp,,US,,WAML-3-ARIN,,1
 Weiss-Druck GmbH & Co. KG,391200CVU42J3H01K467,WEISS-DRUCK GmbH & Co. KG,DE,"Hans-Georg-Weiss-Str. 7, 52156 Monschau, DE",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,weiss druck gmbh and co kg,,DE,,ORG-WGCK3-RIPE,,1
 Welded Tube of Canada Corp.,549300DQ8ETN3LK1A996,WELDED TUBE OF CANADA CORP.,CA,"111 Rayette Road, L4K 2E9 Concord, CA",ACTIVE,GENERAL,ISSUED,legal_exact,1.0,welded tube of canada corp,,CA,37383,WTCC-4-ARIN,,1
@@ -9294,7 +9296,7 @@ ASEE SOLUTIONS d.o.o,747800O0RAIDCEAYIE11,"ASEE SOLUTIONS društvo s ograničeno
 "ASG Technologies Group, Inc.",549300IJDNNBSJW46E09,"ROCKET SOFTWARE TECHNOLOGIES, INC.",US,"77 4TH AVENUE, 02451 WALTHAM, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,asg technologies group inc,,US,,ASG-48-ARIN,,1
 ASP Ltd,984500104KNBEADCZD42,Ей Ес Пи,BG,,ACTIVE,GENERAL,LAPSED,other_name_exact,0.95,asp ltd,,BG,,ORG-ASP3-RIPE,,1
 AT TOKYO Corporation,353800WMNXPU1J77JR51,株式会社アット東京,JP,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,at tokyo corporation,,JP,1209,@aut-9999-JPNIC,http://www.attokyo.com/,1
-AUTOHELLAS TOURIST AND TRADING SOCIETE ANONYME,213800DNMN314TEZPP87,AUTOHELLAS ΑΝΩΝΥΜΟΣ ΤΟΥΡΙΣΤΙΚΗ ΚΑΙ ΕΜΠΟΡΙΚΗ ΕΤΑΙΡΕΙΑ,GR,"VILTANIOTI 31 STR., 14564 KIFISIA, GR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,autohellas tourist and trading societe anonyme,,GR,,ORG-ATAT3-RIPE,,1
+AUTOHELLAS TOURIST AND TRADING SOCIETE ANONYME,213800DNMN314TEZPP87,AUTOHELLAS ΑΝΩΝΥΜΟΣ ΤΟΥΡΙΣΤΙΚΗ ΚΑΙ ΕΜΠΟΡΙΚΗ ΕΤΑΙΡΕΙΑ,GR,"VILTANIOTI 31 STR., 14564 KIFISIA, GR",ACTIVE,GENERAL,PENDING_TRANSFER,other_name_exact,0.95,autohellas tourist and trading societe anonyme,,GR,,ORG-ATAT3-RIPE,,1
 AVI Capital LLC,2534003VAB3UWEFD0J90,"Общество с ограниченной ответственностью ""АВИ Кэпитал""",RU,"Пресненская набережная, дом 8, строение 1, 123112 Москва, RU",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,avi capital llc,,RU,,ORG-ACL61-RIPE,,1
 AXA Technology Services UK Limited,2138001AQZ83APCS6I59,AXA GROUP OPERATIONS UK LIMITED,GB,"20 GRACECHURCH STREET, EC3V 0BG LONDON, GB",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,axa technology services uk limited,,GB,,ORG-ATSU1-RIPE,,1
 AXONIA GmbH,391200K6ELPDUX3N6311,TV1 GmbH,DE,"Beta-Straße 9a, 85774 Unterföhring, DE",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,axonia gmbh,,DE,,ORG-TG54-RIPE,,1
@@ -9680,6 +9682,7 @@ KASIKORNBANK PUBLIC COMPANY LIMITED,5493004COSQ54937AW41,บริษัท ธ�
 "KB Life Insurance Co., Ltd.",JJJSQKRZVPCKJCJDZM77,주식회사 케이비라이프생명보험,KR,"서울특별시 강남구 강남대로 298 (역삼동), 06253 Seoul, KR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,kb life insurance co ltd,active_only,KR,,@aut-55608-APNIC,,1
 KDB CAPITAL CORPORATION,988400WGESJPC4FP1O64,산은캐피탈(주),KR,"서울특별시 영등포구 은행로 22(여의도동), 07242 Seoul, KR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,kdb capital corporation,,KR,,@aut-131874-APNIC,,1
 "KDB Life Insurance Co.,Ltd",988400K1TBF4L6T06Y80,케이디비생명보험(주),KR,"서울특별시 용산구 한강대로 372 (동자동, 센트레빌아스테리움서울), 04323 Seoul, KR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,kdb life insurance co ltd,,KR,,@aut-38135-APNIC,,1
+KENTRO POLITISMOU IDRYMA STAVROS NIARCHOS MONOPROSOPI A.E.,2138004HGBW2XHRCQQ71,ΚΕΝΤΡΟ ΠΟΛΙΤΙΣΜΟΥ ΙΔΡΥΜΑ ΣΤΑΥΡΟΣ ΝΙΑΡΧΟΣ ΜΟΝΟΠΡΟΣΩΠΗ Α.Ε.,GR,"LEOFOROS SYNGROU 364, KALLITHEA, KALLITHEAS, 176 74 KALLITHEA, GR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,kentro politismou idryma stavros niarchos monoprosopi a e,,GR,,ORG-SNFC1-RIPE,,1
 KFIN TECHNOLOGIES PRIVATE LIMITED,335800GNCGJJ76Z17N17,KFIN TECHNOLOGIES LIMITED,IN,"301, THE CENTRIUM, 3RD FLOOR, 57, LAL BAHADUR SHASTRI ROAD, NAV PADA, KURLA (WEST), KURLA, MUMBAI, 400070 MUMBAI, IN",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,kfin technologies private limited,,IN,,ORG-KFPL2-AP-APNIC,,1
 "KGP Telecommunications, Inc.",549300EFTCZ3EG5H2U24,"KGP telecommunications, LLC",US,"3305 Highway 60 West, 55021 Faribault, US",ACTIVE,GENERAL,LAPSED,other_name_exact,0.95,kgp telecommunications inc,,US,,KT-110-ARIN,,1
 KHAN BANK LLC,254900MHP3OONDWV9H02,ХААН Банк,MN,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,khan bank llc,,MN,,ORG-KB2-AP-APNIC,,1
@@ -9758,7 +9761,7 @@ MOL Nyrt.,213800R83KX5FQFGXS67,MOL MAGYAR OLAJ- ÉS GÁZIPARI NYILVÁNOSAN MŰK�
 MOTOR OIL (HELLAS) CORINTH REFINERIES S.A.,213800U3Y9UL7Y4QVM11,ΜΟΤΟΡ ΟΙΛ (ΕΛΛΑΣ) ΔΙΥΛΙΣΤΗΡΙΑ ΚΟΡΙΝΘΟΥ Α.Ε.,GR,"12A IRODOU ATTIKOU STREET, 15124 MAROUSI, GR",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,motor oil corinth refineries s a,,GR,,ORG-MOCR1-RIPE,,1
 MSC PSA European Terminal NV,549300XP2T6Y82SD7I45,MSC PSA EUROPEAN TERMINAL,BE,"Napelsstraat 79, 2000 Antwerpen, BE",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,msc psa european terminal nv,,BE,,ORG-MPET1-RIPE,,1
 Magyar Posta Zrt,213800RME8DSSB1XGC68,Magyar Posta Zártkörűen Működő Részvénytársaság,HU,"Dunavirág utca 2-6, 1138 BUDAPEST, HU",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,magyar posta zrt,,HU,,ORG-MPZ2-RIPE,,1
-Management Business Machine Ltd.,98450010C10D9458B016,МЕНИДЖМЪНТ БИЗНЕС МАШИН,BG,"бул./ул. бул. ВИТОША № 146, вх. Б, ет. 5, 1463 София, BG",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,management business machine ltd,,BG,,ORG-MBM2-RIPE,,1
+Management Business Machine Ltd.,98450010C10D9458B016,МЕНИДЖМЪНТ БИЗНЕС МАШИН,BG,"бул./ул. бул. ВИТОША № 146, вх. Б, ет. 5, 1463 София, BG",ACTIVE,GENERAL,LAPSED,other_name_exact,0.95,management business machine ltd,,BG,,ORG-MBM2-RIPE,,1
 Mando Automotive India Private Limited,335800STP784F6XPFO26,HL MANDO ANAND INDIA PRIVATE LIMITED,IN,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,mando automotive india private limited,,IN,,@aut-138285-APNIC,,1
 Manulife International Limited,549300QWHYND517QKB26,Stable Fund Policy,HK,,ACTIVE,FUND,ISSUED,other_name_exact,0.95,manulife international limited,,HK,,ORG-MIL3-AP-APNIC,,1
 "Marusan Securities Co., LTD.",353800JHV8QLA94CQ930,丸三証券株式会社,JP,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,marusan securities co ltd,,JP,,@aut-23833-JPNIC,,1
@@ -9938,7 +9941,7 @@ QatarEnergy,254900QTESJKJ3P87J26,قطر للطاقة,QA,,ACTIVE,GENERAL,ISSUED,o
 Qlosr AB,98450004688A57CDBH15,ECIT Solutions AB,SE,"Folkungagatan 45, 118 26 STOCKHOLM, SE",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,qlosr ab,,SE,32070,,http://www.qlosr.se,1
 "R P Funding, Inc.",549300EOHSB7M6IFW844,Mortgage Lenders Investment Trading Corporation,US,"1400 International Parkway South, 32746 Seminole, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,r p funding inc,,US,,RPF-4-ARIN,,1
 RAFAEL ADVANCED DEFENSE SYSTEMS LTD,549300GTHDKIZL3XIO17,"רפאל מערכות לחימה מתקדמות בע""מ",IL,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,rafael advanced defense systems ltd,,IL,,ORG-RADA1-RIPE,,1
-RAIFFEISEN BANK JSC,529900VMNWSPL2QX6926,"АКЦІОНЕРНЕ ТОВАРИСТВО ""РАЙФФАЙЗЕН БАНК АВАЛЬ""",UA,"Generala Almazova Street 4a, 01011 Kyiv, UA",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,raiffeisen bank jsc,,UA,,ORG-PBA20-RIPE,,1
+RAIFFEISEN BANK JSC,529900VMNWSPL2QX6926,"АКЦІОНЕРНЕ ТОВАРИСТВО ""РАЙФФАЙЗЕН БАНК АВАЛЬ""",UA,"Generala Almazova Street 4a, 01011 Kyiv, UA",ACTIVE,GENERAL,LAPSED,other_name_exact,0.95,raiffeisen bank jsc,,UA,,ORG-PBA20-RIPE,,1
 RB Distribution Inc,2549000O0BBUX740XR59,"DORMAN PRODUCTS, INC.",US,"3400 EAST WALNUT STREET, 18915 COLMAR, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,rb distribution inc,,US,,RBDIS-ARIN,,1
 RBC CAPITAL MARKETS CORPORATION,549300LCO2FLSSVFFR64,"RBC Capital Markets, LLC",US,"200 Vessey Str 5th Flr, 10281 New York, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,rbc capital markets corporation,,US,,RCMC-2-ARIN,,1
 "RICOH Company, Ltd.",549300HFIB2GRUMDID72,株式会社リコー,JP,,ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,ricoh company ltd,,JP,,@aut-131893-JPNIC,,1
@@ -10026,7 +10029,7 @@ Southeast Bank Limited,254900ZKUGDRQBO9MT80,SOUTHEAST BANK PLC.,BD,,ACTIVE,GENER
 Spartan Stores Inc.,549300TV3QCCSQLF5X16,SPARTANNASH COMPANY,US,"3410 BELLE CHASE WAY, 48911 LANSING, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,spartan stores inc,,US,,SPARTA-ARIN,,1
 Special Broadcasting Services Corporation,984500AC4071CZEX4F97,SPECIAL BROADCASTING SERVICE CORPORATION,AU,"14 HERBERT STREET, 2064 ARTARMON, AU",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,special broadcasting services corporation,,AU,,ORG-SBSC1-AP-APNIC,,1
 Spectrum Health,5493002M6WR7Y63L2862,COREWELL HEALTH,US,"100 COREWELL DRIVE NW, 49503 GRAND RAPIDS, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,spectrum health,,US,,SPECT-19-ARIN,,1
-Speedy AD,747800N0666HD1320P53,Спиди АД,BG,"Mladost District, 22, Abagar Street, Sofia City Logistic Park, Administrative Building, 1138 SOFIA, BG",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,speedy ad,,BG,,ORG-SA820-RIPE,,1
+Speedy AD,747800N0666HD1320P53,Спиди АД,BG,"Mladost District, 22, Abagar Street, Sofia City Logistic Park, Administrative Building, 1138 SOFIA, BG",ACTIVE,GENERAL,LAPSED,other_name_exact,0.95,speedy ad,,BG,,ORG-SA820-RIPE,,1
 Splunk Inc.,549300XGDSGBP6UEI867,SPLUNK LLC,US,"3098 Olsen Drive, 95128 San Jose, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,splunk inc,,US,,ORG-SI28-AP-APNIC,,1
 "Splunk, Inc.",549300XGDSGBP6UEI867,SPLUNK LLC,US,"3098 Olsen Drive, 95128 San Jose, US",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,splunk inc,,US,33393,SPLUN-ARIN,,1
 Spoldzielnia Telekomunikacyjna OST,259400279V8V5EQPHI66,SPÓŁDZIELNIA TELEKOMUNIKACYJNA OST,PL,"Tyczyn Kościuszki 8, 36-020 Tyczyn, PL",ACTIVE,GENERAL,ISSUED,other_name_exact,0.95,spoldzielnia telekomunikacyjna ost,,PL,10926,ORG-OSTW2-RIPE,http://www.ostnet.pl,1
@@ -10336,7 +10339,7 @@ De La Salle University Incorporated,2138001U8MYNRWWHPA69,"DE LA SALLE UNIVERSITY
 E-Solutions BV,549300V4C367TAKOT229,E-SOLUTIONS BVBA,BE,"LARENBROEKSTRAAT 36, 9450 HAALTERT, BE",ACTIVE,GENERAL,LAPSED,legal_core,0.9,e solutions,,BE,,ORG-EB38-RIPE,,3
 ENGIE SA,LAXUQCHT4FH58LRZDY46,ENGIE,FR,"1 PLACE SAMUEL DE CHAMPLAIN, 92400 COURBEVOIE, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,engie,jurisdiction,FR,,ORG-GDF1-RIPE,,3
 Elsevier Ltd,5493004K0NPPLK135K42,ELSEVIER LIMITED,GB,"125 LONDON WALL, EC2Y 5AS LONDON, GB",ACTIVE,GENERAL,ISSUED,legal_core,0.9,elsevier,,GB,,ORG-EL2-AP-APNIC,,3
-FASTPATH IKE,213800IGW4CQZPY78840,FASTPATH ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑΙΡΕΙΑ,GR,"NIK. PLASTIRA 24, 15772 ZOGRAFOU, GR",ACTIVE,GENERAL,PENDING_TRANSFER,legal_core,0.9,fastpath,alt_name,GR,24843,ORG-FI63-RIPE,https://fastpath.gr,3
+FASTPATH IKE,213800IGW4CQZPY78840,FASTPATH ΙΔΙΩΤΙΚΗ ΚΕΦΑΛΑΙΟΥΧΙΚΗ ΕΤΑΙΡΕΙΑ,GR,"NIK. PLASTIRA 24, 15772 ZOGRAFOU, GR",ACTIVE,GENERAL,PENDING_ARCHIVAL,legal_core,0.9,fastpath,alt_name,GR,24843,ORG-FI63-RIPE,https://fastpath.gr,3
 First Focus IT Pty Ltd,984500DE9BA68R845F50,FIRST FOCUS IT PTY LIMITED,AU,"CONNECT CORPORATE CENTRE, 189 O'RIORDAN STREET, 2020 MASCOT, AU",ACTIVE,GENERAL,ISSUED,legal_core,0.9,first focus it,,AU,,ORG-FFPL1-AP-APNIC,,3
 Foxtel Management Pty Ltd,549300L5GUJWKPPAMJ22,FOXTEL MANAGEMENT PTY LIMITED,AU,"4 BROADCAST WAY, 2064 ARTARMON, AU",ACTIVE,GENERAL,ISSUED,legal_core,0.9,foxtel management,,AU,,ORG-FMPL1-AP-APNIC,,3
 France Televisions SA,969500WW934VZKE6FI91,FRANCE TELEVISIONS,FR,"7 ESPLANADE HENRI DE FRANCE, 75015 PARIS, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,france televisions,,FR,,ORG-FTS19-RIPE,,3
@@ -10786,6 +10789,7 @@ ARQUIA BANK SA.,959800AQXRU3780MW094,ARQUIA BANK S.A.,ES,"TUTOR 16, 28008 Madrid
 ARTE FRANCE SA,969500N85DRY6A00FD42,ARTE FRANCE,FR,"10 BOULEVARD DES FRERES VOISIN, 92130 ISSY-LES-MOULINEAUX, FR",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,LAPSED,legal_core,0.9,arte france,,FR,,ORG-AFS4-RIPE,,1
 ARTELIA HOLDING SAS,969500NUCZ5RIK0KIC66,ARTELIA HOLDING,FR,"16 RUE SIMONE VEIL, 93400 SAINT-OUEN-SUR-SEINE, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,artelia holding,,FR,,ORG-AHS15-RIPE,,1
 ASAO SARL,969500WKRF9RGF3D5A17,ASAO,FR,"112 AVENUE DE PARIS, 94300 VINCENNES, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,asao,,FR,,ORG-ASAO1-RIPE,,1
+ASII TELECOM SARL,969500T7LZP75IWX1365,ASII TELECOM,FR,"60 AVENUE DE LA GRANDE ARMEE, 75017 PARIS, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,asii telecom,,FR,,ORG-ATS68-RIPE,,1
 ASK4 Ltd,213800KDN9X1M4KU9D18,ASK4 (BUYCO) LIMITED,GB,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,ask4,,GB,1741,,https://www.ask4.com,1
 ASM Terni SpA,8156004A497D1D472D29,ASM TERNI S.P.A.,IT,"VIA BRUNO CAPPONI, 100, 05100 TERNI, IT",ACTIVE,GENERAL,LAPSED,legal_core,0.9,asm terni,,IT,,ORG-ATS55-RIPE,,1
 AT & T,549300Z40J86GGSTL398,AT&T INC.,US,"208 South Akard Street, 75202 Dallas, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,at and t,issued_only,US,,ATT-37-ARIN,,1
@@ -12052,7 +12056,7 @@ Juniper Networks,549300XTC50EMSMJIL10,"JUNIPER NETWORKS (US), INC.",US,"CORPORAT
 K+S AG,529900YURAYD4IJX2J91,K+S Aktiengesellschaft,DE,"Bertha-von-Suttner-Straße 7, 34131 Kassel, DE",ACTIVE,GENERAL,ISSUED,legal_core,0.9,k s,,DE,,ORG-KS309-RIPE,,1
 KAN Sp. z o.o.,259400EQGJ42JV7ELF79,"""KAN"" SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",PL,"ŁÓDŹ WIĄCZYŃSKA 8 A, 92-760 ŁÓDŹ, PL",ACTIVE,GENERAL,ISSUED,legal_core,0.9,kan,"issued_only,postcode",PL,,ORG-KSZO4-RIPE,,1
 KARDOL SAS,969500DACKUXRLPA7Q19,KARDOL SA,FR,"36 ROUTE DE SAINT ROMAIN, 69450 SAINT-CYR-AU-MONT-D'OR, FR",ACTIVE,GENERAL,LAPSED,legal_core,0.9,kardol,,FR,,ORG-KS205-RIPE,,1
-KAREEM ADMINISTRATION PTY LIMITED,2138006CMECY3G55OW52,TRIFORCE AUSTRALIA PTY LIMITED,AU,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,triforce australia,alt_name,AU,39548,ORG-KAPL1-AP-APNIC,https://www.triforce.com.au,1
+KAREEM ADMINISTRATION PTY LIMITED,2138006CMECY3G55OW52,TRIFORCE AUSTRALIA PTY LIMITED,AU,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,triforce australia,alt_name,AU,39548,ORG-KAPL1-AP-APNIC,https://www.triforce.com.au,1
 KDDI,5299003FU7V4I45FU310,KDDI株式会社,JP,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,kddi,,JP,222,,http://www.kddi.com/english/,1
 KDDI Europe Ltd,213800S9HB8MHQSP6Y11,KDDI EUROPE LIMITED,GB,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,kddi europe,,GB,,ORG-KE2-RIPE,,1
 KEREIS HOLDING SAS,894500A6RAFIQQXBIM15,KEREIS HOLDING,FR,"19 Avenue de l Opera, 75001 PARIS, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,kereis holding,,FR,,ORG-FCS13-RIPE,,1
@@ -12104,7 +12108,7 @@ LACOSTE OPERATIONS S.A.,969500W7UW4A49S55936,LACOSTE OPERATIONS,FR,"31 BOULEVARD
 LANCASHIRE INSURANCE SERVICES LTD,2138006LFHKOSX7L5T75,LANCASHIRE INSURANCE SERVICES LIMITED,GB,"LEVEL 29 - 20, EC3M 3BY LONDON, GB",ACTIVE,GENERAL,ISSUED,legal_core,0.9,lancashire insurance services,,GB,,ORG-LISL4-RIPE,,1
 "LEAST COST ROUTING TELECOM, SL",959800YZKKG4RH19S964,LEAST COST ROUTING TELECOM S.L.,ES,"CL FERNANDO REY 8 CIUDAD DE LA IMAGEN, 28223 Pozuelo de Alarcón, ES",ACTIVE,GENERAL,LAPSED,legal_core,0.9,least cost routing telecom,,ES,14508,,http://www.lcrcom.net,1
 LEDVANCE,549300ZDB2MOMLI3OP47,LEDVANCE LLC,US,"3411 SILVERSIDE ROAD TATNALL BUILDING STE 104, 19810 WILMINGTON, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,ledvance,,US,,LL-942-ARIN,,1
-LEGRAND FRANCE S.A,969500TJLHIZLFRWEQ48,LEGRAND FRANCE,FR,"128 AVENUE MARECHAL DE LATTRE DE TASSIGNY, 87000 LIMOGES, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,legrand france,,FR,,ORG-LA6-RIPE,,1
+LEGRAND FRANCE S.A,969500TJLHIZLFRWEQ48,LEGRAND FRANCE,FR,"128 AVENUE MARECHAL DE LATTRE DE TASSIGNY, 87000 LIMOGES, FR",ACTIVE,GENERAL,LAPSED,legal_core,0.9,legrand france,,FR,,ORG-LA6-RIPE,,1
 LHC Group,5299009NPLWAMRQYZX73,"LHC GROUP, INC.",US,"420 West Pinhook Road, Suite A, 70503 Lafayette, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,lhc group,,US,,LG-263-ARIN,,1
 LINK Mobility SAS,894500V386RVCZ5MRA88,LINK MOBILITY,FR,"62 AVENUE EMILE ZOLA, 92100 BOULOGNE-BILLANCOURT, FR",ACTIVE,GENERAL,ISSUED,legal_core,0.9,link mobility,,FR,,ORG-NA310-RIPE,,1
 LOCINOX N.V.,5493005UQ9GT5NCTFM82,LOCINOX,BE,"Brabantstraat 107, 8790 Waregem, BE",ACTIVE,GENERAL,ISSUED,legal_core,0.9,locinox,,BE,,ORG-LA2002-RIPE,,1
@@ -12249,7 +12253,7 @@ Mazowiecki Port Lotniczy Warszawa-Modlin Sp. z o.o.,259400626NSFRSDBWR21,"""MAZO
 McCormick & Company Inc.,549300JQQA6MQ4OJP259,"MCCORMICK & COMPANY, INCORPORATED",US,"24 Schilling Road, 21031 Baltimore, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,mccormick and,,US,,MCCORM-2-ARIN,,1
 "McDermott, Will, and Emery",549300UMG3O2LATV4G18,McDermott Will & Emery LLP,US,"227 West Monroe Street, 60606-5096 Chicago, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,mcdermott will and emery,,US,,MWE-ARIN,,1
 "McDonogh School, Inc.",549300F72ID7CKFI8F50,"McDonogh School, Incorporated",US,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,mcdonogh school,,US,,MS-3-ARIN,,1
-McGraw-Hill Education,254900U6YJ9QZ4IQOR26,"MCGRAW-HILL EDUCATION, INC.",US,"1325 Avenue of the Americas, 10019 New York, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,mcgraw hill education,,US,,MGEHL-ARIN,,1
+McGraw-Hill Education,254900U6YJ9QZ4IQOR26,"MCGRAW-HILL EDUCATION, INC.",US,"1325 Avenue of the Americas, 10019 New York, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,mcgraw hill education,,US,,MGEHL-ARIN,,1
 McKesson Corp.,549300WZWOM80UCFSF54,MCKESSON CORPORATION,US,"6555 N. STATE HIGHWAY 161, 75039 IRVING, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,mckesson,,US,,MCKESS-ARIN,,1
 McNaughton-McKay Electric Company,5493001QUX2VK3WFN327,MCNAUGHTON-MCKAY ELECTRIC CO.,US,"1357 East Lincoln Avenue, 48071 Madison Heights, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,mcnaughton mckay electric,,US,,MCNAUG-ARIN,,1
 "Meadowbrook, Inc.",549300FUS3VZ2IPEI562,"Meadowbrook Investments, L.C.",US,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,meadowbrook,,US,,MEADO-24-ARIN,,1
@@ -12512,7 +12516,7 @@ PROTECTION ONE,549300WPNZVJY4O70K08,"Protection One, Inc.",US,,ACTIVE,GENERAL,LA
 PRTC,549300PXPKTVXNQ05J51,"PRTC, L.P.",US,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,prtc,,US,44089,PRTC-6-ARIN,,1
 PSA Antwerp NV,894500RF45RPQREYRX12,PSA Antwerp,BE,"Napelsstraat 79, 2000 Antwerpen, BE",ACTIVE,GENERAL,ISSUED,legal_core,0.9,psa antwerp,,BE,,ORG-PAN2-RIPE,,1
 PT Adira Dinamika Multi Finance,254900SPGMQJ5QQCD457,PT ADIRA DINAMIKA MULTI FINANCE TBK,ID,"Millenium Centennial Center Lantai 53-61, 12920 South Jakarta, ID",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pt adira dinamika multi finance,,ID,,@aut-139445-APNIC,,1
-PT Bank Maybank Indonesia Tbk.,549300RHDK5D1O3JHU60,PT BANK MAYBANK INDONESIA,ID,"SENTRAL SENAYAN III LT.26, 10270 Jakarta Pusat, ID",ACTIVE,GENERAL,LAPSED,legal_core,0.9,pt bank maybank,,ID,36429,,https://www.maybank.co.id/,1
+PT Bank Maybank Indonesia Tbk.,549300RHDK5D1O3JHU60,PT BANK MAYBANK INDONESIA,ID,"SENTRAL SENAYAN III LT.26, 10270 Jakarta Pusat, ID",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pt bank maybank,,ID,36429,,https://www.maybank.co.id/,1
 PT Bank OCBC NISP,549300RBYAFM3PQZB872,PT BANK OCBC NISP TBK.,ID,"JL PROF. SATRIO NOMOR 25, 12940 JAKARTA, ID",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pt bank ocbc nisp,,ID,,@aut-149352-APNIC,,1
 PT Era Digital Media,254900ARFWZH6BQ95Q17,PT ERA DIGITAL MEDIA Tbk.,ID,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,pt era digital media,,ID,38258,@aut-147128-APNIC,,1
 PT PERUSAHAAN GAS NEGARA,549300OX1VFDX7ZPN240,PT Perusahaan Gas Negara Tbk.,ID,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,pt perusahaan gas negara,,ID,,@aut-140434-APNIC,,1
@@ -12539,7 +12543,7 @@ Passepartout s.p.a.,894500W53Z6ABV9QQ503,Passepartout SPA,SM,"Via Consiglio dei 
 PayPal Pvt Ltd,549300ZO4GNVXIBGHK94,PAYPAL PTE. LTD.,SG,"5 TEMASEK BOULEVARD, 038985 SINGAPORE, SG",ACTIVE,GENERAL,ISSUED,legal_core,0.9,paypal,,SG,,ORG-PPL5-RIPE,,1
 Paytel S.A.,259400TEXE7S9F22FN10,PAYTEL SPÓŁKA AKCYJNA,PL,"WARSZAWA ŻWIRKI I WIGURY 14, 02-092 WARSZAWA, PL",ACTIVE,GENERAL,ISSUED,legal_core,0.9,paytel,,PL,,ORG-PSZO15-RIPE,,1
 Paytm Payments Bank Ltd,335800PXW9GTY4MSQJ80,PAYTM PAYMENTS BANK LIMITED,IN,"136, 1ST FLOOR, DEVIKA TOWER,, 110019 NEW DELHI, IN",ACTIVE,GENERAL,ISSUED,legal_core,0.9,paytm payments bank,,IN,,@aut-140142-APNIC,,1
-Payworks,2549009YWW4FRK49QH22,PAYWORKS INC.,CA,"1700 - 360 Main Street, R3C 3Z3 Winnipeg, CA",ACTIVE,GENERAL,LAPSED,legal_core,0.9,payworks,,CA,,PAYWO-1-ARIN,,1
+Payworks,2549009YWW4FRK49QH22,PAYWORKS INC.,CA,"1700 - 360 Main Street, R3C 3Z3 Winnipeg, CA",INACTIVE,GENERAL,RETIRED,legal_core,0.9,payworks,,CA,,PAYWO-1-ARIN,,1
 Pc Solutions Pvt. Ltd.,335800NZMS7XAB9H7745,PC SOLUTIONS PRIVATE LIMITED,IN,"A-72-73,FIEE COMPLEX OKHLA INDUSTRIAL AREA PHASE-II NEW DELHI SOUTH DELHI, 110020 NEW DELHI, IN",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pc solutions,,IN,,@aut-135179-APNIC,,1
 "Pegaso PCS, S.A. de C.V.",4469000001BQV38J5254,PEGASO PCS SA DE CV,MX,"PROL. PASEO DE LA REFORMA 1200 PISO 14, 05349 Ciudad de México, MX",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pegaso pcs,,MX,18358,,http://www.movistar.com.mx/,1
 Pegasus Transtech,54930022HHY1DZUH0N16,"Pegasus TransTech, LLC",US,"4301 West Boy Scout Boulevard, 33607 Tampa, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,pegasus transtech,,US,,PTL-165-ARIN,,1
@@ -12553,7 +12557,7 @@ Petrol Ofisi AS,549300Q8I7ZJQSLL4R91,PETROL OFISI ANONIM ŞIRKETI,TR,"ÜNALAN MA
 Pharmavite,2549002ODK8OS0ZYP477,PHARMAVITE LLC,US,"8531 FALLBROOK AVENUE, 91304 LOS ANGELES, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pharmavite,,US,,PHARM-58-ARIN,,1
 Phoenix Informatica SRL,8156007DC2BC12A28E39,PHOENIX INFORMATICA S.R.L.,IT,"VIA G. QUARENA, 124, 25085 GAVARDO, IT",ACTIVE,GENERAL,ISSUED,legal_core,0.9,phoenix informatica,,IT,,ORG-PIS2-RIPE,,1
 Phone Pulse Ltd,984500OE9F15B672B345,PHONE PULSE LIMITED,IE,"41 SOUTHERN CROSS BUSINESS PARK, A98 C984 Co. Wicklow, IE",ACTIVE,GENERAL,LAPSED,legal_core,0.9,phone pulse,,IE,,ORG-PPL7-RIPE,,1
-Pine Labs Pvt. Ltd.,335800PNP7BSLLVIBK61,PINE LABS LIMITED,IN,"408, 4TH FLOOR,, 122002 GURGAON, IN",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pine labs,,IN,,@aut-135263-APNIC,,1
+Pine Labs Pvt. Ltd.,335800PNP7BSLLVIBK61,PINE LABS LIMITED,IN,"408, 4TH FLOOR, TIME TOWER MG ROAD, DLF QE, 122002 GURGAON, IN",ACTIVE,GENERAL,ISSUED,legal_core,0.9,pine labs,,IN,,@aut-135263-APNIC,,1
 "Pinnacle Asset Management, LP",549300Z268MF553JWP83,"PINNACLE ASSET MANAGEMENT, L.P.",US,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,pinnacle asset management,,US,,PAML-7-ARIN,,1
 Pinnacle Tele Services Pvt. Ltd.,33580084Y49O36BPVY33,PINNACLE TELE SERVICES PRIVATE LIMITED,IN,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,pinnacle tele services,,IN,,@aut-133974-APNIC,,1
 Pitney Bowes Incorporated,549300N2O26NW4ST6W55,PITNEY BOWES INC.,US,"3001 Summer Street, 06905 Stamford, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,pitney bowes,,US,,PITNEY-2-ARIN,,1
@@ -12883,7 +12887,7 @@ Sonali Bank Limited,549300VE2H041QJDRU79,Sonali Bank PLC,BD,"35-42, 44 Motijheel
 Sopockie Towarzystwo Ubezpieczen Ergo Hestia S.A.,259400GGL5VECMUS2X04,SOPOCKIE TOWARZYSTWO UBEZPIECZEŃ ERGO HESTIA SPÓŁKA AKCYJNA,PL,"Sopot Hestii 1, 81-731 Sopot, PL",ACTIVE,GENERAL,ISSUED,legal_core,0.9,sopockie towarzystwo ubezpieczen ergo hestia,,PL,,ORG-STUE1-RIPE,,1
 Sopra Steria Belgium SA,967600WJBZ0B9HZW2Z39,Sopra Steria Belgium,BE,"Avenue Arnaud Fraiteur 15-23, 1050 IXELLES, BE",ACTIVE,GENERAL,ISSUED,legal_core,0.9,sopra steria belgium,,BE,,ORG-SBS27-RIPE,,1
 Sorgenia Spa,EOJCGSUI4NX234BL7V57,SORGENIA S.P.A.,IT,"VIA ALESSANDRO ALGARDI, 4, 20148 MILANO, IT",ACTIVE,GENERAL,ISSUED,legal_core,0.9,sorgenia,,IT,,ORG-SS163-RIPE,,1
-Sorint Lab Spa,8156004C0DDCF2B1FA14,SORINT.LAB SOCIETA' PER AZIONI,IT,"VIA ZANICA, 17, 24050 GRASSOBBIO, IT",ACTIVE,GENERAL,ISSUED,legal_core,0.9,sorint lab,,IT,,ORG-SLS24-RIPE,,1
+Sorint Lab Spa,8156004C0DDCF2B1FA14,SORINT.LAB SOCIETA' PER AZIONI,IT,"VIA ZANICA, 17, 24050 GRASSOBBIO, IT",ACTIVE,GENERAL,LAPSED,legal_core,0.9,sorint lab,,IT,,ORG-SLS24-RIPE,,1
 Soroban Capital Partners LLC,549300R2V4RSGZEFW477,SOROBAN CAPITAL PARTNERS LP,US,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,soroban capital partners,,US,,SCPL-11-ARIN,,1
 South Jersey Transportation Authority,549300W8SZI2CAOKT956,South Jersey Transportation Authority LLC,US,"PO Box 351, 08037 Hammonton, US",ACTIVE,GENERAL,LAPSED,legal_core,0.9,south jersey transportation authority,,US,,SJTA-ARIN,,1
 South Tyrolean Internet ExchangePoint,8945009SWQ7F42S87J46,Stix S.R.L.,IT,"Via Milazzo 5, 40121 Bologna, IT",ACTIVE,GENERAL,LAPSED,legal_core,0.9,stix,alt_name,IT,44047,,https://www.stix.bz/,1
@@ -12990,7 +12994,7 @@ TPV Displays Polska Sp. z o.o.,2594001XVBZME077D318,TPV DISPLAYS POLSKA SPÓŁKA
 TRECOM Poznan Sp. z o.o.,259400L4CNSG9ZUGD766,TRECOM POZNAŃ SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ,PL,"SUCHY LAS, ZŁOTNIKI KRZEMOWA 1, 62-002 SUCHY LAS, ZŁOTNIKI, PL",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trecom poznan,,PL,,ORG-TPSZ8-RIPE,,1
 TREFL SA,2594005CFV9HYTFMQX71,TREFL SPÓŁKA AKCYJNA,PL,"GDYNIA KONTENEROWA 25, 81-155 GDYNIA, PL",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trefl,,PL,,ORG-TS194-RIPE,,1
 TRENITALIA SPA,549300M8OMBYLAW8P692,TRENITALIA S.P.A.,IT,"PIAZZA DELLA CROCE ROSSA 1, 00161 ROME, IT",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trenitalia,,IT,,ORG-TS41-RIPE,,1
-TRIFORCE SERVICES AUSTRALIA PTY LTD,2138006CMECY3G55OW52,TRIFORCE AUSTRALIA PTY LIMITED,AU,,ACTIVE,GENERAL,ISSUED,legal_core,0.9,triforce australia,alt_name,AU,39531,ORG-TSAP1-AP-APNIC,https://www.triforce.com.au,1
+TRIFORCE SERVICES AUSTRALIA PTY LTD,2138006CMECY3G55OW52,TRIFORCE AUSTRALIA PTY LIMITED,AU,,ACTIVE,GENERAL,LAPSED,legal_core,0.9,triforce australia,alt_name,AU,39531,ORG-TSAP1-AP-APNIC,https://www.triforce.com.au,1
 TRISOPTERUS LTD,9845007CCCD03B5DAN38,TRISOPTERUS LIMITED,CY,"Κορινθίας, 13, 7081 Λάρνακα, CY",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trisopterus,,CY,,ORG-TL949-RIPE,,1
 "TRUST, LLC",549300V4IWDO6EFUKC70,TRUST Federal Credit Union,US,"555 Walnut Street, 37402 Chattanooga, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trust,,US,,TL-108-ARIN,,1
 TRUSTMARK INSURANCE CO.,254900QG8ZRUESBWCC56,Trustmark Insurance Company,US,"400 Field Drive, 60045 Lake Forest, US",ACTIVE,GENERAL,ISSUED,legal_core,0.9,trustmark insurance,,US,,TRUSTM-ARIN,,1
@@ -13778,7 +13782,6 @@ Lightpath,5493002ZVBLRLGES1R71,CABLEVISION LIGHTPATH LLC,US,"1111 Stewart Avenue
 Linkem Spa,8156008F52B23E338F42,SHELLNET SOCIETA' IN ACCOMANDITA PER AZIONI DI SHELLNET GP S.R.L.,IT,"CORSO ITALIA, 22, 20122 MILANO, IT",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,linkem,,IT,21417,,http://web.linkem.com/,1
 Ljosleidarinn,549300KJIPL1Q1N6FB19,Ljósleiðarinn ehf.,IS,"Bæjarhálsi 1, 110 Reykjavík, IS",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,ljosleidarinn,,IS,1787,,http://www.ljosleidarinn.is,1
 Lufthansa Systems Hungaria Ltd.,529900YLDY70L7O07T27,Lufthansa Systems Hungaria Információs Technikai Szolgáltató és Szervíz Korlátolt Felelosségu Társaság,HU,"Neumann János u 1. E. ép., 1117 Budapest, HU",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,lufthansa systems hungaria,,HU,,ORG-LSYH1-RIPE,,1
-Lumenpulse Group,549300M0JK31V5VS6P85,LMPG INC.,CA,"1220, boul. Marie-Victorin, J4G 2H9 Longueuil, CA",ACTIVE,GENERAL,LAPSED,other_name_core,0.85,lumenpulse group,,CA,,LMPGI-ARIN,,1
 MATCHTECH GROUP (UK) LIMITED,213800LM81ZQ9V9G6866,GATTACA PLC,GB,"1450 PARKWAY, PO15 7AF FAREHAM, GB",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,matchtech group,,GB,,ORG-MGP3-RIPE,,1
 MAXCOM Ltd,529900F7X4ZT29WJTW42,МАКСКОМ,BG,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,maxcom,,BG,,ORG-ML430-RIPE,,1
 MCG Energy Solutions LLC,5493000HDNVNEZCDQJ85,ENERGY SOLUTIONS (US) LLC,US,"504 CARNEGIE CENTER, 08540 PRINCETON, US",ACTIVE,GENERAL,ISSUED,as_name_exact,0.85,energy solutions llc,as_name,US,,MESL-3-ARIN,,1
@@ -13800,7 +13803,7 @@ Mercor S.A.,259400981621M85NA449,MCR SPÓŁKA AKCYJNA,PL,"Gdańsk Juliusza Słow
 Middle East Financial Investment,254900X9IAK5HXWF6E09,شركة الشرق الأوسط للاستثمار المالي,SA,,ACTIVE,GENERAL,LAPSED,other_name_core,0.85,middle east financial investment,,SA,,ORG-MEFI1-RIPE,,1
 Migdal Insurance Company Ltd.,635400U8IVZKGQMCP654,"מגדל חברה לביטוח בע""מ",IL,"4 EFAL ST., 4951104 PETAH TIKVA, IL",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,migdal insurance,,IL,,ORG-MIL7-RIPE,,1
 "Mitr Phol Sugar Corp., Ltd.",254900PYEL98SW9EDF02,บริษัท น้ำตาลมิตรผล จำกัด,TH,"2 อาคารเพลินจิตเซ็นเตอร์, 10110 กรุงเทพ, TH",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,mitr phol sugar,,TH,,ORG-MPSC2-AP-APNIC,,1
-Money Plus Management AD,485100CV7HW3EESO2023,СИЛВЪР ПРОДЖЕКТ,BG,,ACTIVE,GENERAL,LAPSED,other_name_core,0.85,money plus management,,BG,,ORG-MA2085-RIPE,,1
+Money Plus Management AD,485100CV7HW3EESO2023,МЪНИ ПЛЮС МЕНИДЖМЪНТ,BG,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,money plus management,,BG,,ORG-MA2085-RIPE,,1
 Mosenergo PJSC,529900HWROSNW89Z7C14,"ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО ЭНЕРГЕТИКИ И ЭЛЕКТРИФИКАЦИИ ""МОСЭНЕРГО""",RU,"Prospekt Vernadskogo, 101, 119526 Moskau, RU",ACTIVE,GENERAL,LAPSED,other_name_core,0.85,mosenergo,,RU,,ORG-MA1167-RIPE,,1
 Municipal Bank AD,2138007DX2PGI77JX128,ОБЩИНСКА БАНКА,BG,"6, VRABCHA STREET, 1000 SOFIA, BG",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,municipal bank,,BG,,ORG-MA201-RIPE,,1
 NC in Scandinavia AB,984500BFDDDYBE45E744,N C in Scandinavia AB,SE,"Box 7285, 402 35 GÖTEBORG, SE",ACTIVE,GENERAL,ISSUED,as_name_exact,0.85,n c in scandinavia ab,as_name,SE,11172,,http://www.bredbandsson.se,1
@@ -13839,7 +13842,7 @@ Origin Energy Services Ltd,ZSN2LWNPYW6ISMRUC664,ORIGIN ENERGY LIMITED,AU,"'Tower
 Osceola Ltd.,9845000E98367DBB7F84,ОСЦЕОЛА,BG,,ACTIVE,GENERAL,LAPSED,other_name_core,0.85,osceola,,BG,,ORG-OA401-RIPE,,1
 Otrobanda AS,549300890ENOLWLG3O37,Globetech AS,NO,"Kirkegata 1, 4610 Kristiansand, NO",ACTIVE,GENERAL,LAPSED,as_name_exact,0.85,globetech as,as_name,NO,,ORG-GA399-RIPE,,1
 Overstock.com,549300ACR0DL9U7EI710,"BED BATH & BEYOND, INC.",US,"799 West Coliseum Way, 84047 Midvale, US",ACTIVE,GENERAL,LAPSED,other_name_core,0.85,overstock com,,US,,OVERST-ARIN,,1
-PARADISE,988400PHXBKVTIUE5T75,주식회사 파라다이스,KR,"서울특별시 중구 퇴계로 299 (쌍림동), 04560 Seoul, KR",ACTIVE,GENERAL,LAPSED,other_name_core,0.85,paradise,,KR,,@aut-152226-APNIC,,1
+PARADISE,988400PHXBKVTIUE5T75,주식회사 파라다이스,KR,"서울특별시 중구 퇴계로 299 (쌍림동), 04560 Seoul, KR",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,paradise,,KR,,@aut-152226-APNIC,,1
 PETROLEO BRASILEIRO S.A.,5493000J801JZRCMFE49,PETROLEO BRASILEIRO S A PETROBRAS,BR,,ACTIVE,GENERAL,ISSUED,as_name_exact,0.85,petroleo brasileiro s a petrobras,as_name,BR,10995,,http://www.petrobras.com.br,1
 PIRAEUS SECURITIES SA,213800I9XHTVLX73Z109,ΠΕΙΡΑΙΩΣ ΜΟΝΟΠΡΟΣΩΠΗ ΑΝΩΝΥΜΗ ΕΤΑΙΡΕΙΑ ΠΑΡΟΧΗΣ ΕΠΕΝΔΥΤΙΚΩΝ ΥΠΗΡΕΣΙΩΝ,GR,"STADIOU 10, 10564 ATHENS, GR",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,piraeus securities,,GR,,ORG-PSS7-RIPE,,1
 PKP Energetyka SA,259400DADY2WDHC3F072,PGE ENERGETYKA KOLEJOWA SPÓŁKA AKCYJNA,PL,"WARSZAWA HOŻA 63/67, 00-681 WARSZAWA, PL",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,pkp energetyka,,PL,,ORG-PES10-RIPE,,1
@@ -13897,7 +13900,7 @@ Saudi Arabian Mining Company (Ma'aden) JSC,254900R4HAVLB4GY9713,شركة الت�
 Saudi Basic Industries Co,213800ZCTFZZZJSK8645,شركة السعودية للصناعات الأساسيه سابك,SA,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,saudi basic industries,,SA,,ORG-SBIC1-RIPE,,1
 "Scoop, Inc.",254900N68874DI87LP20,THE SCOOP MEDIA INC.,US,"1445 Stonelake Cove Ave Apt 13101, 89074 Henderson, US",ACTIVE,GENERAL,LAPSED,other_name_core,0.85,scoop,,US,,SCOOPI-ARIN,,1
 Scorpion Shipping OOD,984500A7E7Z84ACC5735,СКОРПИОН ШИПИНГ,BG,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,scorpion shipping,,BG,,ORG-SA3831-RIPE,,1
-SdV,254900LSPI5K5SJTO274,CEVA (AIR AND OCEAN) AUSTRALIA PTY LTD,AU;FR,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,sdv,,FR,438,,https://www.sdv.fr,1
+SdV,254900LSPI5K5SJTO274,CEVA (AIR AND OCEAN) AUSTRALIA PTY LTD,AU;FR,,ACTIVE,GENERAL,LAPSED,other_name_core,0.85,sdv,,FR,438,,https://www.sdv.fr,1
 Seaborn,6367002HUAAC6OBEYW96,"SEABRAS 1 USA, LLC",US,"600 CUMMINGS CENTER, 01915 BEVERLY, US",ACTIVE,GENERAL,ISSUED,as_name_exact,0.85,seabras 1 usa llc,as_name,US,20902,,https://www.seabornnetworks.com,1
 Securax Ltd.,2549000GX7FQ5Z7Z5H04,СЕКЮРАКС ЕООД,BG,"ул. Тинтява 120, 1113 София, BG",ACTIVE,GENERAL,ISSUED,other_name_core,0.85,securax,,BG,,ORG-SCX1-RIPE,,1
 Service Stream Limited,254900BGR8Y25CRN1892,Service Stream Holdings Pty Ltd,AU,,ACTIVE,GENERAL,ISSUED,other_name_core,0.85,service stream,,AU,,ORG-SSL16-AP-APNIC,,1
@@ -14367,7 +14370,7 @@ Credit Union of Colorado,549300ABEFRFKC9S8368,"CREDIT UNION OF COLORADO, A FEDER
 "D&P Communications, Inc.",5493002CHBIK8NMWYF66,"WOMEN TRAVELING TOGETHER, INC.",US,"2661 RIVA RD., 21401 ANNAPOLIS, US",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,d and d communications,score=95,US,16651,DPCOM-1-ARIN,,1
 D-Market Elektronik Hizmetler Tic. A.S.,9845004CF6A069998F16,D-MARKET ELEKTRONİK HİZMETLER VE TİCARET ANONİM ŞİRKETİ,TR,"KUŞTEPE MAH.MECİDİYEKÖY YOLU CD.N.12 TRUMP TOWERS, 34381 ŞİŞLİ, TR",ACTIVE,GENERAL,LAPSED,fuzzy,0.7,d market elektronik hizmetler,score=94,TR,,ORG-HB9-RIPE,,1
 DAIMLER TRUCKS OF NORTH AMERICA LLC,54930017UG2CYHSOOG16,DAIMLER TRUCK NORTH AMERICA LLC,US,"4747 North Channel Avenue, 97217 Portland, US",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,daimler trucks north america,score=95,US,,DTNA-ARIN,,1
-DANA INNOVATION,5493007DWEWBBA2QGM83,DANA INNOVATIONS,US,"991 Calle Amanecer, 92673 San Clemente, US",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,dana innovations,score=97,US,,DANAI-ARIN,,1
+DANA INNOVATION,5493007DWEWBBA2QGM83,DANA INNOVATIONS,US,"991 Calle Amanecer, 92673 San Clemente, US",ACTIVE,GENERAL,LAPSED,fuzzy,0.7,dana innovations,score=97,US,,DANAI-ARIN,,1
 DC24 Alternatywna Spolka Inwestycyjna Sp. z o.o.,259400NIU5CO4OIMN576,DC24 ALTERNATYWNA SPÓŁKA INWESTYCYJNA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ,PL,"Warszawa Jasna 14/16A, 00-041 Warszawa, PL",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,dc24 alternatywna społka inwestycyjna,score=97,PL,,ORG-DSZO38-RIPE,,1
 DECHEMA Gesellschaft fuer Chemische Technik und Biotechnologie e V,391200NLGHYSUAWOKR83,DECHEMA Gesellschaft für Chemische Technik und Biotechnologie,DE,"Theodor-Heuss-Allee 25, 60486 Frankfurt am Main, DE",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,dechema gesellschaft fur chemische technik und biotechnologie,score=99,DE,,ORG-DGFC1-RIPE,,1
 DEVELOPPEMENT D'APPLICATIONS SUR RESEAUX A VALEUR AJOUTEE SA,969500RMY0H8WAKL4T19,DEVELOPPEMENT D'APPLICATION SUR RESEAUX A VALEUR AJOUTEE,FR,"245 RUE DU STADE, 79180 CHAURAY, FR",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,developpement d application sur reseaux a valeur ajoutee,score=99,FR,35076,ORG-DS237-RIPE,https://www.darva.com/,1
@@ -14520,7 +14523,7 @@ Ohio Farmer's Insurance Company,25490029GDUX4WVU8S74,OHIO FARMERS INSURANCE COMP
 Open Life Towazystwo Ubezpieczen Zycie S.A.,259400MNYUI0WSI1WU07,OPEN LIFE TOWARZYSTWO UBEZPIECZEŃ ŻYCIE SPÓŁKA AKCYJNA,PL,"Warszawa ALEJA JANA PAWŁA II 25, 00-854 Warszawa, PL",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,open life towarzystwo ubezpieczen zycie,score=99,PL,,ORG-OLTU1-RIPE,,1
 Operator Gazociagow Przesylowych GAZ-SYSTEM S.A.,25940065PLGSYULPWB15,OPERATOR GAZOCIĄGÓW PRZESYŁOWYCH GAZ-SYSTEM SPÓŁKA AKCYJNA,PL,"WARSZAWA MSZCZONOWSKA 4, 02-337 WARSZAWA, PL",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,operator gazociagow przesyłowych gaz system,score=98,PL,,ORG-OGPG1-RIPE,,1
 Oppenheimer Capital/Quest for Value,549300HUW1CC0OO86Q61,OPPENHEIMER EQUITY INCOME FUND,US,"6803 South Tucson Way, 80112 Centennial, US",INACTIVE,FUND,RETIRED,fuzzy,0.7,oppenheimer quest capital value fund,score=93,US,,OCV-ARIN,,1
-P.C. & Associes SRL,9695004IKQS8IJ1LVI86,P&L ASSOCIES,FR,"7 RUE COMMANDANT DUBOIS, 69003 LYON, FR",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,p and l associes,score=94,FR,,ORG-PAS4-RIPE,,1
+P.C. & Associes SRL,9695004IKQS8IJ1LVI86,P&L ASSOCIES,FR,"7 RUE COMMANDANT DUBOIS, 69003 LYON, FR",ACTIVE,GENERAL,LAPSED,fuzzy,0.7,p and l associes,score=94,FR,,ORG-PAS4-RIPE,,1
 P2 Capital Parnters LLC,549300SENGGVJEZ95M18,"P2 CAPITAL PARTNERS, LLC",US,"590 Madison Ave, 10022 New York, US",ACTIVE,GENERAL,LAPSED,fuzzy,0.7,p2 capital partners,score=95,US,,PCPL-7-ARIN,,1
 PGE Energia Ciepla S.A.,529900YP69S2SBCYB675,PGE ENERGIA CIEPŁA SPÓŁKA AKCYJNA,PL,"Warszawa Złota 59, 00-120 Warszawa, PL",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,pge energia ciepła,score=94,PL,,ORG-PECS3-RIPE,,1
 POK Puehringer AG,529900JOSISYEGH2R695,POK Pühringer AG,CH,"Seestrasse 18, 6354 Vitznau, CH",ACTIVE,GENERAL,ISSUED,fuzzy,0.7,pok puhringer,score=96,CH,,ORG-PA439-RIPE,,1
@@ -15314,6 +15317,7 @@ Imperial PFS,549300DDQLLK3X56ZO38,PFS HOLDING COMPANY,US,"1055 Broadway, 11th Fl
 Imperial Tobacco Canada Ltd.,9845006CE6FD9C3BE640,Imperial Tobacco Corporate Pension Plan,CA,"3711 Rue Saint‐Antoine O, H4C 3P6 Montréal, CA",ACTIVE,GENERAL,ISSUED,address_name,0.6,imperial tobacco corporate pension plan,"whois_address,score=82,general_entity",CA,,ITL-ARIN,,1
 Imperial Tobacco Polska S.A,259400L0CFJFCQTV5H26,PASO POLSKA Spółka z ograniczoną odpowiedzialnością Spółka komandytowa,PL,"Tarnowo Podgórne Sierosław, ul. Skrajna 1, 62-080 Tarnowo Podgórne, PL",ACTIVE,GENERAL,ISSUED,address_name,0.6,paso polska społka z,"whois_address,score=56,issued_only",PL,,ORG-ITPS1-RIPE,,1
 In Aria! Italia Srl,529900GSHM2Y8KR6YC76,IN ARIA! - G.E.I.E.,IT,"VIA PRIVATA DERUTA 20, 20132 Milano, IT",ACTIVE,GENERAL,ISSUED,address_name,0.6,in aria g e,"whois_address,score=78",IT,,ORG-TS466-RIPE,,1
+Infomaniak Network SA,529900ZII23DTVHP9E90,Infomaniak SA,CH,"Rue Eugène-MARZIANO 25, 1227 Les Acacias, CH",ACTIVE,GENERAL,ISSUED,address_name,0.6,infomaniak,"whois_address,score=100",CH,2428,ORG-INS5-RIPE,http://www.infomaniak.com,1
 InfraServ GmbH trading as InfraServ GmbH & Co. Gendorf KG,391200OYPDIWIK0TA838,InfraServ GmbH & Co. Gendorf KG,DE,"Industrieparkstr. 1, 84508 Burgkirchen an der Alz, DE",ACTIVE,GENERAL,ISSUED,address_name,0.6,infraserv gmbh and co gendorf,"whois_address,score=100",DE,,ORG-IG3-RIPE,,1
 Infracom Communications AB,5493007G91U1IZRNRC45,Infracom Group AB (publ),SE,"Gamlestadsvägen 1, 415 11 Göteborg, SE",ACTIVE,GENERAL,ISSUED,address_name,0.6,infracom group,"whois_address,score=73",SE,,ORG-CIJA2-RIPE,,1
 Innovaciones Tecnlogicas del Sur S.L.,959800EGSJ58B26NZ375,INNOVACIONES TECNOLOGICAS DEL SUR SOCIEDAD LIMITADA,ES,"C/ SIERRA MORENA, 12, 2º, EDIF. CTSAII, PTA 2, OFICINA 9, 23620 MENGÍBAR, ES",ACTIVE,GENERAL,ISSUED,address_name,0.6,innovaciones tecnologicas del sur sociedad,"whois_address,score=86",ES,,ORG-ITDS1-RIPE,,1
@@ -15398,7 +15402,7 @@ Liberty Healthcare Management Inc.,5493003HOY5PGL9HSO08,"Liberty Healthcare Prop
 Liebherr-IT Services GmbH,529900CY27AI21QOLA35,Liebherr-Logistics GmbH,DE,"St. Vitus 1, 88457 Kirchdorf an der Iller, DE",ACTIVE,GENERAL,LAPSED,address_name,0.6,liebherr logistics,"whois_address,score=74",DE,,ORG-LSG5-RIPE,,1
 Lifeline Data Centers,5493009US8P6QUUH6287,"LIFELINE - 7601, LLC",US,"PO Box 448, 47331 Connersville, US",ACTIVE,GENERAL,LAPSED,address_name,0.6,lifeline 7601,"whois_address,score=76",US,5172,LDC-13-ARIN,,1
 "Limetree Bay Holdings, LLC",54930012NCJXEQAWEI45,"Limetree Bay Terminals, LLC",VI,"1 Estate Hope, 00820 Christiansted, VI",ACTIVE,GENERAL,LAPSED,address_name,0.6,limetree bay terminals,"whois_address,score=74",VI,,LBHL-5-ARIN,,1
-"Linea Directa Aseguradora, S.A.",95980079E2NBJT967T79,LINEA DIRECTA ASEGURADORA SOCIEDAD ANONIMA COMPAÑIA DE SEGUROS Y REASEGUROS,ES,"ISAAC NEWTON 7, 28760 Tres Cantos, ES",ACTIVE,GENERAL,LAPSED,address_name,0.6,linea directa aseguradora sociedad anonima compania de seguros y reaseguros,"whois_address,score=100",ES,,ORG-LDAS1-RIPE,,1
+"Linea Directa Aseguradora, S.A.",95980079E2NBJT967T79,LINEA DIRECTA ASEGURADORA SOCIEDAD ANONIMA COMPAÑIA DE SEGUROS Y REASEGUROS,ES,"ISAAC NEWTON 7, 28760 Tres Cantos, ES",ACTIVE,GENERAL,ISSUED,address_name,0.6,linea directa aseguradora sociedad anonima compania de seguros y reaseguros,"whois_address,score=100",ES,,ORG-LDAS1-RIPE,,1
 Lithuanian Radio and Television Centre,894500JK9EQU4HAWS380,AB Lietuvos radijo ir televizijos centras,LT,"Sausio 13-osios g. 10, LT-04347 Vilnius, LT",ACTIVE,GENERAL,LAPSED,address_name,0.6,ab lietuvos radijo ir televizijos centras,"pdb_address,score=68",LT,3325,,http://www.telecentras.lt/,1
 Littleton Regional Hospital,549300UODSFEJKWB2W30,LITTLETON HOSPITAL ASSOCIATION,US,"600 Saint Johnsbury Road, 03561 Littleton, US",ACTIVE,GENERAL,LAPSED,address_name,0.6,littleton hospital association,"whois_address,score=80",US,,LITTL-14-ARIN,,1
 Litware LLC,9845003DBBE5J9485855,70WARE LLC,US,"732 South 6th St ste. V, 89101 Las Vegas, US",ACTIVE,GENERAL,ISSUED,address_name,0.6,70ware,"whois_address,score=62",US,36232,LL-952-ARIN,,1
@@ -15537,7 +15541,7 @@ Orron Energy SA,52990011UY1D5C5HUH40,Lundin Energy Marketing SA,CH,"chemin de la
 Orthofix Medical INC,549300HRN58LBDVIOM12,ORTHOFIX US LLC,US,"3451 Plano Parkway, 75056 Lewisville, US",ACTIVE,GENERAL,LAPSED,address_name,0.6,orthofix us,"whois_address,score=84",US,,OM-248-ARIN,,1
 Oshawa PUC Services Inc,5493007FOL836D09X797,Oshawa PUC Networks Inc,CA,"100 Simcoe Street South, L1H 7M7 Oshawa, CA",ACTIVE,GENERAL,LAPSED,address_name,0.6,oshawa puc networks,"pdb_address,score=74",CA,27691,OPS-60-ARIN,http://www.durhambroadband.ca,1
 Ouest.Network,969500CF2BPSEG49TR17,GB OUEST ASSOCIES,FR,"14 RUE DU CHEMIN ROUGE, 44300 NANTES, FR",INACTIVE,GENERAL,RETIRED,address_name,0.6,gb ouest associes,"pdb_address,score=56",FR,28608,,https://ouest.network,1
-Outpost 24 AB,894500K37PSTEBDWUJ69,Outpost24 AB,SE,"Blekingegatan 1, 371 57 Karlskrona, SE",ACTIVE,GENERAL,ISSUED,address_name,0.6,outpost24,"pdb_address,score=74",SE,39435,ORG-OA958-RIPE,https://www.outpost24.com,1
+Outpost 24 AB,894500K37PSTEBDWUJ69,Outpost24 AB,SE,"Blekingegatan 1, 371 57 Karlskrona, SE",ACTIVE,GENERAL,LAPSED,address_name,0.6,outpost24,"pdb_address,score=74",SE,39435,ORG-OA958-RIPE,https://www.outpost24.com,1
 Owensboro Municipal Utilities,549300DQ1X9RGUG6QW64,"The City Utility Commission of the City of Owensboro, Kentucky",US,"2070 Tamarack Road, 42301 Owensboro, US",ACTIVE,RESIDENT_GOVERNMENT_ENTITY,ISSUED,address_name,0.6,city utility commission of the city of owensboro kentucky,"whois_address,score=51",US,34891,OMU-1-ARIN,,1
 PCC IT S.A.,2594003GVVF9U3PSDS82,PCC ROKITA SPÓŁKA AKCYJNA,PL,"Brzeg Dolny Henryka Sienkiewicza 4, 56-120 Brzeg Dolny, PL",ACTIVE,GENERAL,ISSUED,address_name,0.6,pcc rokita,"whois_address,score=75",PL,,ORG-PCT1-RIPE,,1
 PCL Constructors INC,549300Z38R4DRZ0DDF55,PCL Construction Holdings Ltd.,CA,"9915 56 Avenue NW, T6E 5L7 Edmonton, CA",ACTIVE,GENERAL,LAPSED,address_name,0.6,pcl construction holdings,"whois_address,score=73",CA,,PC-819-ARIN,,1
@@ -15582,6 +15586,7 @@ Previnet S.p.A.,259400ED3RMQ05YM5O41,PREVINET - SERVIZI PER LA PREVIDENZA S.P.A.
 PricewaterhouseCoopers GmbH WPG,529900O67D58JONSGX86,PricewaterhouseCoopers GmbH Wirtschaftsprüfungsgesellschaft,DE,"Friedrich-Ebert-Anlage 35-37, 60327 Frankfurt am Main, DE",ACTIVE,GENERAL,ISSUED,address_name,0.6,pricewaterhousecoopers gmbh wirtschaftsprufungsgesellschaft,"whois_address,score=93",DE,,ORG-PAW1-RIPE,,1
 PricewaterhouseCoopers Societe cooperative,2221006TYY2Y64VC9N86,PRICEWATERHOUSECOOPERS,LU,"2, RUE GERHARD MERCATOR, L-2182 LUXEMBOURG, LU",ACTIVE,GENERAL,ISSUED,address_name,0.6,pricewaterhousecoopers,"whois_address,score=100",LU,,ORG-PSC10-RIPE,,1
 PrimeTel PLC,549300NQ5Y2B8LWTYG57,ΤΑΜΕΙΟ ΠΡΟΝΟΙΑΣ ΠΡΟΣΩΠΙΚΟΥ ΤΗΣ ΕΤΑΙΡΕΙΑΣ PRIMETEL PLC,CY,"141 OMONIA AVENUE, 3045 LIMASSOL, CY",ACTIVE,GENERAL,LAPSED,address_name,0.6,ταμειο προνοιασ προσωπικου τησ εταιρειασ primetel,"pdb_address,score=100",CY,2385,,http://www.primetel.com.cy,1
+Princeton Medical Group,254900B7O7WYU076VU30,"PRINCETON EYE GROUP, P.A.",US,"419 N HARRISON ST, 08540 PRINCETON, US",ACTIVE,GENERAL,ISSUED,address_name,0.6,princeton eye group,"whois_address,score=88",US,,PMG-80-ARIN,,1
 Prinovis Verwaltungs GmbH,529900REJNBA4RN71038,PRINOVIS GmbH & Co. KG,DE,"Carl-Bertelsmann-Straße 161, 33332 Gütersloh, DE",ACTIVE,GENERAL,ISSUED,address_name,0.6,prinovis,"whois_address,score=100",DE,,ORG-PG195-RIPE,,1
 Prisa Media SAU,959800SZZ1F3YVAVL979,"PRISA ACTIVOS EDUCATIVOS, S.L.",ES,"Gran Vía 32, 28013 Madrid, ES",ACTIVE,GENERAL,LAPSED,address_name,0.6,prisa activos educativos,"whois_address,score=62",ES,,ORG-PMS15-RIPE,,1
 "Proconex, Inc.",2549006LMA4GB5GX1M36,Proconex Acquisition Inc.,US,"103 Enterprise Drive, 19468 Royersford, US",ACTIVE,GENERAL,LAPSED,address_name,0.6,proconex acquisition,"whois_address,score=100",US,,PROCO-16-ARIN,,1
@@ -16115,7 +16120,6 @@ Gandhi Institute of Technology and Management,335800XB9XRIIB56VB34,GANDHI INSTIT
 HAWAII PACIFIC DATA LLC,2549000KY43H9XMX1613,HAWAII PACIFIC DATA LLC,US,"91-340 FARRINGTON HWY, 96707 KAPOLEI, US",ACTIVE,GENERAL,LAPSED,legal_exact_nocountry,0.5,hawaii pacific data llc,,,14796,,,0
 HDR Inc,J8047NKL8EN6SPI5CV72,"HDR, INC.",US,"1917 S. 67th Street, 68106 Omaha, US",ACTIVE,GENERAL,ISSUED,legal_exact_nocountry,0.5,hdr inc,,,14249,,,0
 Headlight,8945003W9ADMRNL30263,Headlight,BE,"Desguinlei 6, 2018 Antwerpen, BE",ACTIVE,GENERAL,LAPSED,legal_exact_nocountry,0.5,headlight,active_only,,341,,,0
-Helix,5299003ETIDEGU5GC874,HELIX,FR,"2A Route de Caladroy, 66720 Bélesta, FR",ACTIVE,GENERAL,ISSUED,legal_exact_nocountry,0.5,helix,"active_only,general_entity,issued_only",,11687,,,0
 Hewlett-Packard GmbH,549300B5PRENBDHYQ971,Hewlett-Packard GmbH,DE,"Herrenberger Str. 140, 71034 Böblingen, DE",ACTIVE,GENERAL,ISSUED,legal_exact_nocountry,0.5,hewlett packard gmbh,exact_paren,,3628,,,0
 IKANO S.A.,213800FWVPUKM9NAY153,IKANO S.A.,LU,"1, RUE NICOLAS WELTER, L-2740 LUXEMBOURG, LU",ACTIVE,GENERAL,ISSUED,legal_exact_nocountry,0.5,ikano s a,,,18463,,http://www.ikanogroup.com/,0
 IPLAN (NSS),699400EXX1SRBRYV4493,IPLAN,BE,"Fazantenhoek 7, 2960 Brecht, BE",ACTIVE,GENERAL,ISSUED,legal_exact_nocountry,0.5,iplan,,,9255,,,0
