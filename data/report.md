@@ -1,41 +1,41 @@
 # IYP ↔ GLEIF matching report
 
-- Generated: 2026-10-12 14:28 UTC
-- GLEIF golden copy publish date: 2026-10-12
+- Generated: 2026-10-15 10:54 UTC
+- GLEIF golden copy publish date: 2026-10-15
 - IYP organizations: 97955 (87220 manage at least one AS)
 - Organizations with a country in IYP: 90876
-- Organizations with registry (RDAP) data: 54631; matches that needed it: 1193 (see `hint` column)
+- Organizations with registry (RDAP) data: 54647; matches that needed it: 1193 (see `hint` column)
 
 ## Results
 
-- Matched: **16209** (16.5% of orgs)
-- Ambiguous (needs manual review): 263
-- Unmatched: 81483
-- AS coverage: 24987 of 112618 AS→Organization links (22.2%) point to a matched organization
+- Matched: **16213** (16.6% of orgs)
+- Ambiguous (needs manual review): 264
+- Unmatched: 81478
+- AS coverage: 24995 of 112618 AS→Organization links (22.2%) point to a matched organization
 
 ## Matches by method
 
 | method | confidence | count |
 |---|---|---|
-| legal_exact | 1.0 | 9091 |
+| legal_exact | 1.0 | 9094 |
 | legal_core | 0.9 | 3250 |
-| address_name | 0.6 | 1348 |
-| other_name_exact | 0.95 | 1101 |
+| address_name | 0.6 | 1347 |
+| other_name_exact | 0.95 | 1103 |
 | fuzzy | 0.7 | 401 |
-| other_name_core | 0.85 | 318 |
+| other_name_core | 0.85 | 319 |
 | as_name_exact | 0.85 | 247 |
 | as_name_core | 0.75 | 229 |
-| legal_exact_nocountry | 0.5 | 224 |
+| legal_exact_nocountry | 0.5 | 223 |
 
 ## Matched organizations by country (top 20)
 
 | country | count |
 |---|---|
-| US | 5895 |
+| US | 5894 |
 | DE | 1056 |
-| IN | 913 |
+| IN | 914 |
 | GB | 625 |
-| PL | 623 |
+| PL | 624 |
 | IT | 550 |
 | FR | 539 |
 | CA | 479 |
@@ -131,15 +131,15 @@
 | TTSL-ISP DIVISION | 6 | TATA TELESERVICES (MAHARASHTRA) LIMITED [3358003IB42VST99EI84, IN, GENERAL, mumbai, ACTIVE] | TATA TELESERVICES LIMITED [3358003M4YQ5CPJTVD89, IN, GENERAL, new delhi, ACTIVE] |
 | SIA Tet | 5 | TET, SABIEDRIBA AR IEROBEZOTU ATBILDIBU [213800HNB8DBFIACDP23, LV, GENERAL, riga, ACTIVE] | SIA AHI [984500DQV583D614AF24, LV, GENERAL, riga, ACTIVE] |
 | Bloomberg Financial Markets Limited Partnership | 4 | Bloomberg L.P. [549300B56MD0ZC402L06, US, GENERAL, wilmington, ACTIVE] | Bloomberg Inc. [549300RMUDWPHCUQNE66, US, GENERAL, wilmington, ACTIVE] |
-| Ritter Communications | 4 | RITTER COMMUNICATIONS ULTIMATE HOLDINGS LLC [254900KQCGHCOMCVID60, US, GENERAL, wilmington, ACTIVE] | E. RITTER COMMUNICATIONS HOLDINGS, LLC [254900WU6SLIPGCQT351, US, GENERAL, wilmington, ACTIVE] |
 | Gannett Co. Inc. | 4 | GANNETT MEDIA CORP. [5493006PH3BYSUOBLD51, US, GENERAL, wilmington, ACTIVE] | USA TODAY CO., INC. [549300JQ2PU0RI3ZBA32, US, GENERAL, wilmington, ACTIVE] | TEGNA INC. [549300YC5EDBGX85AO10, US, GENERAL, wilmington, ACTIVE] |
+| Ritter Communications | 4 | RITTER COMMUNICATIONS ULTIMATE HOLDINGS LLC [254900KQCGHCOMCVID60, US, GENERAL, wilmington, ACTIVE] | E. RITTER COMMUNICATIONS HOLDINGS, LLC [254900WU6SLIPGCQT351, US, GENERAL, wilmington, ACTIVE] |
 | Providence Health & Services | 4 | PROVIDENCE HEALTH & SERVICES AND SWEDISH HEALTH SERVICES MASTER RETIREMENT TRUST [549300ME146XSPPHUT62, US, GENERAL, renton, ACTIVE] | Providence Health & Services Cash Balance Retirement Plan Trust [QL6R5J1JKA1JZLFDVS59, US, GENERAL, renton, ACTIVE] |
 | SIA Maklaut | 3 | SIA OLO [648815T5UG82MM2DE793, LV, GENERAL, riga, ACTIVE] | SIA BAM [6488OW8EI29O122V1B15, LV, GENERAL, riga, ACTIVE] |
-| Open Infra ISP Production International AB | 3 | Open Infra AB (publ) [5493005PYCFBGISTQY29, SE, GENERAL, solna, ACTIVE] | Open Infra International AB [6367007FTAPOZ2STBP87, SE, GENERAL, solna, ACTIVE] |
 | Ekco B.V. | 3 | Luna B.V. [7245002LHEH5X2SZ1E78, NL, GENERAL, waalwijk, ACTIVE] | Luna Investments C.V. [724500LH6RF9UM9DW236, NL, GENERAL, rotterdam, ACTIVE] |
+| Macarne Limited | 3 | MACARNE LIMITED [25490072Q9D0I8PQ5R27, GB, GENERAL, london, ACTIVE] | Macarne Limited [254900Y85WY94UHMEY24, HK, GENERAL, hong kong, ACTIVE] |
+| Open Infra ISP Production International AB | 3 | Open Infra AB (publ) [5493005PYCFBGISTQY29, SE, GENERAL, solna, ACTIVE] | Open Infra International AB [6367007FTAPOZ2STBP87, SE, GENERAL, solna, ACTIVE] |
+| CIBC World Markets | 3 | CIBC WORLD MARKETS CORP. [549300445CON3DBMU275, US, GENERAL, wilmington, ACTIVE] | CIBC WORLD MARKETS INC. [549300TDJKVQJ41VN031, CA, GENERAL, toronto, ACTIVE] |
 | Petco | 3 | PETCO HEALTH AND WELNESS COMPANY, INC. [2549007TYGV6RVSE9M61, US, GENERAL, wilmington, ACTIVE] | PETCO Animal Supplies, Inc. [EQFF4O0CK09VES3JAH16, US, GENERAL, wilmington, ACTIVE] |
 | Credit Acceptance Corporation | 3 | CREDIT ACCEPTANCE FUNDING LLC 2021-1 [549300KC7H1GM85XG191, US, GENERAL, wilmington, ACTIVE] | CREDIT ACCEPTANCE FUNDING LLC 2022-2 [549300ZESUG7V7BCIE49, US, GENERAL, wilmington, ACTIVE] |
 | Tata Teleservices (Maharashtra) Ltd | 3 | TATA TELESERVICES (MAHARASHTRA) LIMITED [3358003IB42VST99EI84, IN, GENERAL, mumbai, ACTIVE] | TATA TELESERVICES LIMITED [3358003M4YQ5CPJTVD89, IN, GENERAL, new delhi, ACTIVE] |
-| Macarne Limited | 3 | MACARNE LIMITED [25490072Q9D0I8PQ5R27, GB, GENERAL, london, ACTIVE] | Macarne Limited [254900Y85WY94UHMEY24, HK, GENERAL, hong kong, ACTIVE] |
-| CIBC World Markets | 3 | CIBC WORLD MARKETS CORP. [549300445CON3DBMU275, US, GENERAL, wilmington, ACTIVE] | CIBC WORLD MARKETS INC. [549300TDJKVQJ41VN031, CA, GENERAL, toronto, ACTIVE] |
 | Fisher Scientific | 3 | Fisher Scientific Company [549300JLXOCO3Q1XUR35, CA, GENERAL, halifax, ACTIVE] | FISHER SCIENTIFIC SAS [549300LCICOL5G2YXP11, FR, GENERAL, illkirch graffenstaden, ACTIVE] |
