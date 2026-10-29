@@ -1,30 +1,30 @@
 # IYP ↔ GLEIF matching report
 
-- Generated: 2026-10-26 12:17 UTC
-- GLEIF golden copy publish date: 2026-10-26
+- Generated: 2026-10-29 12:21 UTC
+- GLEIF golden copy publish date: 2026-10-29
 - IYP organizations: 97955 (87220 manage at least one AS)
 - Organizations with a country in IYP: 90876
-- Organizations with registry (RDAP) data: 54688; matches that needed it: 1195 (see `hint` column)
+- Organizations with registry (RDAP) data: 54699; matches that needed it: 1195 (see `hint` column)
 
 ## Results
 
-- Matched: **16223** (16.6% of orgs)
+- Matched: **16229** (16.6% of orgs)
 - Ambiguous (needs manual review): 267
-- Unmatched: 81465
-- AS coverage: 25007 of 112618 AS→Organization links (22.2%) point to a matched organization
+- Unmatched: 81459
+- AS coverage: 25014 of 112618 AS→Organization links (22.2%) point to a matched organization
 
 ## Matches by method
 
 | method | confidence | count |
 |---|---|---|
-| legal_exact | 1.0 | 9090 |
-| legal_core | 0.9 | 3253 |
+| legal_exact | 1.0 | 9093 |
+| legal_core | 0.9 | 3254 |
 | address_name | 0.6 | 1348 |
-| other_name_exact | 0.95 | 1111 |
+| other_name_exact | 0.95 | 1113 |
 | fuzzy | 0.7 | 399 |
 | other_name_core | 0.85 | 321 |
-| as_name_exact | 0.85 | 246 |
-| as_name_core | 0.75 | 232 |
+| as_name_exact | 0.85 | 247 |
+| as_name_core | 0.75 | 231 |
 | legal_exact_nocountry | 0.5 | 223 |
 
 ## Matched organizations by country (top 20)
@@ -32,7 +32,7 @@
 | country | count |
 |---|---|
 | US | 5898 |
-| DE | 1056 |
+| DE | 1058 |
 | IN | 915 |
 | GB | 626 |
 | PL | 623 |
@@ -71,15 +71,15 @@
 | Credit Suisse Group | 549300506SI9CRFV9Z86 | CREDIT SUISSE GROUP AG | other_name_exact |
 | Comcast Cable Communications, LLC | 549300T2R1ZBGV1UVE31 | COMCAST CABLE COMMUNICATIONS, LLC | legal_exact |
 | Oracle Corporation | 1Z4GXXU7ZHVWFCD8TV52 | ORACLE CORPORATION | legal_exact |
-| VOCUS PTY LTD | 549300KWP0QLMVT5UD71 | VOCUS PTY LTD | legal_exact |
 | KGI Securities (Thailand) Public Company Limited | 529900UR8P8JDG3YZS51 | บริษัท หลักทรัพย์ เคจีไอ (ประเทศไทย) จำกัด (มหาชน) | other_name_exact |
+| VOCUS PTY LTD | 549300KWP0QLMVT5UD71 | VOCUS PTY LTD | legal_exact |
 | Equinix, Inc. | 549300EVUN2BTLJ3GT74 | EQUINIX, INC. | legal_exact |
 | Zayo Bandwidth | QKKPM5UA1HL7X4C5KD20 | Education Networks of America, Inc. | as_name_exact |
 | CS Loxinfo Public Company Limited | 549300HG5527UPZLTT69 | บริษัท ไทยออยล์ จำกัด (มหาชน) | as_name_exact |
 | GoDaddy.com, LLC | 54930014QNWWH8OAC930 | GODADDY.COM, LLC | legal_exact |
-| PJSC MegaFon | 213800HE6VDVJWT85874 | ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "МЕГАФОН" | as_name_core |
 | DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | TEGNA Inc. | 549300YC5EDBGX85AO10 | TEGNA INC. | legal_exact |
+| PJSC MegaFon | 213800HE6VDVJWT85874 | ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "МЕГАФОН" | as_name_core |
 | PJSC "Vimpelcom" | 253400C0ETXZ1NMZ3W36 | Публичное акционерное общество "Вымпел-Коммуникации" | other_name_exact |
 
 ## Matches from AS names (weakest evidence, review these)
@@ -96,23 +96,23 @@
 | Indonesia Network Information Center | 30 | pt bank anz indonesia | PT BANK ANZ INDONESIA | as_name_exact |
 | Philippine Long Distance Telephone Co. | 29 | sitel philippines corporation | SITEL PHILIPPINES CORPORATION | as_name_exact |
 | Akamai International B.V. | 20 | akamai technologies | AKAMAI TECHNOLOGIES, INC. | as_name_core |
-| Spark Ventures | 19 | meridian energy; spark new zealand | MERIDIAN ENERGY LIMITED | as_name_core |
 | TPG Internet Pty Ltd | 19 | tpg telecom limited | TPG TELECOM LIMITED | as_name_exact |
+| Spark Ventures | 19 | meridian energy; spark new zealand | MERIDIAN ENERGY LIMITED | as_name_core |
 | GTT Americas, LLC | 19 | gtt communications | GTT Communications, Inc. | as_name_core |
 | PT. Cyberindo Aditama | 18 | pt indocement tunggal prakarsa | PT Indocement Tunggal Prakarsa Tbk. | as_name_core |
 | ISP Alliance a.s. | 17 | alliance a s | THE ALLIANCE PARTNERSHIP S.R.O | as_name_core |
 | FirstLight Networks, LLC | 16 | firstlight fiber inc | FIRSTLIGHT FIBER, INC. | as_name_exact |
+| Sky Internet | 14 | philippine airlines inc | PHILIPPINE AIRLINES, INC. | as_name_exact |
 | Internet Thailand Company Ltd. | 14 | land and houses fund management co ltd | Land and Houses Fund Management Co., Ltd. | as_name_exact |
 | IX Reach Ltd | 14 | reach ltd | REACH PLC | as_name_core |
-| Sky Internet | 14 | philippine airlines inc | PHILIPPINE AIRLINES, INC. | as_name_exact |
-| IRINN | 10 | eclerx services limited | ECLERX SERVICES LIMITED | as_name_exact |
 | CNCGROUP IP network of ShangHai IDC | 10 | china unicom | China Unicom (Hong Kong) Limited | as_name_core |
-| ASE IT NETWORKS | 8 | buff dubs | BUFF DUBS PTY LTD | as_name_core |
+| IRINN | 10 | eclerx services limited | ECLERX SERVICES LIMITED | as_name_exact |
 | Digiweb ltd | 8 | viatel ireland | VIATEL IRELAND LIMITED | as_name_core |
+| ASE IT NETWORKS | 8 | buff dubs | BUFF DUBS PTY LTD | as_name_core |
 | Bangladesh Telegraph & Telephone Board | 8 | bangladesh bank | Bangladesh Bank | as_name_exact |
 | Telecom Italia S.p.A. | 8 | tim s p a | TIM SRL | as_name_core |
 | UAB "Baltnetos komunikacijos" | 7 | baltnetos komunikacijos | Uždaroji akcinė bendrovė "BALTNETOS KOMUNIKACIJOS" | as_name_core |
-| LY Corporation | 7 | line corporation | LINE株式会社 | as_name_core |
+| Bredband2 AB | 7 | a3 sverige | Bredband2 Sverige AB | as_name_core |
 
 ## Largest ambiguous organizations (review these first)
 
