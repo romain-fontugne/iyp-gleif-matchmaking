@@ -994,8 +994,7 @@
  "EUT4": [
   "l s",
   "r l s",
-  "a r l s",
-  "sarl s"
+  "a r l s"
  ],
  "EVBW": [
   "inc"
