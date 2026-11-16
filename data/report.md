@@ -1,26 +1,26 @@
 # IYP ↔ GLEIF matching report
 
-- Generated: 2026-11-12 14:42 UTC
-- GLEIF golden copy publish date: 2026-11-12
+- Generated: 2026-11-16 14:50 UTC
+- GLEIF golden copy publish date: 2026-11-16
 - IYP organizations: 97955 (87220 manage at least one AS)
 - Organizations with a country in IYP: 90876
-- Organizations with registry (RDAP) data: 54751; matches that needed it: 1190 (see `hint` column)
+- Organizations with registry (RDAP) data: 54763; matches that needed it: 1194 (see `hint` column)
 
 ## Results
 
-- Matched: **16242** (16.6% of orgs)
+- Matched: **16248** (16.6% of orgs)
 - Ambiguous (needs manual review): 269
-- Unmatched: 81444
-- AS coverage: 25026 of 112618 AS→Organization links (22.2%) point to a matched organization
+- Unmatched: 81438
+- AS coverage: 25038 of 112618 AS→Organization links (22.2%) point to a matched organization
 
 ## Matches by method
 
 | method | confidence | count |
 |---|---|---|
-| legal_exact | 1.0 | 9104 |
+| legal_exact | 1.0 | 9108 |
 | legal_core | 0.9 | 3253 |
-| address_name | 0.6 | 1342 |
-| other_name_exact | 0.95 | 1118 |
+| address_name | 0.6 | 1343 |
+| other_name_exact | 0.95 | 1119 |
 | fuzzy | 0.7 | 401 |
 | other_name_core | 0.85 | 326 |
 | as_name_exact | 0.85 | 247 |
@@ -33,7 +33,7 @@
 |---|---|
 | US | 5899 |
 | DE | 1060 |
-| IN | 913 |
+| IN | 915 |
 | GB | 629 |
 | PL | 626 |
 | IT | 552 |
@@ -41,12 +41,12 @@
 | CA | 479 |
 | AU | 363 |
 | ES | 332 |
-| NL | 313 |
+| NL | 314 |
 | CH | 294 |
 | AT | 278 |
 | SE | 275 |
+| DK | 175 |
 | CZ | 174 |
-| DK | 174 |
 | RO | 172 |
 | TR | 163 |
 | RU | 155 |
@@ -64,8 +64,8 @@
 | MTS PJSC | 2534008FX8EXH1FMJA74 | Публичное акционерное общество "Мобильные ТелеСистемы" | other_name_exact |
 | Cogent Communications, LLC | 549300KFWFYF8Q1U0Y26 | COGENT COMMUNICATIONS GROUP, LLC | address_name |
 | Apogee Telecom Inc. | 5493004A58A6J83OF885 | APOGEE TELECOM, INC. | legal_exact |
-| Microsoft Corporation | INR2EJN1ERAN0W5ZP974 | MICROSOFT CORPORATION | legal_exact |
 | Vercara, LLC | 254900GFIR7U1E9IO007 | VERCARA, LLC | legal_exact |
+| Microsoft Corporation | INR2EJN1ERAN0W5ZP974 | MICROSOFT CORPORATION | legal_exact |
 | HP Inc. | WHKXQACZ14C5XRO8LW03 | HP INC. | legal_exact |
 | Orange S.A. | 969500MCOONR8990S771 | ORANGE | legal_core |
 | Credit Suisse Group | 549300506SI9CRFV9Z86 | CREDIT SUISSE GROUP AG | other_name_exact |
@@ -78,8 +78,8 @@
 | CS Loxinfo Public Company Limited | 549300HG5527UPZLTT69 | บริษัท ไทยออยล์ จำกัด (มหาชน) | as_name_exact |
 | GoDaddy.com, LLC | 54930014QNWWH8OAC930 | GODADDY.COM, LLC | legal_exact |
 | PJSC MegaFon | 213800HE6VDVJWT85874 | ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "МЕГАФОН" | as_name_core |
-| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | TEGNA Inc. | 549300YC5EDBGX85AO10 | TEGNA INC. | legal_exact |
+| DE-CIX Management GmbH | 39120050QRC3PQ76LC82 | DE-CIX Management GmbH | legal_exact |
 | PJSC "Vimpelcom" | 253400C0ETXZ1NMZ3W36 | Публичное акционерное общество "Вымпел-Коммуникации" | other_name_exact |
 
 ## Matches from AS names (weakest evidence, review these)
@@ -131,12 +131,12 @@
 | TTSL-ISP DIVISION | 6 | TATA TELESERVICES (MAHARASHTRA) LIMITED [3358003IB42VST99EI84, IN, GENERAL, mumbai, ACTIVE] | TATA TELESERVICES LIMITED [3358003M4YQ5CPJTVD89, IN, GENERAL, new delhi, ACTIVE] |
 | SIA Tet | 5 | TET, SABIEDRIBA AR IEROBEZOTU ATBILDIBU [213800HNB8DBFIACDP23, LV, GENERAL, riga, ACTIVE] | SIA AHI [984500DQV583D614AF24, LV, GENERAL, riga, ACTIVE] |
 | Providence Health & Services | 4 | PROVIDENCE HEALTH & SERVICES AND SWEDISH HEALTH SERVICES MASTER RETIREMENT TRUST [549300ME146XSPPHUT62, US, GENERAL, renton, ACTIVE] | Providence Health & Services Cash Balance Retirement Plan Trust [QL6R5J1JKA1JZLFDVS59, US, GENERAL, renton, ACTIVE] |
-| Gannett Co. Inc. | 4 | GANNETT MEDIA CORP. [5493006PH3BYSUOBLD51, US, GENERAL, wilmington, ACTIVE] | USA TODAY CO., INC. [549300JQ2PU0RI3ZBA32, US, GENERAL, wilmington, ACTIVE] | TEGNA INC. [549300YC5EDBGX85AO10, US, GENERAL, wilmington, ACTIVE] |
-| Ritter Communications | 4 | RITTER COMMUNICATIONS ULTIMATE HOLDINGS LLC [254900KQCGHCOMCVID60, US, GENERAL, wilmington, ACTIVE] | E. RITTER COMMUNICATIONS HOLDINGS, LLC [254900WU6SLIPGCQT351, US, GENERAL, wilmington, ACTIVE] |
 | Bloomberg Financial Markets Limited Partnership | 4 | Bloomberg L.P. [549300B56MD0ZC402L06, US, GENERAL, wilmington, ACTIVE] | Bloomberg Inc. [549300RMUDWPHCUQNE66, US, GENERAL, wilmington, ACTIVE] |
+| Ritter Communications | 4 | RITTER COMMUNICATIONS ULTIMATE HOLDINGS LLC [254900KQCGHCOMCVID60, US, GENERAL, wilmington, ACTIVE] | E. RITTER COMMUNICATIONS HOLDINGS, LLC [254900WU6SLIPGCQT351, US, GENERAL, wilmington, ACTIVE] |
+| Gannett Co. Inc. | 4 | GANNETT MEDIA CORP. [5493006PH3BYSUOBLD51, US, GENERAL, wilmington, ACTIVE] | USA TODAY CO., INC. [549300JQ2PU0RI3ZBA32, US, GENERAL, wilmington, ACTIVE] | TEGNA INC. [549300YC5EDBGX85AO10, US, GENERAL, wilmington, ACTIVE] |
 | SIA Maklaut | 3 | SIA OLO [648815T5UG82MM2DE793, LV, GENERAL, riga, ACTIVE] | SIA BAM [6488OW8EI29O122V1B15, LV, GENERAL, riga, ACTIVE] |
-| Petco | 3 | PETCO HEALTH AND WELNESS COMPANY, INC. [2549007TYGV6RVSE9M61, US, GENERAL, wilmington, ACTIVE] | PETCO Animal Supplies, Inc. [EQFF4O0CK09VES3JAH16, US, GENERAL, wilmington, ACTIVE] |
 | MUFG Bank Ltd. | 3 | BANK [2549000C5KZ15Q2U9V68, US, GENERAL, wapello, ACTIVE] | The Bank [549300M4E3MK3F5GQW40, US, GENERAL, jennings, ACTIVE] |
+| Petco | 3 | PETCO HEALTH AND WELNESS COMPANY, INC. [2549007TYGV6RVSE9M61, US, GENERAL, wilmington, ACTIVE] | PETCO Animal Supplies, Inc. [EQFF4O0CK09VES3JAH16, US, GENERAL, wilmington, ACTIVE] |
 | Credit Acceptance Corporation | 3 | CREDIT ACCEPTANCE FUNDING LLC 2021-1 [549300KC7H1GM85XG191, US, GENERAL, wilmington, ACTIVE] | CREDIT ACCEPTANCE FUNDING LLC 2022-2 [549300ZESUG7V7BCIE49, US, GENERAL, wilmington, ACTIVE] |
 | BlackRock Financial Management, Inc. | 3 | BlackRock Financial Management, Inc. [529900VCJBAHTHGRDK15, US, GENERAL, wilmington, ACTIVE] | BLACKROCK FINANCIAL MANAGEMENT INC. [549300LVXYIVJKE13M84, US, GENERAL, wilmington, ACTIVE] |
 | Macarne Limited | 3 | MACARNE LIMITED [25490072Q9D0I8PQ5R27, GB, GENERAL, london, ACTIVE] | Macarne Limited [254900Y85WY94UHMEY24, HK, GENERAL, hong kong, ACTIVE] |
